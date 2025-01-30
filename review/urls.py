@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import review_detail
+from . import views
+
 
 urlpatterns = [
-    path('review/<slug:slug>/', review_detail, name='review_detail'),
+    path('', views.review_list, name='review_list'),
+    path('<slug:slug>/', views.review_detail, name='review_detail'),
 ]

@@ -11,6 +11,7 @@ API_URL = 'http://ws.audioscrobbler.com/2.0/'
 class Album(models.Model):
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
+    image_url = models.URLField(blank=True)
 
     def __str__(self):
         return f"{self.title} by {self.artist}"
@@ -23,7 +24,8 @@ class Review(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-
+    excerpt = models.TextField(blank=True)
+    
     def __str__(self):
         return self.title
 
@@ -37,8 +39,11 @@ class Review(models.Model):
             'format': 'json'
         }
         response = requests.get(API_URL, params=params)
-        data = response.json()
-        if 'album' in data:
-            return data['album']
-        else:
-            return None
+        if response.status_code == 200:
+            data = response.json()
+            if 'album' in data:
+                self.title = data['album']['name']
+                self.image_url = data['album']['image'][-1]['#text']  # Get the largest image
+                self.save()
+                return data['album']
+        return None
