@@ -1,1 +1,1 @@
-web: gunicorn beatboxd.wsgi
+web: gunicorn codestar.wsgi
