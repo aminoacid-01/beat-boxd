@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}Review List{% endblock %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Review List</title>
-</head>
-
-<body>
     <h1>Review List</h1>
     <ul>
         {% for review in reviews %}
@@ -22,6 +17,4 @@
         </li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+{% endblock %}

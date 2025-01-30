@@ -25,6 +25,11 @@ class Review(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
+    STATUS = (
+        (0, "Draft"),
+        (1, "Published"),
+    )
+    status = models.IntegerField(choices=STATUS, default=0)
 
     def __str__(self):
         return self.heading
