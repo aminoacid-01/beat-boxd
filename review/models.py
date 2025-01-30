@@ -17,7 +17,7 @@ class Album(models.Model):
         return f"{self.title} by {self.artist}"
 
 class Review(models.Model):
-    title = models.CharField(max_length=200)
+    heading = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
@@ -25,9 +25,9 @@ class Review(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
-    
+
     def __str__(self):
-        return self.title
+        return self.heading
 
     def fetch_album_info(self):
         # Fetch album info using the Last.fm API
@@ -42,7 +42,7 @@ class Review(models.Model):
         if response.status_code == 200:
             data = response.json()
             if 'album' in data:
-                self.title = data['album']['name']
+                self.name = data['album']['name']
                 self.image_url = data['album']['image'][-1]['#text']  # Get the largest image
                 self.save()
                 return data['album']

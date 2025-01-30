@@ -11,7 +11,7 @@
     <ul>
         {% for review in reviews %}
         <li>
-            <h2>{{ review.title }}</h2>
+            <h2>{{ review.heading }}</h2>
             {% if review.image_url %}
             <img src="{{ review.image_url }}" alt="{{ review.album.title }} album cover" />
             {% endif %}
