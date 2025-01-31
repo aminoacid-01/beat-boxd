@@ -10,4 +10,8 @@ class ReviewAdmin(SummernoteModelAdmin):
     summernote_fields = ('body',)
 
 # Register your models here.
-admin.site.register(Album)
+@admin.register(Album)
+class AlbumAdmin(admin.ModelAdmin):
+    list_display = ('title', 'artist')
+    search_fields = ['title', 'artist']
+    list_filter = ('artist',)

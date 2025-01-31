@@ -56,13 +56,34 @@ def create_review(request):
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
         if album_form.is_valid() and review_form.is_valid():
-            album = album_form.save()
+            album_title = album_form.cleaned_data['title'].lower()
+            album_artist = album_form.cleaned_data['artist'].lower()
+            album, created = Album.objects.get_or_create(
+                title__iexact=album_title,
+                artist__iexact=album_artist,
+                defaults={
+                    'title': album_title,
+                    'artist': album_artist,
+                    'image_url': album_form.cleaned_data.get('image_url', ''),
+                    'description': album_form.cleaned_data.get('description', '')
+                }
+            )
             review = review_form.save(commit=False)
             review.album = album
             review.author = request.user  # Set the author to the logged-in user
             review.save()
-            return redirect('review_list')
+            return redirect('home_page')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()
     return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
+
+def get_album_artist(request):
+    title = request.GET.get('title', None)
+    if title:
+        try:
+            album = Album.objects.get(title__iexact=title.lower())
+            return JsonResponse({'artist': album.artist})
+        except Album.DoesNotExist:
+            return JsonResponse({'artist': ''})
+    return JsonResponse({'artist': ''})

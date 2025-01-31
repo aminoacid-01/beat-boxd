@@ -20,11 +20,11 @@
                     {% if review.album.image_url %}
                     <!-- Display the album cover image if available -->
                     <img class="card-img-top" src="{{ review.album.image_url }}"
-                        alt="{{ review.album.title }} album cover">
+                        alt="{{ review.album.title | title }} album cover">
                     {% endif %}
                     <div class="card-body">
                         <!-- Display the review heading -->
-                        <h5 class="card-title album-name">{{ review.album }}</h5>
+                        <h5 class="card-title album-name">{{ review.album | title}}</h5>
                         <!-- Display the album title -->
                         <p class="card-text review-heading"><strong>{{ review.heading }}</strong></p>
                         <!-- Display the author's username -->
