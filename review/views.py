@@ -45,7 +45,7 @@ def review_list(request):
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
     return render(request, 
-                  'review_list.html', 
+                  'index.html', 
                   {'reviews': reviews}
                   )
 
