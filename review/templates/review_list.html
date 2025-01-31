@@ -2,7 +2,7 @@
 {% block title %}Review List{% endblock %}
 {% block content %}
 
-<h1>Recent Reviews</h1>
+<h2>Recent Reviews</h2>
 <div class="container-fluid">
     <div class="row">
         {% for review in reviews %}
@@ -14,9 +14,9 @@
                 {% endif %}
                 <div class="card-body">
                     <!-- Display the review heading -->
-                    <h5 class="card-title review-heading">{{ review.heading }}</h5>
+                    <h5 class="card-title album-name">{{ review.album }}</h5>
                     <!-- Display the album title -->
-                    <p class="card-text album-name"><strong>{{ review.album }}</strong></p>
+                    <p class="card-text review-heading"><strong>{{ review.heading }}</strong></p>
                     <!-- Display the author's username -->
                     <p class="card-text author">{{ review.author.username }}</p>
                     <!-- Display the creation date of the review -->

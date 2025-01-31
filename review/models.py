@@ -31,6 +31,16 @@ class Review(models.Model):
     )
     status = models.IntegerField(choices=STATUS, default=0)
 
+    def save(self, *args, **kwargs):
+        # If the excerpt is empty, set it to the first 250 characters of the body
+        if not self.excerpt:
+            if len(self.body) > 250:
+                self.excerpt = self.body[:247] + '...'
+            else:
+                self.excerpt = self.body
+        # Call the original save method
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.heading} by {self.author} | {self.album.title}"
 
