@@ -9,4 +9,4 @@ class AlbumForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['heading', 'slug','author', 'body', 'status']
+        fields = ['heading', 'slug', 'body', 'status']

@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Review
 from .forms import AlbumForm, ReviewForm
+from django.contrib.auth.decorators import login_required
 
 def review_detail(request, slug):
     """
@@ -49,6 +50,7 @@ def review_list(request):
                   )
 
 
+@login_required
 def create_review(request):
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
@@ -57,6 +59,7 @@ def create_review(request):
             album = album_form.save()
             review = review_form.save(commit=False)
             review.album = album
+            review.author = request.user  # Set the author to the logged-in user
             review.save()
             return redirect('review_list')
     else:
