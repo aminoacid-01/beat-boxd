@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
+*{
+    font-family: 'Truculenta', sans-serif;
+
+}
+
+/* album covers */
+#imgThumbnail{
+    border: solid 1px #000;
+    height: 20em;
+}
