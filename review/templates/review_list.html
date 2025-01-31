@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Review List{% endblock %}
 {% block content %}
+{% load static %}
 
 <h2>Recent Reviews</h2>
 <div class="container-fluid">
     <div class="row">
         {% for review in reviews %}
         <div class="col-lg-3 col-md-4 col-sm-5 col-6">
+            <a href="{% url 'review_detail' review.slug %}" class="post-link">
             <div class="card mb-4">
-                {% if review.image_url %}
+                {% if review.album.image_url %}
                 <!-- Display the album cover image if available -->
-                <img class="card-img-top" src="{{ review.image_url }}" alt="{{ review.album.title }} album cover">
+                <img class="card-img-top" src="{{ review.album.image_url }}" alt="{{ review.album.title }} album cover">
                 {% endif %}
                 <div class="card-body">
                     <!-- Display the review heading -->
@@ -25,6 +27,7 @@
                     <p class="card-text">{{ review.excerpt }}</p>
                 </div>
             </div>
+            </a>
         </div>
         {% endfor %}
     </div>

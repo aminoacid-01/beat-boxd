@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 import os
 import requests
 
-
 # Create your models here.
 
 API_URL = 'http://ws.audioscrobbler.com/2.0/'
@@ -12,6 +11,7 @@ class Album(models.Model):
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     image_url = models.URLField(blank=True)
+    description = models.TextField(blank=True)  # Add a field for the description
 
     def __str__(self):
         return f"{self.title} by {self.artist}"
@@ -57,8 +57,9 @@ class Review(models.Model):
         if response.status_code == 200:
             data = response.json()
             if 'album' in data:
-                self.name = data['album']['name']
-                self.image_url = data['album']['image'][-1]['#text']  # Get the largest image
-                self.save()
-                return data['album']
+                album_data = data['album']
+                self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
+                self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
+                self.album.save()
+                return album_data
         return None
