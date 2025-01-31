@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, Album
+from .models import Album, Review
 
 class AlbumForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,4 @@ class AlbumForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['heading', 'slug', 'body', 'status']
+        fields = ['heading', 'body', 'status']

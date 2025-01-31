@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 import os
 import requests
 
@@ -18,7 +19,7 @@ class Album(models.Model):
 
 class Review(models.Model):
     heading = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     body = models.TextField()
@@ -38,6 +39,11 @@ class Review(models.Model):
                 self.excerpt = self.body[:247] + '...'
             else:
                 self.excerpt = self.body
+
+        # Automatically generate a slug if it's not provided
+        if not self.slug:
+            self.slug = slugify(self.heading)
+
         # Call the original save method
         super().save(*args, **kwargs)
 

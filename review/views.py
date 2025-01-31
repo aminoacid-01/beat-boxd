@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Review
+from .models import Review, Album
 from .forms import AlbumForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
