@@ -2,31 +2,31 @@
 {% block title %}Review List{% endblock %}
 {% block content %}
 
-    <h1>Recent Reviews</h1>
-        <div class="container-fluid">
-            <div class="row">
-            {% for review in reviews %}
-            <div class="col-md-3">
+<h1>Recent Reviews</h1>
+<div class="container-fluid">
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-lg-3 col-md-4 col-sm-5 col-6">
             <div class="card mb-4">
-            {% if review.image_url %}
-            <!-- Display the album cover image if available -->
-            <img class="card-img-top" src="{{ review.image_url }}" alt="{{ review.album.title }} album cover">
-            {% endif %}
-            <div class="card-body">
-                <!-- Display the review heading -->
-                <h5 class="card-title">{{ review.heading }}</h5>
-                <!-- Display the album title -->
-                <p class="card-text"><strong>Album:</strong> {{ review.album }}</p>
-                <!-- Display the author's username -->
-                <p class="card-text"><strong>Author:</strong> {{ review.author.username }}</p>
-                <!-- Display the creation date of the review -->
-                <p class="card-text"><strong>Created on:</strong> {{ review.created_on }}</p>
-                <!-- Display the review excerpt -->
-                <p class="card-text">{{ review.excerpt }}</p>
-            </div>
-            </div>
-            </div>
-            {% endfor %}
+                {% if review.image_url %}
+                <!-- Display the album cover image if available -->
+                <img class="card-img-top" src="{{ review.image_url }}" alt="{{ review.album.title }} album cover">
+                {% endif %}
+                <div class="card-body">
+                    <!-- Display the review heading -->
+                    <h5 class="card-title review-heading">{{ review.heading }}</h5>
+                    <!-- Display the album title -->
+                    <p class="card-text album-name"><strong>{{ review.album }}</strong></p>
+                    <!-- Display the author's username -->
+                    <p class="card-text author">{{ review.author.username }}</p>
+                    <!-- Display the creation date of the review -->
+                    <p class="card-text">{{ review.created_on }}</p>
+                    <!-- Display the review excerpt -->
+                    <p class="card-text">{{ review.excerpt }}</p>
+                </div>
             </div>
         </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
