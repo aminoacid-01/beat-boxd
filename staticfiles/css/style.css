@@ -4,6 +4,10 @@
     font-family: 'Truculenta', sans-serif;
 }
 
+.bottom-border{
+    border-bottom: #191110 solid 1px;
+}
+
 /* header */
 h1 {
     font-family: 'Monoton', cursive;
@@ -45,6 +49,34 @@ h2 {
 
 .card-body .btn {
     margin-top: auto;
+}
+
+/* forms */
+/* review form */
+
+#review-form textarea{
+    padding: 1rem;
+}
+input,
+textarea {
+    border: #191110 solid 1px !important;
+}
+
+#review-form {
+    border: solid 1px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 1000px;
+}
+
+#review-form label {
+    display: block;
+}
+.reviewForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 /* Ensure footer is fixed to the bottom */
