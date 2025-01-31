@@ -32,7 +32,7 @@ class Review(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     def __str__(self):
-        return self.heading
+        return f"{self.heading} by {self.author} | {self.album.title}"
 
     def fetch_album_info(self):
         # Fetch album info using the Last.fm API
