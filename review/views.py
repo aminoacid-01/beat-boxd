@@ -1,6 +1,7 @@
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Review
+from .forms import AlbumForm, ReviewForm
 
 def review_detail(request, slug):
     """
@@ -46,3 +47,19 @@ def review_list(request):
                   'review_list.html', 
                   {'reviews': reviews}
                   )
+
+
+def create_review(request):
+    if request.method == 'POST':
+        album_form = AlbumForm(request.POST)
+        review_form = ReviewForm(request.POST)
+        if album_form.is_valid() and review_form.is_valid():
+            album = album_form.save()
+            review = review_form.save(commit=False)
+            review.album = album
+            review.save()
+            return redirect('review_list')
+    else:
+        album_form = AlbumForm()
+        review_form = ReviewForm()
+    return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
