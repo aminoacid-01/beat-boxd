@@ -8,7 +8,7 @@
 <form method="post">
     <div id="review-form" class="mb-2 mx-3">
     {% csrf_token %}
-    <fieldset>
+    <fieldset class="bottom-border mb-2">
         <legend>Album Information:</legend>
         {{ album_form.as_p }}
     </fieldset>
