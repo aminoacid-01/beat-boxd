@@ -4,7 +4,9 @@
 
 {% block content %}
 <h1>Create a New Review</h1>
+<div class="reviewForm">
 <form method="post">
+    <div id="review-form" class="mb-2 mx-3">
     {% csrf_token %}
     <fieldset>
         <legend>Album Information:</legend>
@@ -14,6 +16,7 @@
         <legend>Review:</legend>
         {{ review_form.as_p }}
     </fieldset>
-    <button type="submit">Submit</button>
+    <button type="submit">Submit</button></div>
 </form>
+</div>
 {% endblock %}
