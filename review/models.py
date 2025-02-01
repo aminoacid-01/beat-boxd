@@ -107,3 +107,22 @@ class Review(models.Model):
                 self.album.save()
                 return album_data
         return None
+    
+class Comment(models.Model):
+    """
+    Model representing a comment on a review.
+
+    Attributes:
+        review (Review): The review the comment belongs to.
+        author (User): The author of the comment.
+        body (str): The body of the comment.
+        created_on (DateTime): The date and time the comment was created.
+        updated_on (DateTime): The date and time the comment was last updated.
+        approved (bool): Whether the comment is approved or not.
+    """
+    review = models.ForeignKey(Review, on_delete=models.CASCADE,related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
