@@ -14,6 +14,12 @@ class Album(models.Model):
     image_url = models.URLField(blank=True)
     description = models.TextField(blank=True)  # Add a field for the description
 
+    def save(self, *args, **kwargs):
+        # Store artist names and album titles in lowercase
+        self.title = self.title.lower()
+        self.artist = self.artist.lower()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.title} by {self.artist}"
 
