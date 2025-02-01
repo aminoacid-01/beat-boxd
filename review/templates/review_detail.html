@@ -25,7 +25,7 @@
         <div class="col-md-8">
             <!-- Album title and information -->
             <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
-            <p class="album-info">{{ review.album.description }}</p>
+            <p class="album-info">{{ review.album.description|safe }}</p>
         </div>
     </div>
     <div class="row">

@@ -19,7 +19,7 @@
                 <div class="card mb-4">
                     {% if review.album.image_url %}
                     <!-- Display the album cover image if available -->
-                    <img class="card-img-top" src="{{ review.album.image_url }}"
+                    <img class="card-img-top bottom-border" src="{{ review.album.image_url }}"
                         alt="{{ review.album.title | title }} album cover">
                     {% endif %}
                     <div class="card-body">
@@ -32,7 +32,7 @@
                         <!-- Display the creation date of the review -->
                         <p class="card-text">{{ review.created_on }}</p>
                         <!-- Display the review excerpt -->
-                        <p class="card-text">{{ review.excerpt }}</p>
+                        <p class="card-text">{{ review.excerpt | safe }}</p>
                     </div>
                 </div>
             </a>
