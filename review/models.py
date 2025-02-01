@@ -24,13 +24,12 @@ class Album(models.Model):
 
     Class:
         meta: Set unique constraints on the title and artist fields. Groups albums with the same title and artist together.
-        ]
         
     """
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
-    image_url = models.URLField(blank=True)
-    description = models.TextField(blank=True) 
+    image_url = models.URLField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True) 
 
     class Meta:
         unique_together = ('title', 'artist')

@@ -10,14 +10,17 @@
     {% csrf_token %}
     <fieldset class="bottom-border mb-2">
         <legend>Album Information:</legend>
+        <!--  Users can select existing albums -->
         {{ album_form.existing_album.label_tag }} {{ album_form.existing_album }}
         <p>Or enter new album details:</p>
+        <!-- Input for Album information -->
         {{ album_form.title.label_tag }} {{ album_form.title }}
         {{ album_form.artist.label_tag }} {{ album_form.artist }}
         {{ album_form.image_url.label_tag }} {{ album_form.image_url }}
         {{ album_form.description.label_tag }} {{ album_form.description }}
     </fieldset>
     <fieldset>
+        <!-- Review form fields -->
         <legend>Review:</legend>
         {{ review_form.as_p }}
     </fieldset>
