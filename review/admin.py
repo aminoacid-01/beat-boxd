@@ -18,7 +18,7 @@ class AlbumAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'body', 'created_on')
+    list_display = ('author','body','created_on')
     search_fields = ['name', 'body']
     list_filter = ('created_on','approved')
     summernote_fields = ('body',)
