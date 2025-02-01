@@ -9,6 +9,20 @@ import requests
 API_URL = 'http://ws.audioscrobbler.com/2.0/'
 
 class Album(models.Model):
+    """
+    Model representing an album.
+    
+    Attributes:
+        title (str): The title of the album.
+        artist (str): The name of the artist.
+        image_url (str): The URL of the album cover image.
+        description (str): A description of the album.
+
+    Methods:
+        save: Save the album instance. Store artist names and album titles in lowercase.
+        __str__: Return a string representation of the album.
+        
+    """
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     image_url = models.URLField(blank=True)
@@ -24,6 +38,25 @@ class Album(models.Model):
         return f"{self.title} by {self.artist}"
 
 class Review(models.Model):
+    """
+    Model representing a review.
+
+    Attributes:
+        heading (str): The heading of the review. (originally meant to be title but kept on getting confused with album title)
+        slug (str): The slug for the review.
+        author (User): The author of the review.
+        album (Album): The album being reviewed.
+        body (str): The body of the review.
+        created_on (DateTime): The date and time the review was created.
+        updated_on (DateTime): The date and time the review was last updated.
+        excerpt (str): An excerpt of the review.
+        status (int): The status of the review (Draft or Published).
+
+    Methods:
+        save: Save the review instance. Automatically generate a slug if not provided.
+        __str__: Return a string representation of the review.
+        fetch_album_info: Fetch album information using the Last.fm API.
+    """
     heading = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -50,7 +83,6 @@ class Review(models.Model):
         if not self.slug:
             self.slug = slugify(self.heading)
 
-        # Call the original save method
         super().save(*args, **kwargs)
 
     def __str__(self):
