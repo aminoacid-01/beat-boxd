@@ -21,12 +21,19 @@ class Album(models.Model):
     Methods:
         save: Save the album instance. Store artist names and album titles in lowercase.
         __str__: Return a string representation of the album.
+
+    Class:
+        meta: Set unique constraints on the title and artist fields. Groups albums with the same title and artist together.
+        ]
         
     """
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     image_url = models.URLField(blank=True)
-    description = models.TextField(blank=True)  # Add a field for the description
+    description = models.TextField(blank=True) 
+
+    class Meta:
+        unique_together = ('title', 'artist')
 
     def save(self, *args, **kwargs):
         # Store artist names and album titles in lowercase
@@ -82,6 +89,11 @@ class Review(models.Model):
         # Automatically generate a slug if it's not provided
         if not self.slug:
             self.slug = slugify(self.heading)
+
+        # Check if the album already exists
+        existing_album = Album.objects.filter(title=self.album.title, artist=self.album.artist).first()
+        if existing_album:
+            self.album = existing_album
 
         super().save(*args, **kwargs)
 

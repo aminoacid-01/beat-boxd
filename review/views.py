@@ -1,8 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Review, Album
+from .models import Review, Album, Comment
 from .forms import AlbumForm, ReviewForm
 from django.contrib.auth.decorators import login_required
+
+
 
 def review_detail(request, slug):
     """
@@ -56,18 +58,15 @@ def create_review(request):
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
         if album_form.is_valid() and review_form.is_valid():
-            album_title = album_form.cleaned_data['title'].lower()
-            album_artist = album_form.cleaned_data['artist'].lower()
-            album, created = Album.objects.get_or_create(
-                title__iexact=album_title,
-                artist__iexact=album_artist,
-                defaults={
-                    'title': album_title,
-                    'artist': album_artist,
-                    'image_url': album_form.cleaned_data.get('image_url', ''),
-                    'description': album_form.cleaned_data.get('description', '')
-                }
-            )
+            if album_form.cleaned_data['existing_album']:
+                album = album_form.cleaned_data['existing_album']
+            else:
+                album = album_form.save(commit=False)
+                album.title = album_form.cleaned_data['title']
+                album.artist = album_form.cleaned_data['artist']
+                album.image_url = album_form.cleaned_data['image_url']
+                album.description = album_form.cleaned_data['description']
+                album.save()
             review = review_form.save(commit=False)
             review.album = album
             review.author = request.user  # Set the author to the logged-in user
@@ -87,3 +86,13 @@ def get_album_artist(request):
         except Album.DoesNotExist:
             return JsonResponse({'artist': ''})
     return JsonResponse({'artist': ''})
+
+def album_detail(request, album_id):
+    album = Album.objects.get(id=album_id)
+    data = {
+        'title': album.title,
+        'artist': album.artist,
+        'image_url': album.image_url,
+        'description': album.description,
+    }
+    return JsonResponse(data)
