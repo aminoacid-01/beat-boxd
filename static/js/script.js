@@ -1,30 +1,8 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const albumTitleInput = document.getElementById;    ('id_title'); // Get the title input element
+    const artistInput = document.getElementByI  ('id_artist'); // Get the artist input element
+    const imageUrlInput = document.getElementByI    ('id_image_url'); // Get the image_url input element
+    const descriptionInput = document.getElementByI ('id_description'); // Get the description input element
+    const albumDropdown = document.getElementByI    ('id_album_dropdown');  // Get the dropdown element
+});
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get references to the existing album select element and the title and artist input fields
-        const existingAlbumSelect = document.querySelector('select[name="existing_album"]');
-    const titleInput = document.querySelector('input[name="title"]');
-    const artistInput = document.querySelector('input[name="artist"]');
-    const imageUrlInput = document.querySelector('input[name="image_url"]');
-    const descriptionInput = document.querySelector('textarea[name="description"]');
-
-    // Add an event listener to the existing album select element
-    existingAlbumSelect.addEventListener('change', function () {
-            const selectedAlbumId = this.value;
-    if (selectedAlbumId) {
-        // Fetch album details from the server if an album is selected
-        fetch(`/api/albums/${selectedAlbumId}/`)
-            .then(response => response.json())
-            .then(data => {
-                // Populate the input fields with the fetched album details
-                titleInput.value = data.title;
-                artistInput.value = data.artist;
-                imageUrlInput.value = data.image_url;
-                descriptionInput.value = data.description;
-            });
-            } else {
-        // Clear the input fields if no album is selected
-        titleInput.value = '';
-        artistInput.value = '';
-            }
-        });
-    });
