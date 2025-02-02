@@ -25,10 +25,25 @@
                 <!-- Display a placeholder image if the album cover is not available -->
                 <img class="img-fluid" src="{% static 'images/placeholder_cover.jpg' %}" alt="Placeholder album cover">
                 {% endif %}
+                <!-- Album title and information -->
+                <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+                
+                <h4 class="mb-0 mt-1"><strong>Description:</strong></h4>
+                {% if review.album.description != '' %}
+                <p class="album-info">{{ review.album.description|safe }}</p>
+                {% else %}
+                <p class="album-info">No description available.</p>
+                {% endif %}
+                <h4 class="mb-0 mt-1"><strong>Release Date:</strong></h4>
+                {% if review.album.release_date %}
+                <p class="album-info">{{ review.album.release_date }}</p>
+                {% else %}
+                <p class="album-info">No release date available.</p>
+                {% endif %}
                 <!-- Display the tracklist if available -->
                 <div class="album-tracklist mt-3">
                     {% if review.album.tracklist %}
-                    <h2>Tracklist</h2>
+                    <h4><strong>Tracklist</strong></h4>
                     <ul>
                         {% for track in review.album.tracklist %}
                         <li>{{ track.title | title }}</li>
@@ -41,27 +56,13 @@
             </div>
             <!-- Title, Information and Review content -->
             <div class="col-md-8">
-                <!-- Album title and information -->
-                <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
-
-                <p class="mb-0 mt-1"><strong>Description:</strong></p>
-                {% if review.album.description != '' %}
-                <p class="album-info">{{ review.album.description|safe }}</p>
-                {% else %}
-                <p class="album-info">No description available.</p>
-                {% endif %}
-                <p class="mb-0 mt-1"><strong>Release Date:</strong></p>
-                {% if review.album.release_date %}
-                <p class="album-info">{{ review.album.release_date }}</p>
-                {% else %}
-                <p class="album-info">No release date available.</p>
-                {% endif %}
-
                 <div class="review-content mt-3 ">
                     <div class="card p-3">
                         <p>{{ review.body|safe }}</p>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </div>
