@@ -1,8 +1,21 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
 
+<div class="masthead mt-3">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <!-- Review title goes in these h1 tags -->
+                <h1 class="review-title">{{ review.heading|title }}</h1>
+                <!-- Review author goes before the | the review's created date goes after -->
+                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
+        <!-- Cover and Tracklist -->
         <div class="col-md-4">
             {% if review.album.image_url %}
             <!-- Display the album cover image if available -->
@@ -20,28 +33,22 @@
                 {% endif %}
             </div>
         </div>
+        <!-- Title, Information and Review content -->
         <div class="col-md-8">
             <!-- Album title and information -->
             <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+            <p class="mb-0 mt-1"><strong>Description:</strong></p>
             <p class="album-info">{{ review.album.description|safe }}</p>
-        <!-- The review content goes underneath the album description but next to the tracklist -->
          
-        <div class="review-content mt-3">
-            <h3>Review</h3>
+        <div class="review-content mt-3 ">
+            <div class="card p-3">
             <p>{{ review.body|safe }}</p>
         </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col card mb-4 mt-3">
-            <div class="card-body">
-                <!-- The review content goes inside the card-text. -->
-                <p class="card-text">
-                    {{ review.body|safe }}
-                </p>
-            </div>
         </div>
     </div>
+    </div>
 </div>
+
+
 
 {% endblock content %}
