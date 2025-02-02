@@ -15,9 +15,9 @@
     <div class="row">
         <!-- Review list, bootstrap cards -->
         {% for review in reviews %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
             <a href="{% url 'review_detail' review.slug %}" class="post-link">
-                <div class="card mb-4">
+                <div class="card">
                     {% if review.album.image_url %}
                     <!-- Display the album cover image if available -->
                     <img class="card-img-top bottom-border" src="{{ review.album.image_url }}"
