@@ -60,6 +60,9 @@
                         <textarea name="body" class="form-control" placeholder="Add a comment"></textarea>
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
+                    {% if form_submitted %}
+                    <p class="mt-2">Comment submitted successfully and awaiting approval!</p>
+                    {% endif %}
                 </div>
                 <div class="comments-list">
                     {% for comment in comments %}
@@ -73,6 +76,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 

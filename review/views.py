@@ -38,7 +38,7 @@ def review_detail(request, slug):
                 new_comment.review = review
                 new_comment.author = request.user
                 new_comment.save()
-                return redirect("review_detail", slug=slug)
+                form_submitted = True
         else:
             return redirect('login')
 
@@ -54,6 +54,7 @@ def review_detail(request, slug):
              "comments": comments,
              "comment_count": comment_count,
              "comment_form": comment_form,
+             "form_submitted": form_submitted,
              }
         )
 
