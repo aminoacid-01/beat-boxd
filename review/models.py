@@ -31,9 +31,6 @@ class Album(models.Model):
     image_url = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True) 
 
-    class Meta:
-        unique_together = ('title', 'artist')
-
     def save(self, *args, **kwargs):
         # Store artist names and album titles in lowercase
         self.title = self.title.lower()
