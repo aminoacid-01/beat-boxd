@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const artistInput = document.querySelector('input[name="artist"]');
     const imageUrlInput = document.querySelector('input[name="image_url"]');
     const descriptionInput = document.querySelector('textarea[name="description"]');
+
+    // Hide the description and image URL input elements and their labels
+    hideDescriptionAndImageUrl(descriptionInput, imageUrlInput);
+
     // Add an event listener to the existing album select element
     existingAlbumSelect.addEventListener('change', function () {
         const selectedAlbumId = this.value;
@@ -29,19 +33,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// function hideDescriptionAndImageUrl(descriptionInput, imageUrlInput) {
-//     /**
-//      *  Function to hide the description and image URL input elements and their labels
-//      * @param {Element} descriptionInput - The description input element
-//      * @param {Element} imageUrlInput - The image URL input element
-//      * @returns {void}
-//      */
-//     descriptionInput.style.display = 'none';
-//     imageUrlInput.style.display = 'none';
-//     const descriptionLabel = document.querySelector('label[for="id_description"]');
-//     const imageUrlLabel = document.querySelector('label[for="id_image_url"]');
-//     if (descriptionLabel) descriptionLabel.style.display = 'none';
-//     if (imageUrlLabel) imageUrlLabel.style.display = 'none';
-// }
+function hideDescriptionAndImageUrl(descriptionInput, imageUrlInput) {
+    /**
+     *  Function to hide the description and image URL input elements and their labels
+     * @param {Element} descriptionInput - The description input element
+     * @param {Element} imageUrlInput - The image URL input element
+     * @returns {void}
+     */
+    descriptionInput.style.display = 'none';
+    imageUrlInput.style.display = 'none';
+    const descriptionLabel = document.querySelector('label[for="id_description"]');
+    const imageUrlLabel = document.querySelector('label[for="id_image_url"]');
+    if (descriptionLabel) descriptionLabel.style.display = 'none';
+    if (imageUrlLabel) imageUrlLabel.style.display = 'none';
+}
 
 
