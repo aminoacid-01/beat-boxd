@@ -27,8 +27,18 @@ def review_detail(request, slug):
     """
 
     review = get_object_or_404(Review, slug=slug)
-    comments = review.comments.all().order_by("-created_on")
-    comment_count = review.comments.filter(approved=True).count()
+    comments = review.comments.filter(approved=True).order_by("-created_on")
+    comment_count = comments.count()
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.review = review
+            new_comment.author = request.user
+            new_comment.save()
+            return redirect("review_detail", slug=slug)
+
     comment_form = CommentForm()
 
     # Fetch album information
