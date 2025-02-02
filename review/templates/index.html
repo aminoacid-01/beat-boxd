@@ -4,10 +4,10 @@
 <!-- Hero banner -->
 <div id="hero" class="container-fluid mb-4">
     <div class="col-12">
-        <h2>Everyone's a critic.</h2>
-        <p>Share your thoughts on the latest music releases.</p>
-        <a href="{% url 'create_review' %}" class="btn btn-primary my-auto">Write a Review</a>
-    </div>
+    <h2>Everyone's a critic.</h2>
+    <p>Share your thoughts on the latest music releases.</p>
+    <a href="{% url 'create_review' %}" class="btn btn-primary my-auto">Write a Review</a>
+</div>
 </div>
 <!-- Recent Review (Lists recent reviews- displays album cover with title and review information) -->
 <h2 id="listTitle">Recent Reviews</h2>
@@ -15,35 +15,29 @@
     <div class="row">
         <!-- Review list, bootstrap cards -->
         {% for review in reviews %}
-        <div class="col-12 col-md-6 mb-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
             <a href="{% url 'review_detail' review.slug %}">
                 <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            {% if review.album.image_url and review.album.image_url != '' %}
-                            <!-- Display the album cover image if available -->
-                            <img class="card-img" src="{{ review.album.image_url }}"
-                                alt="{{ review.album.title | title }} album cover">
-                            {% else %}
-                            <!-- Display a placeholder image if the album cover is not available -->
-                            <img class="card-img" src="{% static 'images/placeholder_cover.jpg' %}"
-                                alt="Placeholder album cover">
-                            {% endif %}
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <!-- Display the album title -->
-                                <h5 class="card-title album-name">{{ review.album | title}}</h5>
-                                <!-- Display the review heading -->
-                                <p class="card-text review-heading"><strong>{{ review.heading }}</strong></p>
-                                <!-- Display the author's username -->
-                                <p class="card-text author">{{ review.author.username }}</p>
-                                <!-- Display the creation date of the review -->
-                                <p class="card-text">{{ review.created_on }}</p>
-                                <!-- Display the review excerpt -->
-                                <p class="card-text">{{ review.excerpt | safe }}</p>
-                            </div>
-                        </div>
+                    {% if review.album.image_url and review.album.image_url != '' %}
+                    <!-- Display the album cover image if available -->
+                    <img class="card-img-top bottom-border" src="{{ review.album.image_url }}"
+                        alt="{{ review.album.title | title }} album cover">
+                    {% else %}
+                    <!-- Display a placeholder image if the album cover is not available -->
+                    <img class="card-img-top bottom-border" src="{% static 'images/placeholder_cover.jpg' %}"
+                        alt="Placeholder album cover">
+                    {% endif %}
+                    <div class="card-body">
+                        <!-- Display the review heading -->
+                        <h5 class="card-title album-name">{{ review.album | title}}</h5>
+                        <!-- Display the album title -->
+                        <p class="card-text review-heading"><strong>{{ review.heading }}</strong></p>
+                        <!-- Display the author's username -->
+                        <p class="card-text author">{{ review.author.username }}</p>
+                        <!-- Display the creation date of the review -->
+                        <p class="card-text">{{ review.created_on }}</p>
+                        <!-- Display the review excerpt -->
+                        <p class="card-text">{{ review.excerpt | safe }}</p>
                     </div>
                 </div>
             </a>
