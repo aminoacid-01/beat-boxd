@@ -52,6 +52,11 @@ h2 {
     text-decoration: none;
 }
 
+#review-list .card {
+    border: #191110 solid 1px;
+    border-radius: 10px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
