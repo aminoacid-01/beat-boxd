@@ -10,18 +10,22 @@
 </div>
 </div>
 <!-- Recent Review (Lists recent reviews- displays album cover with title and review information) -->
-<h2>Recent Reviews</h2>
+<h2 id="listTitle">Recent Reviews</h2>
 <div class="container-fluid" id="review-list">
     <div class="row">
         <!-- Review list, bootstrap cards -->
         {% for review in reviews %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
-            <a href="{% url 'review_detail' review.slug %}" class="post-link">
+            <a href="{% url 'review_detail' review.slug %}">
                 <div class="card">
-                    {% if review.album.image_url %}
+                    {% if review.album.image_url and review.album.image_url != '' %}
                     <!-- Display the album cover image if available -->
                     <img class="card-img-top bottom-border" src="{{ review.album.image_url }}"
                         alt="{{ review.album.title | title }} album cover">
+                    {% else %}
+                    <!-- Display a placeholder image if the album cover is not available -->
+                    <img class="card-img-top bottom-border" src="{% static 'images/placeholder_cover.jpg' %}"
+                        alt="Placeholder album cover">
                     {% endif %}
                     <div class="card-body">
                         <!-- Display the review heading -->

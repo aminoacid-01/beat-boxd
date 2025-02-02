@@ -34,8 +34,22 @@ h2 {
 }
 
 /* review list */
+#listTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1em;
+}
+
 .review-list {
     margin: 1em;
+}
+
+#review-list a {
+    text-decoration: none;
+}
+
+#review-list a:hover {
+    text-decoration: none;
 }
 
 .card {
