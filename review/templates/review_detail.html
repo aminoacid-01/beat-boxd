@@ -1,65 +1,73 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
-
-<div class="masthead mt-3">
+<section class="review_expanded">
+    <div class="masthead mt-3">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <!-- Review title goes in these h1 tags -->
+                    <h1 class="review-title">{{ review.heading|title }}</h1>
+                    <!-- Review author goes before the | the review's created date goes after -->
+                    <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <!-- Review title goes in these h1 tags -->
-                <h1 class="review-title">{{ review.heading|title }}</h1>
-                <!-- Review author goes before the | the review's created date goes after -->
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <!-- Cover and Tracklist -->
-        <div class="col-md-4">
-            {% if review.album.image_url %}
-            <!-- Display the album cover image if available -->
-            <img class="img-fluid" src="{{ review.album.image_url }}" alt="{{ review.album.title|title }} album cover">
-            {% endif %}
-            <!-- Display the tracklist if available -->
-            <div class="album-tracklist mt-3">
-                {% if review.album.tracklist %}
-                <h2>Tracklist</h2>
-                <ul>
-                    {% for track in review.album.tracklist %}
-                    <li>{{ track.title | title }}</li>
-                    {% endfor %}
-                </ul>
+        <div class="row">
+            <!-- Cover and Tracklist -->
+            <div class="col-md-4">
+                {% if review.album.image_url %}
+                <!-- Display the album cover image if available -->
+                <img class="img-fluid" src="{{ review.album.image_url }}"
+                    alt="{{ review.album.title|title }} album cover">
                 {% endif %}
+                <!-- Display the tracklist if available -->
+                <div class="album-tracklist mt-3">
+                    {% if review.album.tracklist %}
+                    <h2>Tracklist</h2>
+                    <ul>
+                        {% for track in review.album.tracklist %}
+                        <li>{{ track.title | title }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Title, Information and Review content -->
+            <div class="col-md-8">
+                <!-- Album title and information -->
+                <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+                <p class="mb-0 mt-1"><strong>Description:</strong></p>
+                <p class="album-info">{{ review.album.description|safe }}</p>
+
+                <div class="review-content mt-3 ">
+                    <div class="card p-3">
+                        <p>{{ review.body|safe }}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Title, Information and Review content -->
-        <div class="col-md-8">
-            <!-- Album title and information -->
-            <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
-            <p class="mb-0 mt-1"><strong>Description:</strong></p>
-            <p class="album-info">{{ review.album.description|safe }}</p>
-         
-        <div class="review-content mt-3 ">
-            <div class="card p-3">
-            <p>{{ review.body|safe }}</p>
-        </div>
-        </div>
     </div>
-    </div>
-</div>
+</section>
 
 <section class="comments">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h2>Comments</h2>
-                <div class="comment-form">
+                <div class="comment-form mb-3">
+                    {% if user.is_authenticated %}
                     <form method="post">
                         {% csrf_token %}
                         {{ comment_form.as_p }}
                         <button type="submit">Submit</button>
                     </form>
+                    {% else %}
+                    <p>You must be logged in to comment.</p>
+                    <a class="btn btn-primary" href="{% url 'account_login' %}">Login</a>
+                    {% endif %}
+
                 </div>
                 <div class="comments-list">
                     {% for comment in comments %}
