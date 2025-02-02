@@ -59,6 +59,9 @@
                 <div class="review-content mt-3 ">
                     <div class="card p-3">
                         <p>{{ review.body|safe }}</p>
+                        {% if user == review.author %}
+                        <a href="{% url 'edit_review' review.slug %}" class="btn btn-secondary">Edit Review</a>
+                        {% endif %}
                     </div>
                 </div>
 

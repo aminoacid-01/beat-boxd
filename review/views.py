@@ -119,6 +119,18 @@ def create_review(request):
         review_form = ReviewForm()
     return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
 
+@login_required
+def edit_review(request, slug):
+    review = get_object_or_404(Review, slug=slug, author=request.user)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('review_detail', slug=review.slug)
+    else:
+        form = ReviewForm(instance=review)
+    return render(request, 'edit_review.html', {'review_form': form, 'review': review})
+
 
 def get_album_artist(request):
     """
