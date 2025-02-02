@@ -58,7 +58,7 @@ def review_detail(request, slug):
              }
         )
 
-def review_list(request):
+def recent_review_list(request):
     """
     View function to display a list of reviews.
     This function retrieves all reviews from the database, fetches additional
