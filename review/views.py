@@ -30,6 +30,9 @@ def review_detail(request, slug):
     comments = review.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()
     form_submitted = True
+     # Fetch related reviews based on the same artist
+    related_reviews = Review.objects.filter(album__artist=review.album.artist).exclude(id=review.id)[:5]
+
 
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -55,6 +58,7 @@ def review_detail(request, slug):
              "comment_count": comment_count,
              "comment_form": comment_form,
              "form_submitted": form_submitted,
+             "related_reviews": related_reviews,
              }
         )
 
@@ -87,6 +91,8 @@ def recent_review_list(request):
                   'index.html', 
                   {'reviews': reviews}
                   )
+
+
 
 
 @login_required

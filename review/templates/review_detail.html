@@ -80,6 +80,19 @@
                 </div>
             </section>
             </div>
+            <div class="col-md-4 related_review_list">
+                <h2>Related Reviews</h2>
+                <ul>
+                    {% for related_review in related_reviews %}
+                    <li>
+                        <a href="{% url 'review_detail' related_review.slug %}">
+                            {{ related_review.heading|title }}
+                            Posted by {{ related_review.author }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
