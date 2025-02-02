@@ -29,6 +29,7 @@ def review_detail(request, slug):
     review = get_object_or_404(Review, slug=slug)
     comments = review.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()
+    form_submitted = True
 
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -38,7 +39,6 @@ def review_detail(request, slug):
                 new_comment.review = review
                 new_comment.author = request.user
                 new_comment.save()
-                form_submitted = True
         else:
             return redirect('login')
 
