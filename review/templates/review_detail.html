@@ -52,7 +52,7 @@
 </section>
 
 <section class="comments">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <h2>Comments</h2>
@@ -60,7 +60,10 @@
                     {% if user.is_authenticated %}
                     <form method="post">
                         {% csrf_token %}
-                        {{ comment_form.as_p }}
+                        <div class="mb-3">
+                            <label for="id_body" class="form-label">Comment:</label>
+                            <textarea name="body" id="id_body" class="form-control" rows="4" required></textarea>
+                        </div>
                         <button type="submit">Submit</button>
                     </form>
                     {% else %}
