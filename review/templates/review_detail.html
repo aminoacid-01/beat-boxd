@@ -17,22 +17,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-        {% if review.album.image_url %}
-        <!-- Display the album cover image if available -->
-        <img class="img-fluid" src="{{ review.album.image_url }}" alt="{{ review.album.title|title }} album cover">
-        {% endif %}
+            {% if review.album.image_url %}
+            <!-- Display the album cover image if available -->
+            <img class="img-fluid" src="{{ review.album.image_url }}" alt="{{ review.album.title|title }} album cover">
+            {% endif %}
         </div>
         <div class="col-md-8">
             <!-- Album title and information -->
             <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
             <p class="album-info">{{ review.album.description|safe }}</p>
+
+            <!-- Display the tracklist if available -->
+            <div class="album-tracklist">
+                {% if review.album.tracklist %}
+                <h2>Tracklist</h2>
+                <ul>
+                    {% for track in review.album.tracklist %}
+                    <li>{{ track.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col card mb-4 mt-3">
             <div class="card-body">
                 <!-- The review content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text">
                     {{ review.body|safe }}
                 </p>

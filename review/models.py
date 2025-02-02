@@ -17,6 +17,7 @@ class Album(models.Model):
         artist (str): The name of the artist.
         image_url (str): The URL of the album cover image.
         description (str): A description of the album.
+        tracklist (list): A list of tracks on the album.
 
     Methods:
         save: Save the album instance. Store artist names and album titles in lowercase.
@@ -27,6 +28,7 @@ class Album(models.Model):
     artist = models.CharField(max_length=200)
     image_url = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True) 
+    tracklist = models.JSONField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         # Store artist names and album titles in lowercase
@@ -100,6 +102,7 @@ class Review(models.Model):
             'api_key': os.environ.get("LASTFM_API_KEY"),
             'artist': self.album.artist,
             'album': self.album.title,
+            'tracklist': self.album.tracklist,
             'format': 'json'
         }
         response = requests.get(API_URL, params=params)
@@ -109,6 +112,11 @@ class Review(models.Model):
                 album_data = data['album']
                 self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
                 self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
+                tracks = album_data.get('tracks', {}).get('track', [])
+            if isinstance(tracks, list):
+                self.album.tracklist = [track['name'] for track in tracks]
+            else:
+                self.album.tracklist = []
                 self.album.save()
                 return album_data
         return None
