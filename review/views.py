@@ -80,7 +80,7 @@ def review_list(request):
         HttpResponse: The rendered 'review_list.html' template with the list of reviews.
     """
 
-    reviews = Review.objects.all().order_by('-created_on')  # Get all reviews from the database
+    reviews = Review.objects.all().order_by('-created_on')[:6]  
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
     return render(request, 
