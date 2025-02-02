@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
-<section class="review_expanded mb-4">
+<section class="review_expanded">
     <div class="masthead mt-3">
         <div class="container">
             <div class="row g-0">
@@ -17,10 +17,13 @@
         <div class="row">
             <!-- Cover and Tracklist -->
             <div class="col-md-4">
-                {% if review.album.image_url %}
+                {% if review.album.image_url and review.album.image_url != '' %}
                 <!-- Display the album cover image if available -->
                 <img class="img-fluid" src="{{ review.album.image_url }}"
-                    alt="{{ review.album.title|title }} album cover">
+                    alt="{{ review.album.title | title }} album cover">
+                {% else %}
+                <!-- Display a placeholder image if the album cover is not available -->
+                <img class="img-fluid" src="{% static 'images/placeholder_cover.jpg' %}" alt="Placeholder album cover">
                 {% endif %}
                 <!-- Display the tracklist if available -->
                 <div class="album-tracklist mt-3">
@@ -31,6 +34,8 @@
                         <li>{{ track.title | title }}</li>
                         {% endfor %}
                     </ul>
+                    {% else %}
+                    <p>No tracklist available.</p>
                     {% endif %}
                 </div>
             </div>
@@ -38,8 +43,19 @@
             <div class="col-md-8">
                 <!-- Album title and information -->
                 <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+
                 <p class="mb-0 mt-1"><strong>Description:</strong></p>
+                {% if review.album.description != '' %}
                 <p class="album-info">{{ review.album.description|safe }}</p>
+                {% else %}
+                <p class="album-info">No description available.</p>
+                {% endif %}
+                <p class="mb-0 mt-1"><strong>Release Date:</strong></p>
+                {% if review.album.release_date %}
+                <p class="album-info">{{ review.album.release_date }}</p>
+                {% else %}
+                <p class="album-info">No release date available.</p>
+                {% endif %}
 
                 <div class="review-content mt-3 ">
                     <div class="card p-3">
@@ -52,7 +68,7 @@
 </section>
 
 <section class="comments">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h2>Comments</h2>
@@ -60,10 +76,9 @@
                     {% if user.is_authenticated %}
                     <form method="post">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="id_body" class="form-label">Comment:</label>
-                            <textarea name="body" id="id_body" class="form-control" rows="4" required></textarea>
-                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                         <button type="submit">Submit</button>
                     </form>
                     {% else %}
