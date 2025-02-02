@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
 
 {% block title %}Create Review{% endblock %}
 
@@ -18,7 +21,7 @@
         <legend>Review:</legend>
         {{ review_form.as_p }}
     </fieldset>
-    <button type="submit">Submit</button></div>
+    <button class="btn btn-primary" type="submit">Submit</button></div>
 </form>
 
 <!-- CUSTOM JS FOR FORM -->
