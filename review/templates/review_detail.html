@@ -1,19 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6">
-                <!-- Review title goes in these h1 tags -->
-                <h1 class="review-title">{{ review.heading|title }}</h1>
-                <!-- Review author goes before the | the review's created date goes after -->
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -21,24 +8,29 @@
             <!-- Display the album cover image if available -->
             <img class="img-fluid" src="{{ review.album.image_url }}" alt="{{ review.album.title|title }} album cover">
             {% endif %}
-        </div>
-        <div class="col-md-8">
-            <!-- Album title and information -->
-            <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
-            <p class="album-info">{{ review.album.description|safe }}</p>
-
             <!-- Display the tracklist if available -->
-            <div class="album-tracklist">
+            <div class="album-tracklist mt-3">
                 {% if review.album.tracklist %}
                 <h2>Tracklist</h2>
                 <ul>
                     {% for track in review.album.tracklist %}
-                    <li>{{ track.title }}</li>
+                    <li>{{ track.title | title }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
             </div>
         </div>
+        <div class="col-md-8">
+            <!-- Album title and information -->
+            <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+            <p class="album-info">{{ review.album.description|safe }}</p>
+        <!-- The review content goes underneath the album description but next to the tracklist -->
+         
+        <div class="review-content mt-3">
+            <h3>Review</h3>
+            <p>{{ review.body|safe }}</p>
+        </div>
+    </div>
     </div>
     <div class="row">
         <div class="col card mb-4 mt-3">
