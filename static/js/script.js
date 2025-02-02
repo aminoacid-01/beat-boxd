@@ -48,4 +48,33 @@ function hideDescriptionAndImageUrl(descriptionInput, imageUrlInput) {
     if (imageUrlLabel) imageUrlLabel.style.display = 'none';
 }
 
+function hideArtistAndAlbumInput(artistInput, titleInput) {
+    /**
+     * Function to hide the artist and title input elements and their labels
+     * @param {Element} artistInput - The artist input element
+     * @param {Element} titleInput - The title input element
+     * @returns {void}
+     */
+    artistInput.style.display = 'none';
+    titleInput.style.display = 'none';
+    const artistLabel = document.querySelector('label[for="id_artist"]');
+    const titleLabel = document.querySelector('label[for="id_title"]');
+    if (artistLabel) artistLabel.style.display = 'none';
+    if (titleLabel) titleLabel.style.display = 'none';
+}
+
+function showArtistAndAlbumInput(artistInput, titleInput) {
+    /**
+     * Function to show the artist and title input elements and their labels
+     * @param {Element} artistInput - The artist input element
+     * @param {Element} titleInput - The title input element
+     * @returns {void}
+     */
+    artistInput.style.display = '';
+    titleInput.style.display = '';
+    const artistLabel = document.querySelector('label[for="id_artist"]');
+    const titleLabel = document.querySelector('label[for="id_title"]');
+    if (artistLabel) artistLabel.style.display = '';
+    if (titleLabel) titleLabel.style.display = '';
+}
 
