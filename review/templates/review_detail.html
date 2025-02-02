@@ -25,6 +25,8 @@
             <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
             <p class="mb-0 mt-1"><strong>Description:</strong></p>
             <p class="album-info">{{ review.album.description|safe }}</p>
+            <p class="mb-0 mt-1"><strong>Release Date:</strong></p>
+            <p class="album-info">{{ review.album.release_date }}</p>
             <!-- Display the tracklist if available -->
             <div class="album-tracklist mt-3">
                 {% if review.album.tracklist %}
