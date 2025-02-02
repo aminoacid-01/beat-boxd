@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Review, Album, Comment
-from .forms import AlbumForm, ReviewForm
+from .forms import AlbumForm, ReviewForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -27,6 +27,8 @@ def review_detail(request, slug):
     """
 
     review = get_object_or_404(Review, slug=slug)
+    comments = review.comments.all().order_by("-created_on")
+    comment_count = review.comments.filter(approved=True).count()
 
     # Fetch album information
     album_info = review.fetch_album_info()
@@ -34,8 +36,11 @@ def review_detail(request, slug):
     return render(
         request,
         "review_detail.html",
-        {"review": review},
-    )
+            {"review": review,
+             "comments": comments,
+             "comment_count": comment_count,
+             }
+        )
 
 def review_list(request):
     """
@@ -101,6 +106,26 @@ def create_review(request):
         album_form = AlbumForm()
         review_form = ReviewForm()
     return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
+
+@login_required
+def create_comment(request, slug):
+    """
+    View function to create a new comment on a review.
+    This function handles POST requests and processes the form data to create a new comment instance associated with the specified review. The user is then redirected to the review detail page.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the review to which the comment belongs.
+    Returns:
+        HttpResponseRedirect: A redirect to the review detail page.
+    """
+
+    review = get_object_or_404(Review, slug=slug)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.review = review
+            comment.author = request.user
 
 def get_album_artist(request):
     """

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Album, Review
+from .models import Album, Review, Comment
 from django_summernote.widgets import SummernoteWidget
 
 class AlbumForm(forms.ModelForm):
@@ -20,6 +20,14 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['heading', 'body', 'status']
+        widgets = {
+            'body': SummernoteWidget(),
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body']
         widgets = {
             'body': SummernoteWidget(),
         }
