@@ -18,6 +18,12 @@ def review_detail(request, slug):
     **Template:**
 
     :template:`review/review_detail.html`
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the review to display.
+    Returns:
+        HttpResponse: The rendered 'review_detail.html' template with the review.
     """
 
     review = get_object_or_404(Review, slug=slug)
@@ -37,6 +43,16 @@ def review_list(request):
     This function retrieves all reviews from the database, fetches additional
     album information for each review, and renders the 'review_list.html' template
     with the list of reviews.
+
+    **Context**
+    
+    ``reviews``
+        A queryset of all :model:`review.Review` instances.
+    
+    **Template:**
+    
+    :template:`review/review_list.html`
+
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
@@ -54,6 +70,15 @@ def review_list(request):
 
 @login_required
 def create_review(request):
+    """
+    View function to create a new review.
+    This function handles both GET and POST requests. For GET requests, it renders the 'create_review.html' template with empty forms. For POST requests, it processes the form data, creates a new album and review instance, and redirects the user to the home page. If the album already exists, the existing album instance is used.
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        HttpResponse: The rendered 'create_review.html' template with the album and review forms.
+    """
+
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
@@ -78,6 +103,14 @@ def create_review(request):
     return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
 
 def get_album_artist(request):
+    """
+    View function to get the artist of an album.
+    This function takes a 'title' parameter from the query string and returns the artist of the album with that title. If the album does not exist, an empty string is returned. The artist is returned as a JSON response.
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        JsonResponse: The artist of the album as a JSON response.
+    """
     title = request.GET.get('title', None)
     if title:
         try:

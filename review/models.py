@@ -21,9 +21,6 @@ class Album(models.Model):
     Methods:
         save: Save the album instance. Store artist names and album titles in lowercase.
         __str__: Return a string representation of the album.
-
-    Class:
-        meta: Set unique constraints on the title and artist fields. Groups albums with the same title and artist together.
         
     """
     title = models.CharField(max_length=200)
