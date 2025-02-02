@@ -31,13 +31,16 @@ def review_detail(request, slug):
     comment_count = comments.count()
 
     if request.method == "POST":
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.review = review
-            new_comment.author = request.user
-            new_comment.save()
-            return redirect("review_detail", slug=slug)
+        if request.user.is_authenticated:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.review = review
+                new_comment.author = request.user
+                new_comment.save()
+                return redirect("review_detail", slug=slug)
+        else:
+            return redirect('login')
 
     comment_form = CommentForm()
 

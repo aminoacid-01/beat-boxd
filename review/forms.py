@@ -31,3 +31,6 @@ class CommentForm(forms.ModelForm):
         labels = {
             'body': 'Type Your Comment Here',
         }
+        widgets = {
+            'body': forms.Textarea,
+        }
