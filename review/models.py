@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 import os
@@ -37,6 +38,12 @@ class Album(models.Model):
         self.title = self.title.lower()
         self.artist = self.artist.lower()
         super().save(*args, **kwargs)
+
+    def average_rating(self):
+        ratings = self.ratings.all()
+        if ratings.exists():
+            return ratings.aggregate(models.Avg('value'))['value__avg']
+        return 0
 
     def __str__(self):
         return f"{self.title} by {self.artist}"
@@ -125,6 +132,25 @@ class Review(models.Model):
                 self.album.save()
                 return album_data
         return None
+    
+class Rating(models.Model):
+    """
+    Model representing a rating for an album.
+
+    Attributes:
+        album (Album): The album the rating belongs to.
+        user (User): The user who rated the album.
+        value (int): The value of the rating.
+    """
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])  # Limit value between 1 and 5
+
+    class Meta:
+        unique_together = ['album', 'user']
+
+    def __str__(self):
+        return f"{self.value} by {self.user} for {self.album}"
     
 class Comment(models.Model):
     """
