@@ -55,9 +55,15 @@ h2 {
 }
 
 /* forms */
+comment-form, textarea {
+    padding: 1rem;
+    max-width: 60vw;
+    height: 141px;
+}
+
 /* review form */
 
-#review-form textarea{
+#review-form, textarea{
     padding: 1rem;
 }
 input,
