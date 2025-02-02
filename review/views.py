@@ -131,6 +131,15 @@ def edit_review(request, slug):
         form = ReviewForm(instance=review)
     return render(request, 'edit_review.html', {'review_form': form, 'review': review})
 
+@login_required
+def delete_review(request, slug):
+    review = get_object_or_404(Review, slug=slug, author=request.user)
+    if request.method == 'POST':
+        review.delete()
+        return redirect('home_page')
+    return render(request, 'delete_review.html', {'review': review})
+
+
 
 def get_album_artist(request):
     """
