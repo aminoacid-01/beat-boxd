@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch(`/api/albums/${selectedAlbumId}/`)
                 .then(response => response.json())
                 .then(data => {
+                    // Hide the artist and title input elements and their labels
+                    hideArtistAndAlbumInput(artistInput, titleInput);
                     // Populate the input fields with the fetched album details
                     titleInput.value = data.title;
                     artistInput.value = data.artist;
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         } else {
             // Clear the input fields if no album is selected
+            // call showArtistAndAlbumInput function to show the artist and title input elements and their labels
+            showArtistAndAlbumInput(artistInput, titleInput);
             titleInput.value = '';
             artistInput.value = '';
             imageUrlInput.value = '';
