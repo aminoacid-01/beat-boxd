@@ -31,3 +31,6 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'body': SummernoteWidget(),
         }
+        labels = {
+            'body': 'Type Your Comment Here',
+        }
