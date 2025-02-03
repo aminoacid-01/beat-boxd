@@ -6,7 +6,7 @@
 {% block title %}BeatBoxd | Create Review{% endblock %}
 </div>
 {% block content %}
-<h1>Create a New Review</h1>
+<h1 class="text-center">Create a New Review</h1>
 <div class="reviewForm">
 <form method="post">
     <div id="review-form" class="mb-2 mx-3">
@@ -17,7 +17,7 @@
         {{ album_form.as_p }}
     </fieldset>
     <fieldset class="bottom-border mb-2">
-        <legend>Rating:</legend>
+        <legend>(Optional) Rate the Album!</legend>
         {{ rating_form.as_p }}
     <fieldset>
         <!-- Review form fields -->

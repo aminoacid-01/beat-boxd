@@ -20,6 +20,11 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['heading', 'body', 'status']
+        labels = {
+            'heading': 'Title',
+            'body': 'Review',
+            'status': 'Status',
+        }
         widgets = {
             'body': SummernoteWidget(),
         }
@@ -28,6 +33,9 @@ class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
         fields = ['value']
+        labels = {
+            'value': 'Rating',
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
