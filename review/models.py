@@ -23,6 +23,7 @@ class Album(models.Model):
 
     Methods:
         save: Save the album instance. Store artist names and album titles in lowercase.
+        average_rating: Calculate the average rating of the album.
         __str__: Return a string representation of the album.
         
     """
@@ -141,10 +142,18 @@ class Rating(models.Model):
         album (Album): The album the rating belongs to.
         user (User): The user who rated the album.
         value (int): The value of the rating.
+
+    Methods:
+        __str__: Return a string representation of the rating.
+
+        Class Meta:
+            unique_together: Ensure that each user can only rate an album once.
+
     """
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])  # Limit value between 1 and 5
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='ratings', blank=True, null=True)
+    value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True)  # Limit value between 1 and 5
 
     class Meta:
         unique_together = ['album', 'user']
