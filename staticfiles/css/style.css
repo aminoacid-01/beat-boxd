@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
+/* Global Styles */
 * {
     font-family: 'Truculenta', sans-serif;
 }
 
 .bottom-border{
     border-bottom: #191110 solid 1px;
+}
+
+.hidden{
+    display: none;
 }
 
 /* header */
