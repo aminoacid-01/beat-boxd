@@ -1,17 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!-- Hero banner -->
-<div id="hero" class="container-fluid mb-4">
-    <div class="col-12">
-    <h2>Everyone's a critic.</h2>
-    <p>Share your thoughts on the latest music releases.</p>
-    <a href="{% url 'create_review' %}" class="btn btn-primary my-auto">Write a Review</a>
-</div>
-</div>
-<!-- Recent Review (Lists recent reviews- displays album cover with title and review information) -->
-<h2 id="listTitle">Recent Reviews</h2>
-<div class="container-fluid" id="review-list">
+
+<div class="container-fluid px-3 mt-5" id="review-list">
     <div class="row">
         <!-- Review list, bootstrap cards -->
         {% for review in reviews %}
@@ -44,9 +35,6 @@
         </div>
         {% endfor %}
     </div>
-</div>
-<div class="text-center mb-4">
-    <a href="{% url 'review_list' %}" class="btn btn-primary">More Reviews</a>
 </div>
 
 {% endblock %}

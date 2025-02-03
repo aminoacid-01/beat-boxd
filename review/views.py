@@ -5,7 +5,7 @@ from .forms import AlbumForm, ReviewForm, CommentForm, RatingForm
 from django.contrib.auth.decorators import login_required
 
 
-
+# Review CRUD operations
 def review_detail(request, slug):
     """
     Display an individual :model:`review.Review`.
@@ -61,6 +61,37 @@ def review_detail(request, slug):
              "related_reviews": related_reviews,
              }
         )
+
+def review_list(request):
+    """
+    View function to display a list of reviews.
+    This function retrieves all reviews from the database, fetches additional
+    album information for each review, and renders the 'review_list.html' template
+    with the list of reviews.
+
+    **Context**
+    
+    ``reviews``
+        A queryset of all :model:`review.Review` instances.
+    
+    **Template:**
+    
+    :template:`review/review_list.html`
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        HttpResponse: The rendered 'review_list.html' template with the list of reviews.
+    """
+
+    reviews = Review.objects.all().order_by('-created_on')
+    for review in reviews:
+        review.fetch_album_info()  # Fetch album info for each review
+    return render(request, 
+                  'review_list.html', 
+                  {'reviews': reviews}
+                  )
+
 
 def recent_review_list(request):
     """
