@@ -42,7 +42,7 @@ def review_detail(request, slug):
                 comment_form = CommentForm(request.POST, instance=comment)
                 if comment_form.is_valid():
                     comment_form.save()
-                    form_submitted = True
+                    form_submitted = False
             else:
                 # Adding a new comment
                 comment_form = CommentForm(request.POST)
