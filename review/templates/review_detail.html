@@ -44,14 +44,14 @@
         </div>
         <!-- Title, Information and Review content -->
         <div class="col-md-8">
-            <div class="review-content mt-3 ">
-                <div class="card p-3">
+            <div class="review-content my-3 ">
+                <div class="card p-3 mb-4">
                     <p>Rating: {{ review.rating}}/5</p>
                     <p>{{ review.body|safe }}</p>
             
             <!-- Review Actions -->
             {% if user.is_authenticated and user == review.author %}
-            <div class="review-actions mt-3">
+            <div class="review-actions mt-3 my-5 bottom-border pb-3">
                 <a href="{% url 'edit_review' review.slug %}" class="btn btn-primary">Edit</a>
                 <a href="{% url 'delete_review' review.slug %}" class="btn btn-danger">Delete</a>
                 {% endif %}   
@@ -65,7 +65,7 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <textarea name="body" class="form-control" placeholder="Add a comment"></textarea>
-                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
                                 </form>
                                 {% if form_submitted and form_submitted == True %}
                                 <p class="mt-2">Comment submitted successfully and awaiting approval!</p>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="comments-list">
                                 {% for comment in comments %}
-                                <div class="comment">
+                                <div class="comment my-3 pb-3">
                                     <p>{{ comment.author }} | {{ comment.created_on }}</p>
                                     <p>{{ comment.body | safe}}</p>
                                     {% if user.is_authenticated and user == comment.author %}
