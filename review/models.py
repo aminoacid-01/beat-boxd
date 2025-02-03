@@ -77,6 +77,7 @@ class Review(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
+    rating = models.OneToOneField('Rating', on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
     STATUS = (
         (0, "Draft"),
         (1, "Published"),
@@ -152,14 +153,14 @@ class Rating(models.Model):
     """
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='ratings', blank=True, null=True)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
     value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True)  # Limit value between 1 and 5
 
     class Meta:
         unique_together = ['album', 'user']
 
     def __str__(self):
-        return f"{self.value} by {self.user} for {self.album}"
+        return f"{self.value}"
     
 class Comment(models.Model):
     """
