@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Review, Album, Comment
-from .forms import AlbumForm, ReviewForm, CommentForm
+from .forms import AlbumForm, ReviewForm, CommentForm, RatingForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -107,9 +107,10 @@ def create_review(request):
     """
 
     if request.method == 'POST':
+        rating_form = RatingForm(request.POST)
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
-        if album_form.is_valid() and review_form.is_valid():
+        if album_form.is_valid() and review_form.is_valid and rating_form.is_valid():
             if album_form.cleaned_data['existing_album']:
                 album = album_form.cleaned_data['existing_album']
             else:
@@ -122,12 +123,23 @@ def create_review(request):
             review = review_form.save(commit=False)
             review.album = album
             review.author = request.user  # Set the author to the logged-in user
-            review.save()
+            review.save() # Save the review
+
+            rating = rating_form.save(commit=False)
+            rating.review = review
+            rating.user = request.user
+            rating.album = album
+            rating.save()  # Save the rating
+
+            review.rating = rating
+            review.save()  # Save the review
+
             return redirect('home_page')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()
-    return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form})
+        rating_form = RatingForm()
+    return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form, 'rating_form': rating_form})
 
 @login_required
 def edit_review(request, slug):
