@@ -77,6 +77,7 @@
                                     <p>{{ comment.author }} | {{ comment.created_on }}</p>
                                     <p>{{ comment.body | safe}}</p>
                                     {% if user.is_authenticated and user == comment.author %}
+                                    <div class="comment-actions">
                                     <button class="btn btn-link edit-comment-btn">Edit</button>
                                     <form method="post" class="edit-comment-form d-none">
                                         {% csrf_token %}
@@ -84,6 +85,12 @@
                                         <textarea name="body" class="form-control">{{ comment.body | safe}}</textarea>
                                         <button class="btn btn-secondary mt-2" type="submit">Save</button>
                                     </form>
+                                    <form method="post" class="delete-comment-form mt-2">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_comment_id" value="{{ comment.id }}">
+                                        <button class="btn btn-link delete-comment-btn" type="submit">Delete</button>
+                                    </form>
+                                    </div>
                                     {% endif %}
                                 </div>
                                 {% endfor %}

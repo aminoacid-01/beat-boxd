@@ -36,7 +36,12 @@ def review_detail(request, slug):
     #Comment Form
     if request.method == 'POST':
         if request.user.is_authenticated:
-            if 'comment_id' in request.POST:
+            if 'delete_comment_id' in request.POST:
+                # Deleting an existing comment
+                comment = get_object_or_404(Comment, id=request.POST.get('delete_comment_id'), author=request.user)
+                comment.delete()
+                form_submitted = False
+            elif 'comment_id' in request.POST:
                 # Editing an existing comment
                 comment = get_object_or_404(Comment, id=request.POST.get('comment_id'), author=request.user)
                 comment_form = CommentForm(request.POST, instance=comment)
