@@ -81,19 +81,10 @@
                                     <form method="post" class="edit-comment-form d-none">
                                         {% csrf_token %}
                                         <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                        <textarea name="body" class="form-control">{{ comment.body }}</textarea>
+                                        <textarea name="body" class="form-control">{{ comment.body | safe}}</textarea>
                                         <button class="btn btn-secondary mt-2" type="submit">Save</button>
                                     </form>
                                     {% endif %}
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            document.querySelectorAll('.edit-comment-btn').forEach(function(button) {
-                                                button.addEventListener('click', function() {
-                                                    this.nextElementSibling.classList.toggle('d-none');
-                                                });
-                                            });
-                                        });
-                                    </script>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -118,6 +109,8 @@
         </div>
     </div>
 </div>
+
+<script src="{% static 'js/edit_comment.js' %}"></script>
 
 
 
