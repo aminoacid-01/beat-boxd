@@ -33,7 +33,8 @@ Deployed Link: https://beatboxd-e433560dd363.herokuapp.com/
 ## UX - User Experience
 
 ### User Stories:
-Project board with all user stories: [link](https://github.com/users/aminoacid-01/projects/4)
+Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
+
 
 [List User Stories If I have time later]
 
@@ -45,6 +46,9 @@ When I have time put wireframes for all relevant pages.
 [Tablet wfs]
 
 ### Design:
+
+
+
 #### Colour Scheme:
 
 - #1f0a1c
@@ -55,15 +59,15 @@ When I have time put wireframes for all relevant pages.
 
 I used Coolors to help me workshop the overall colour scheme of BeatBoxed. After many iterations and testing the colours out in [Realtime Colors](https://www.realtimecolors.com/?colors=1f0a1c-dbf1fa-7f4b91-411f2a-de643b&fonts=Monoton-Truculenta), I eventually settled on the current colour scheme.
 
-##### Coolors:
+![rt_colors](docs/design/rt_colors.png)
 ![coolors](docs/design/beatboxd_coolors.png)
-[Link to Coolors]
 
 
 ### Accessibility:
 
 
 ### Fonts:
+As you can see in the picture
 
 ## Database Planning:
 Before setting out on working on the project, I planned out some of my database models. 
