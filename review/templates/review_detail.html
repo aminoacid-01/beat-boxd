@@ -100,14 +100,15 @@
                 </div>
             </section>
             </div>
-            <div class="col-md-4 related_review_list">
+            <div class="col-md-6 related_review_list">
                 <h2>Related Reviews</h2>
                 <ul>
                     {% for related_review in related_reviews %}
-                    <li>
+                    <li class="pb-3">
                         <a href="{% url 'review_detail' related_review.slug %}">
-                            {{ related_review.heading|title }}
-                            Posted by {{ related_review.author }}
+                            {{ related_review.heading|title }} |
+                            Posted by {{ related_review.author }} |
+                            {{ related_review.album.title|title }}
                         </a>
                     </li>
                     {% endfor %}
