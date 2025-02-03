@@ -29,19 +29,29 @@ def review_detail(request, slug):
     review = get_object_or_404(Review, slug=slug)
     comments = review.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()
-    form_submitted = True
+    form_submitted = False
      # Fetch related reviews based on the same artist
     related_reviews = Review.objects.filter(album__artist=review.album.artist).exclude(id=review.id)[:5]
 
-
-    if request.method == "POST":
+    #Comment Form
+    if request.method == 'POST':
         if request.user.is_authenticated:
-            comment_form = CommentForm(request.POST)
-            if comment_form.is_valid():
-                new_comment = comment_form.save(commit=False)
-                new_comment.review = review
-                new_comment.author = request.user
-                new_comment.save()
+            if 'comment_id' in request.POST:
+                # Editing an existing comment
+                comment = get_object_or_404(Comment, id=request.POST.get('comment_id'), author=request.user)
+                comment_form = CommentForm(request.POST, instance=comment)
+                if comment_form.is_valid():
+                    comment_form.save()
+                    form_submitted = True
+            else:
+                # Adding a new comment
+                comment_form = CommentForm(request.POST)
+                if comment_form.is_valid():
+                    new_comment = comment_form.save(commit=False)
+                    new_comment.review = review
+                    new_comment.author = request.user
+                    new_comment.save()
+                    form_submitted = True
         else:
             return redirect('login')
 

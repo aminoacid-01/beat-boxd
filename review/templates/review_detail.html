@@ -76,6 +76,24 @@
                                 <div class="comment">
                                     <p>{{ comment.author }} | {{ comment.created_on }}</p>
                                     <p>{{ comment.body | safe}}</p>
+                                    {% if user.is_authenticated and user == comment.author %}
+                                    <button class="btn btn-link edit-comment-btn">Edit</button>
+                                    <form method="post" class="edit-comment-form d-none">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                        <textarea name="body" class="form-control">{{ comment.body }}</textarea>
+                                        <button class="btn btn-secondary mt-2" type="submit">Save</button>
+                                    </form>
+                                    {% endif %}
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            document.querySelectorAll('.edit-comment-btn').forEach(function(button) {
+                                                button.addEventListener('click', function() {
+                                                    this.nextElementSibling.classList.toggle('d-none');
+                                                });
+                                            });
+                                        });
+                                    </script>
                                 </div>
                                 {% endfor %}
                             </div>
