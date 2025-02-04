@@ -3,13 +3,13 @@
 {% block title %} BeatBoxd | Edit Review {% endblock %}
 </div>
 {% block content %}
-<div class="container mt-5 review-form">
-    <h2>Edit Review</h2>
-    <div class="reviewForm">
+<div class="container mt-5 mb-5 review-form text-center">
+    <h1 class="mb-3">Edit Review</h1>
+    <div class="reviewForm my-3">
     <form id="review-form" method="post">
         {% csrf_token %}
         {{ review_form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="btn btn-primary mb-2">Save Changes</button>
     </form></div>
 </div>
 {% endblock %}
