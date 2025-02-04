@@ -79,7 +79,8 @@ A retro style font
 A thin and stylish font for body text
 
 ## Database Planning
-The album, review and rating models are unique custom models were planned out with the use of [dbdiagram.io](https://dbdiagram.io).
+The album, review and rating models are unique custom models.
+Models and their ERDs were planned out with the use of [dbdiagram.io](https://dbdiagram.io).
 
 ![db](docs/db.png)
 
@@ -147,12 +148,44 @@ Copilot was used for:
 - Speed up writing and updating docstrings
 - Some commit messages
 - Quickly apply similar bootstrap styling of one template to other related templates to save time. (eg. styling other account templates to have the bootstrap classes of the sign_up page).
+- Advise and feedback on changes to models to double check that migrating them wouldn't cause problems.
 
 Some problems that were caused by using Copilot were:
 - It was inconsistant with naming conventions, particularly in the js.
 - It would remove my own comments that I wrote for my own future reference.
 - Would sometimes write comments that were incorrect.
 - It would remove endblocks and endifs, breaking some django templates.
+- It sometimes would create unwanted changes and edits to other files in the workspace.
+
+
+## Testing
+
+[Fill out with testing info]
+
+## Deployment
+
+### Heroku:
+BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the project was properly configured and compatible with heroku.
+
+### PostgreSQL - Code Institute:
+
+### LastFM API:
+The project utilises the LastFM API to fetch album information to fill the Album database.
+
+1. Sign up for Last.fm API key:
+    - Go to https://www.last.fm/api/account/create
+    - Create an API application and make a note of the API key.
+
+2. Install reqests library:
+    - Install the requests library using pip.
+    - Use the requests library to make HTTP requests to the Last.fm API
+
+3. Store API key in env.py
+    - For security purposes, store the API key in the env.py.
+
+4. Write a function to fetch and store album data from Last.fm using said API key.
+    - the url: 'http://ws.audioscrobbler.com/2.0/'
+    - Use the function to fetch and store data to the album model.
 
 
 
