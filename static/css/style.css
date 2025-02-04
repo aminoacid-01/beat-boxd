@@ -1,16 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
-/* Global Styles */
 * {
     font-family: 'Truculenta', sans-serif;
 }
 
 .bottom-border{
     border-bottom: #191110 solid 1px;
-}
-
-.hidden{
-    display: none;
 }
 
 /* header */
@@ -79,7 +74,7 @@ h2 {
 }
 
 /* forms */
-comment-form textarea {
+comment-form, textarea {
     padding: 1rem;
     max-width: 60vw;
     height: 141px;
@@ -90,7 +85,6 @@ comment-form textarea {
 #review-form, textarea{
     padding: 1rem;
 }
-
 input,
 textarea {
     border: #191110 solid 1px !important;
