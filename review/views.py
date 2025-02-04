@@ -27,7 +27,7 @@ def review_detail(request, slug):
     """
 
     review = get_object_or_404(Review, slug=slug)
-    comments = review.comments.filter(approved=True).order_by("-created_on")
+    comments = review.comments.filter(approved=False).order_by("-created_on")
     comment_count = comments.count()
     form_submitted = False
      # Fetch related reviews based on the same artist
@@ -41,6 +41,7 @@ def review_detail(request, slug):
                 comment = get_object_or_404(Comment, id=request.POST.get('delete_comment_id'), author=request.user)
                 comment.delete()
                 form_submitted = False
+                return redirect('review_detail', slug=review.slug)
             elif 'comment_id' in request.POST:
                 # Editing an existing comment
                 comment = get_object_or_404(Comment, id=request.POST.get('comment_id'), author=request.user)
@@ -48,6 +49,7 @@ def review_detail(request, slug):
                 if comment_form.is_valid():
                     comment_form.save()
                     form_submitted = False
+                    return redirect('review_detail', slug=review.slug)
             else:
                 # Adding a new comment
                 comment_form = CommentForm(request.POST)
@@ -57,6 +59,7 @@ def review_detail(request, slug):
                     new_comment.author = request.user
                     new_comment.save()
                     form_submitted = True
+                    return redirect('review_detail', slug=review.slug)
         else:
             return redirect('login')
 
