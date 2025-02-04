@@ -3,7 +3,8 @@ If everyone's a critic-  why not share your opinion?
 
 A fully responsive django web application that allows users to review and rate their favourite (or least favourite) albums. Users can comment on existing reviews to keep the discussion going. 
 
-[ screenshot of site ]
+![ screenshot of site ](docs/design/screenshot.png)
+
 
 [Deployed Link](https://beatboxd-e433560dd363.herokuapp.com/)
 
@@ -198,7 +199,6 @@ The project utilises the LastFM API to fetch album information to fill the Album
 - **Code/Database Models**:
     - Used some of the steps I Think, Therefore I Blog tutorial to help set up the project.
     - Comment model - I Think, Therefore I Blog.
-    - Review model -  Somewhat inspired by the Posts model.
 
 
 ### Aknowlegements:
