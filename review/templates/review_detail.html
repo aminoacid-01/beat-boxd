@@ -11,7 +11,11 @@
                 <!-- Review title goes in these h1 tags -->
                 <h1 class="review-title">{{ review.heading|title }}</h1>
                 <!-- Review author goes before the | the review's created date goes after -->
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
+                {% if review.created_on == review.updated_on %}
+                    <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
+                {% else %}
+                    <p class="review-subtitle">{{ review.author }} | {{ review.created_on }} | Last Edited On: {{ review.updated_on }}</p>
+                {% endif %}
             </div>
         </div>
     </div>
