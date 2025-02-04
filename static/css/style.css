@@ -9,6 +9,12 @@
     color: #dbf1fa;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 a {
     color: #dbf1fa;
 }
@@ -18,6 +24,12 @@ p {
 }
 h2{
     font-size: 1.5rem;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .bottom-border{
@@ -50,6 +62,7 @@ h2 {
 /* main */
 main {
     background-color: #7f4b91;
+    flex: 1;
 }
 /* hero banner */
 #hero {
@@ -104,6 +117,17 @@ main {
 }
 
 /* forms */
+
+input,
+textarea {
+    border: #1f0a1c solid 1px;
+    border-radius: 30px;
+    color: #1f0a1c;
+    padding: 0.5rem;
+}
+
+/* Comment form */
+
 comment-form textarea {
     padding: 1rem;
     max-width: 60vw;
@@ -116,11 +140,7 @@ comment-form textarea {
     padding: 1rem;
 }
 
-input,
-textarea {
-    border: #191110 solid 1px;
-    border-radius: 30px;
-}
+
 
 #review-form {
     border: solid 1px;
@@ -146,23 +166,6 @@ form>ul>li {
 }
 
 /* Ensure footer is fixed to the bottom */
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
-
-.wrapper {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
-
 
 
 /* Footer */
