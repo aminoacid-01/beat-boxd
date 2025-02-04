@@ -46,7 +46,9 @@
         <div class="col-md-8">
             <div class="review-content my-3 ">
                 <div class="card p-3 mb-4">
-                    <p>Rating: {{ review.rating}}/5</p>
+                    {% if review.rating %}
+                    <p>Rating: {{ review.rating }}/5</p>
+                    {% endif %}
                     <p>{{ review.body|safe }}</p>
             
             <!-- Review Actions -->
