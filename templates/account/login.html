@@ -3,11 +3,11 @@
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
+{% block title %}BeatBoxd | {% trans "Sign In" %}{% endblock title %}
 
 {% block content %}
-<div class="container mt-3 p-1 text-center">
-  <h1 class="m-3">{% trans "Sign In" %}</h1>
+<div class="container mt-4 text-center">
+  <h1 class="mb-3">{% trans "Sign In" %}</h1>
 
   {% get_providers as socialaccount_providers %}
 
@@ -35,7 +35,7 @@
 
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form class="login" method="POST" action="{% url 'account_login' %}"></form>
+      <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
         {% if redirect_field_value %}
@@ -47,6 +47,4 @@
     </div>
   </div>
 </div>
-
 {% endblock content %}
-
