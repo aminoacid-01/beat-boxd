@@ -85,7 +85,7 @@
                                         <textarea name="body" class="form-control">{{ comment.body | safe}}</textarea>
                                         <button class="btn btn-secondary mt-2" type="submit">Save</button>
                                     </form>
-                                    <form method="post" class="delete-comment-form mt-2">
+                                    <form method="post" class="delete-comment-form">
                                         {% csrf_token %}
                                         <input type="hidden" name="delete_comment_id" value="{{ comment.id }}">
                                         <button class="btn btn-link delete-comment-btn" type="submit">Delete</button>
