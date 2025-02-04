@@ -232,7 +232,7 @@ textarea {
 
 /* Comment form */
 
-comment-form textarea {
+.comment-form textarea {
     padding: 1rem;
     max-width: 60vw;
     height: 141px;
