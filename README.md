@@ -72,17 +72,41 @@ As you can see in the picture
 ## Database Planning:
 Before setting out on working on the project, I planned out some of my database models. 
 
-### ERD
+### ERDs:
+
 
 ## Key Features
 
 ### General:
+- **Navbar**: Displaying title in the Monoton font. Working navigational links to the homepage, sign in/out/up pages and create review page.
+- **Footer**: Displays the copyright and project name. Has a link to my github.
+- **Hero Banner**: Displays a photo of some cds to help the musical theming. A call to action with a button encouraging users to take part in the community and write their own reviews.
 
 ### Reviews:
 - **CRUD**: Both site admins and users with accounts can create, read, edit, and delete reviews. Users can only delete their reviews.
-- **Create/Edit Review Form**: A front-facing form where logged-in individuals can create and edit reviews. Created reviews can be seen listed on the review list page.
+- **Create/Edit Review Form**: A front-facing form where logged-in individuals can create and edit reviews. Created reviews can be seen listed on the review list page. I used javascript to hide the album input information when selecting prexisting albums from the database and fill the hidden inputs with the information.
 - **Delete**: Users can delete their own comments by clicking on the delete button. Upon clicking the button, they will be redirected to the delete confirmation page where they will be asked if they are sure they want to delete. The extra confirmation is to ensure users don't accidentally delete their own posts by misclicking.
 - **Album Link**: The review database is linked to the album database, so users can select any prexisting albums from a dropdown or create a new album in the database while they are filling out the create review form.
+- **Read Reviews**: Users can look at a short list of recent reviews on the home page. There's also a dedicate review list page where users can see a list of all available reviews. The review list displays:
+    - **Album Cover**
+    - **Album Title and Artist**
+    - **Review Title**
+    - **Author**
+    - **Created On**
+    - **Review Excerpt**: Shows an excerpt of the full review. If the review body is longer than 250 characters, the excerpt will only be the first 247 characters followed by trailing ellipses.
+
+- **Review Detailed View**: When a user clicks one of the reviews in the review list they are redirected to an expanded version of the review displaying:
+    - **Album Cover**
+    - **Album Title and Artist**
+    - **Review Title**
+    - **Author**
+    - **Created On**
+    - **Rating** (only if a rating is associated with the review)
+    - **Review Body**
+    - **Comment Form**
+    - **List of Comments**
+
+
 
  
 
