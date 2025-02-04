@@ -58,7 +58,7 @@ When I have time put wireframes for all relevant pages.
 - #411f2a
 - #de643b
 
-I used Coolors to help me workshop the overall colour scheme of BeatBoxed. After many iterations and testing the colours out in [Realtime Colors](https://www.realtimecolors.com/?colors=1f0a1c-dbf1fa-7f4b91-411f2a-de643b&fonts=Monoton-Truculenta), I eventually settled on the current colour scheme.
+Coolors was used to help workshop the overall colour scheme of BeatBoxed. After many iterations and testing the colours out in [Realtime Colors](https://www.realtimecolors.com/?colors=1f0a1c-dbf1fa-7f4b91-411f2a-de643b&fonts=Monoton-Truculenta), the current colour scheme is the one that was used for BeatBoxd.
 
 ![rt_colors](docs/design/rt_colors.png)
 ![coolors](docs/design/beatboxd_coolors.png)
@@ -68,19 +68,26 @@ I used Coolors to help me workshop the overall colour scheme of BeatBoxed. After
 
 
 ### Fonts:
-As you can see in the picture
+As pictured in the colour scheme section, Real Time Colours was also used to preview and plan potential font combinations. 
 
+**Monoton**:
+A retro style font
+
+**Truculenta**:
+A thin and stylish font for body text
 ## Database Planning:
 Before setting out on working on the project, I planned out some of my database models. I reused the Comment model from the blog tutorial on the LMS.
 
 ### ERDs:
+
+![db](docs/db.png)
 
 
 ## Key Features
 
 ### General:
 - **Navbar**: Displaying title in the Monoton font. Working navigational links to the homepage, sign in/out/up pages and create review page.
-- **Footer**: Displays the copyright and project name. Has a link to my github.
+- **Footer**: Displays the copyright and project name.
 - **Hero Banner**: Displays a photo of some cds to help the musical theming. A call to action with a button encouraging users to take part in the community and write their own reviews.
 
 ### Reviews:
