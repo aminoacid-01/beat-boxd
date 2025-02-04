@@ -167,7 +167,10 @@ Some problems that were caused by using Copilot were:
 ### Heroku:
 BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the project was properly configured and compatible with heroku.
 
+[steps]
+
 ### PostgreSQL - Code Institute:
+[steps] 
 
 ### LastFM API:
 The project utilises the LastFM API to fetch album information to fill the Album database.
@@ -186,6 +189,22 @@ The project utilises the LastFM API to fetch album information to fill the Album
 4. Write a function to fetch and store album data from Last.fm using said API key.
     - the url: 'http://ws.audioscrobbler.com/2.0/'
     - Use the function to fetch and store data to the album model.
+
+## Credits
+
+- **Images:**
+    - Album covers - Last.fm
+    - Hero Image - Unsplash (person's username and link to post)
+- **Code/Database Models**:
+    - Used some of the steps I Think, Therefore I Blog tutorial to help set up the project.
+    - Comment model - I Think, Therefore I Blog.
+    - Review model -  Somewhat inspired by the Posts model.
+
+
+### Aknowlegements:
+
+
+
 
 
 
