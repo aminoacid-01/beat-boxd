@@ -111,9 +111,9 @@
                 <ul>
                     {% for related_review in related_reviews %}
                     <li class="pb-3">
-                        <a href="{% url 'review_detail' related_review.slug %}">
-                            {{ related_review.heading|title }} |
-                            Posted by {{ related_review.author }} |
+                            <a href="{% url 'review_detail' related_review.slug %}">
+                                {{ related_review.heading|title }} |
+                                Posted by {{ related_review.author }} |
                             {{ related_review.album.title|title }}
                         </a>
                     </li>
