@@ -34,7 +34,8 @@ h2{
 }
 
 .bottom-border{
-    border-bottom: #dbf1fa solid 1.5px;
+    border-bottom: #000 solid 1.5px;
+    box-shadow: #1f0a1c 0px 0px 10px;
 }
 
 .hidden{
@@ -112,8 +113,10 @@ main {
 }
 
 #review-list .card {
-    border: #191110 solid 1px;
+    border: #dbf1fa solid 1px;
     border-radius: 10px;
+    background-color: #7f4b91;
+
 }
 
 .card {
