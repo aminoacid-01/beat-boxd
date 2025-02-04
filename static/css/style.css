@@ -86,12 +86,25 @@ main {
 #hero {
     width: 100%;
     height: 500px;
-    color: white;
+    color: #dbf1fa;
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
     padding: 8em;
+}
+#hero .btn{
+    background-color: #de643b;
+    color: #dbf1fa;
+    border:#1f0a1c solid 2px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    text-shadow: none;
+}
+#hero .btn:hover{
+    background-color: #dbf1fa;
+    color: #1f0a1c;
 }
 /* review list */
 #listTitle {
