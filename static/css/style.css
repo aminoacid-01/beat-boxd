@@ -16,7 +16,11 @@ body {
 }
 
 a {
-    color: #dbf1fa;
+    color: #de643b;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 
@@ -41,6 +45,22 @@ h2{
 .hidden{
     display: none;
 }
+
+.btn-primary {
+    background-color: #de643b;
+    color: #dbf1fa;
+    border:#1f0a1c solid 2px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+}
+
+.btn-primary:hover{
+    background-color: #dbf1fa;
+    color: #1f0a1c;
+}
+
+
 
 /* header */
 h1 {
