@@ -5,7 +5,7 @@ A fully responsive django web application that allows users to review and rate t
 
 [ put am i reponsive image here]
 
-Deployed Link: https://beatboxd-e433560dd363.herokuapp.com/
+[Deployed Link](https://beatboxd-e433560dd363.herokuapp.com/)
 
 ## Contents:
 - [UX - User Experience:](#ux---user-experience)
@@ -17,9 +17,10 @@ Deployed Link: https://beatboxd-e433560dd363.herokuapp.com/
 - [Database Planning:](#database)
     - [ERDS](#erd)
 - [Key Features:](#key-features)
-    - [General]()
-    - [Reviews]()
-    - [Comments]()
+    - [General](#general)
+    - [Reviews](#reviews)
+    - [Albums](#albums)
+    - [Comments](#comments)
     - [Future Features]()
 - [AI Implementation]()
     - List them here
@@ -70,7 +71,7 @@ I used Coolors to help me workshop the overall colour scheme of BeatBoxed. After
 As you can see in the picture
 
 ## Database Planning:
-Before setting out on working on the project, I planned out some of my database models. 
+Before setting out on working on the project, I planned out some of my database models. I reused the Comment model from the blog tutorial on the LMS.
 
 ### ERDs:
 
