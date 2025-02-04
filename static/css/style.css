@@ -19,6 +19,7 @@ a {
     color: #dbf1fa;
 }
 
+
 p {
     font-size: 1.2rem;
 }
@@ -33,7 +34,7 @@ h2{
 }
 
 .bottom-border{
-    border-bottom: #191110 solid 1px;
+    border-bottom: #dbf1fa solid 1.5px;
 }
 
 .hidden{
@@ -76,7 +77,7 @@ h2 {
 
 /* main */
 main {
-    background-color: #7f4b91;
+    background-color: #411f2a;
     flex: 1;
 }
 /* hero banner */
@@ -86,7 +87,6 @@ main {
     color: white;
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
-    border-bottom: #191110 solid 1px;
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
     padding: 8em;
@@ -186,7 +186,7 @@ form>ul>li {
 /* Footer */
 
 footer {
-    background-color: #f8f9fa;
+    background-color: #1f0a1c;
     padding: 1rem;
     text-align: center;
 }
