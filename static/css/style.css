@@ -51,6 +51,21 @@ h1 {
 .navbar {
     background-color: #1f0a1c;
     padding: 1rem;
+    color:#dbf1fa;
+}
+.navbar-nav .nav-link {
+    color: #dbf1fa;
+    padding: 0.5rem 2rem;
+}
+
+.navbar-nav .nav-link.active {
+    color: #de643b;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #de643b;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 h2 {
