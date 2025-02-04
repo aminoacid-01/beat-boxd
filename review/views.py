@@ -27,7 +27,7 @@ def review_detail(request, slug):
     """
 
     review = get_object_or_404(Review, slug=slug)
-    comments = review.comments.filter(approved=False).order_by("-created_on")
+    comments = review.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()
     form_submitted = False
      # Fetch related reviews based on the same artist
