@@ -2,6 +2,8 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'home_page' as home %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +32,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto mx-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'home_page' %}">Home</a>
+                                <a class="nav-link {% if request.path == home %}active{% endif %}" aria-current="page" aria-current="page" href="{% url 'home_page' %}">Home</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
