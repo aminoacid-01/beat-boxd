@@ -1,8 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
+/* Colour Scheme */
+/* - #1f0a1c - #dbf1fa - #7f4b91 - #411f2a - #de643b = orange */
+
 /* Global Styles */
 * {
     font-family: 'Truculenta', sans-serif;
+    color: #dbf1fa;
+}
+
+p {
+    font-size: 1.2rem;
+}
+h2{
+    font-size: 1.5rem;
+}
+
+ul > li {
+    list-style: none;
+    margin-left: 0;
 }
 
 .bottom-border{
@@ -17,6 +33,13 @@
 h1 {
     font-family: 'Monoton', cursive;
     font-size: 3rem;
+    color: #dbf1fa;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #7f4b91;
+    padding: 1rem;
 }
 
 h2 {
@@ -24,7 +47,11 @@ h2 {
     font-size: 2rem;
 }
 
+
 /* main */
+main {
+    background-color: #1f0a1c;
+}
 /* hero banner */
 #hero {
     width: 100%;
@@ -34,10 +61,12 @@ h2 {
     text-align: center;
     border-bottom: #191110 solid 1px;
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
-    background-color: bisque;
+    background-color: #de643b;
     padding: 8em;
 }
-
+#hero h1, p {
+    #
+}
 /* review list */
 #listTitle {
     text-align: center;
