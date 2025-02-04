@@ -11,12 +11,12 @@
 <form method="post">
     <div id="review-form" class="mb-2 mx-3">
     {% csrf_token %}
-    <fieldset class="bottom-border mb-2">
+    <fieldset class="mb-2">
         <legend>Album Information:</legend>
         <!-- Input for Album information -->
         {{ album_form.as_p }}
     </fieldset>
-    <fieldset class="bottom-border mb-2">
+    <fieldset class="mb-2">
         <legend>(Optional) Rate the Album!</legend>
         {{ rating_form.as_p }}
     <fieldset>
