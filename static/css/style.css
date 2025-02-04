@@ -126,9 +126,11 @@ main {
 }
 
 #review-list .card {
-    border: #dbf1fa solid 1px;
+    border: #1f0a1c solid 2px;
     border-radius: 10px;
-    background-color: #7f4b91;
+    background-color: #1f0a1c;
+    box-shadow: #1f0a1c 0px 0px 10px;
+    color: #dbf1fa;
 
 }
 
