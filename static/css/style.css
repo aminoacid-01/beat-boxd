@@ -60,6 +60,15 @@ h2{
     color: #1f0a1c;
 }
 
+.btn-danger {
+    background-color: #7f4b91;
+    color: #dbf1fa;
+    border:#1f0a1c solid 2px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+}
+
 
 
 /* header */
@@ -102,6 +111,28 @@ main {
     background-color: #411f2a;
     flex: 1;
 }
+
+/* General Card Styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: #1f0a1c solid 2px;
+    border-radius: 10px;
+    background-color: #1f0a1c;
+    box-shadow: #1f0a1c 0px 0px 10px;
+    color: #dbf1fa;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-body .btn {
+    margin-top: auto;
+}
+
 /* hero banner */
 #hero {
     width: 100%;
@@ -118,8 +149,6 @@ main {
     color: #dbf1fa;
     border:#1f0a1c solid 2px;
     border-radius: 10px;
-    padding: 0.5rem 1rem;
-    font-size: 1.5rem;
     text-shadow: none;
 }
 #hero .btn:hover{
@@ -143,31 +172,6 @@ main {
 
 #review-list a:hover {
     text-decoration: none;
-}
-
-#review-list .card {
-    border: #1f0a1c solid 2px;
-    border-radius: 10px;
-    background-color: #1f0a1c;
-    box-shadow: #1f0a1c 0px 0px 10px;
-    color: #dbf1fa;
-
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.card-body .btn {
-    margin-top: auto;
 }
 
 /* forms */
