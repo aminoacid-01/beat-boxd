@@ -113,28 +113,32 @@ class Review(models.Model):
             'api_key': os.environ.get("LASTFM_API_KEY"),
             'artist': self.album.artist,
             'album': self.album.title,
-            'tracklist': self.album.tracklist,
-            'format': 'json',
-            'release_date': self.album.release_date
+            'format': 'json'
         }
-        response = requests.get(API_URL, params=params)
-        if response.status_code == 200:
+        try:
+            response = requests.get(API_URL, params=params)
+            response.raise_for_status()  # Raise an HTTPError for bad responses
             data = response.json()
             if 'album' in data:
                 album_data = data['album']
                 self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
                 self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
                 tracks = album_data.get('tracks', {}).get('track', [])
-                # get release date
                 self.album.release_date = album_data.get('wiki', {}).get('published', 'N/A')
-            if isinstance(tracks, list):
-                self.album.tracklist = [track['name'] for track in tracks]
-            else:
-                self.album.tracklist = []
+                if isinstance(tracks, list):
+                    self.album.tracklist = [track['name'] for track in tracks]
+                else:
+                    self.album.tracklist = []
                 self.album.save()
                 return album_data
+        except requests.exceptions.RequestException as e:
+            # Handle any request exceptions (e.g., network issues, invalid responses)
+            print(f"Error fetching album info: {e}")
+        except ValueError as e:
+            # Handle JSON decoding errors
+            print(f"Error decoding JSON response: {e}")
         return None
-    
+
 class Rating(models.Model):
     """
     Model representing a rating for an album.

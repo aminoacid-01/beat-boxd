@@ -150,6 +150,7 @@ Copilot was used for:
 - Some commit messages
 - Quickly apply similar bootstrap styling of one template to other related templates to save time. (eg. styling other account templates to have the bootstrap classes of the sign_up page).
 - Advise and feedback on changes to models to double check that migrating them wouldn't cause problems.
+- Troubleshooting JSON errors caused by the API.
 
 Some problems that were caused by using Copilot were:
 - It was inconsistant with naming conventions, particularly in the js.
