@@ -176,7 +176,12 @@ main {
 
 /* forms */
 
-input,
+select > option{
+    color: #1f0a1c;
+    font-family: 'Truculenta', sans-serif;
+}
+
+select, input,
 textarea {
     border: #1f0a1c solid 1px;
     border-radius: 30px;
