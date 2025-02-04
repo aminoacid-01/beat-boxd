@@ -212,6 +212,23 @@ def delete_review(request, slug):
 
 
 
+def get_album_artist(request):
+    """
+    View function to get the artist of an album.
+    This function takes a 'title' parameter from the query string and returns the artist of the album with that title. If the album does not exist, an empty string is returned. The artist is returned as a JSON response.
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        JsonResponse: The artist of the album as a JSON response.
+    """
+    title = request.GET.get('title', None)
+    if title:
+        try:
+            album = Album.objects.get(title__iexact=title.lower())
+            return JsonResponse({'artist': album.artist})
+        except Album.DoesNotExist:
+            return JsonResponse({'artist': ''})
+    return JsonResponse({'artist': ''})
 
 def album_detail(request, album_id):
     album = Album.objects.get(id=album_id)
