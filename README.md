@@ -14,8 +14,7 @@ A fully responsive django web application that allows users to review and rate t
     - [Design](#design)
     - [Accessibility](#accessibility)
     - [Fonts](#fonts)
-- [Database Planning:](#database)
-    - [ERDS](#erd)
+- [Database Planning](#database)
 - [Key Features:](#key-features)
     - [General](#general)
     - [Reviews](#reviews)
@@ -23,11 +22,14 @@ A fully responsive django web application that allows users to review and rate t
     - [Comments](#comments)
     - [Future Features]()
 - [AI Implementation]()
-    - List them here
 - [Testing:]()
     - [Validators]()
     - [Manual Testing]()
     - [Automated Testing]()
+- [Deployment](#deployment)
+    - [Heroku]()
+    - [PostgreSQL - Code Institute]()
+    - [LastFM API]()
 - [Credits]()
 
 
@@ -128,6 +130,32 @@ The album, review and rating models are unique custom models were planned out wi
 - **Comments Form**: A form on the review detail page where logged-in users can post comments. Upon form submission, users are presented with feedback below the form letting them know that their comment has gone through and is awaiting approval.
 - **Edit Comment Form**: Users can edit their own comments. JavaScript is used to make the edit button toggle the visibility of the edit form for better user experience.
 - **Moderation**: Site admins can approve comments before they appear in the dedicated comment section.
+
+## AI Implementation
+
+Copilot was used for:
+- Advice on planning out album model
+- Speed up coding via auto complete.
+- Assist with bootstrap grids when stuck.
+- Some JS, such as:
+    - auto populating the hidden fields with existing album data for the create reviews form.
+    - hiding the edit comments form.
+- Setting up the implementation of the LastFM API.
+- Troubleshooting any errors that came from working with the LastFM API.
+- Fixing template errors.
+- Workshop how to step by step write some functions.
+- Speed up writing and updating docstrings
+- Some commit messages
+- Quickly apply similar bootstrap styling of one template to other related templates to save time. (eg. styling other account templates to have the bootstrap classes of the sign_up page).
+
+Some problems that were caused by using Copilot were:
+- It was inconsistant with naming conventions, particularly in the js.
+- It would remove my own comments that I wrote for my own future reference.
+- Would sometimes write comments that were incorrect.
+- It would remove endblocks and endifs, breaking some django templates.
+
+
+
 
 
 
