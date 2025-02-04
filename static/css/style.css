@@ -9,16 +9,15 @@
     color: #dbf1fa;
 }
 
+a {
+    color: #dbf1fa;
+}
+
 p {
     font-size: 1.2rem;
 }
 h2{
     font-size: 1.5rem;
-}
-
-ul > li {
-    list-style: none;
-    margin-left: 0;
 }
 
 .bottom-border{
@@ -38,7 +37,7 @@ h1 {
 
 /* Navbar */
 .navbar {
-    background-color: #7f4b91;
+    background-color: #1f0a1c;
     padding: 1rem;
 }
 
@@ -50,7 +49,7 @@ h2 {
 
 /* main */
 main {
-    background-color: #1f0a1c;
+    background-color: #7f4b91;
 }
 /* hero banner */
 #hero {
@@ -63,9 +62,6 @@ main {
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
     padding: 8em;
-}
-#hero h1, p {
-    #
 }
 /* review list */
 #listTitle {
@@ -122,7 +118,8 @@ comment-form textarea {
 
 input,
 textarea {
-    border: #191110 solid 1px !important;
+    border: #191110 solid 1px;
+    border-radius: 30px;
 }
 
 #review-form {
@@ -142,6 +139,12 @@ textarea {
 
 }
 
+/* Sign Up */
+form>ul>li {
+    list-style: none;
+    margin-left: 0;
+}
+
 /* Ensure footer is fixed to the bottom */
 html,
 body {
@@ -158,6 +161,11 @@ body {
 main {
     flex: 1;
 }
+
+
+
+
+/* Footer */
 
 footer {
     background-color: #f8f9fa;
