@@ -40,7 +40,7 @@
                         <!-- Display the creation date of the review -->
                         <p class="card-text">{{ review.created_on }}</p>
                         <!-- Display the review excerpt -->
-                        <p class="card-text">{{ review.excerpt | safe }}</p>
+                        {{ review.excerpt | safe }}
                     </div>
                 </div>
             </a>
