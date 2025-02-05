@@ -33,7 +33,7 @@ class Album(models.Model):
     image_url = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True) 
     tracklist = models.JSONField(blank=True, null=True)
-    release_date = models.DateField(blank=True, null=True)
+    release_date = models.DateTimeField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         # Store artist names and album titles in lowercase
@@ -116,35 +116,21 @@ class Review(models.Model):
             'album': self.album.title,
             'format': 'json'
         }
-        try:
-            response = requests.get(API_URL, params=params)
-            response.raise_for_status()  # Raise an HTTPError for bad responses
-            data = response.json()
-            if 'album' in data:
-                album_data = data['album']
-                self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
-                self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
-                tracks = album_data.get('tracks', {}).get('track', [])
-                published_date = album_data.get('wiki', {}).get('published', 'N/A')
-                if published_date != 'N/A':
-                    try:
-                        self.album.release_date = datetime.strptime(published_date, '%d %b %Y, %H:%M').date()
-                    except ValueError:
-                        self.album.release_date = None
-                if isinstance(tracks, list):
-                    self.album.tracklist = [track['name'] for track in tracks]
-                elif isinstance(tracks, dict):
-                    self.album.tracklist = [tracks['name']]
-                else:
-                    self.album.tracklist = []
+        response = requests.get(API_URL, params=params)
+        data = response.json()
+        if 'album' in data:
+            album_data = data['album']
+            self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
+            self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
+            tracks = album_data.get('tracks', {}).get('track', [])
+            if isinstance(tracks, list):
+                self.album.tracklist = [track['name'] for track in tracks]
+            elif isinstance(tracks, dict):
+                self.album.tracklist = [tracks['name']]
+            else:
+                self.album.tracklist = []
                 self.album.save()
-                return album_data
-        except requests.exceptions.RequestException as e:
-            # Handle any request exceptions (e.g., network issues, invalid responses)
-            print(f"Error fetching album info: {e}")
-        except ValueError as e:
-            # Handle JSON decoding errors
-            print(f"Error decoding JSON response: {e}")
+            return album_data
         return None
 
 class Rating(models.Model):
@@ -165,7 +151,7 @@ class Rating(models.Model):
     """
     album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
+    review = models.OneToOneField(Review, on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
     value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True)  # Limit value between 1 and 5
 
     class Meta:
