@@ -61,8 +61,9 @@
             <div class="review-actions mt-3 my-5 bottom-border pb-3">
                 <a href="{% url 'edit_review' review.slug %}" class="btn btn-primary">Edit</a>
                 <a href="{% url 'delete_review' review.slug %}" class="btn btn-danger">Delete</a>
+                </div>
                 {% endif %}   
-            </div>
+            
             <section class="comments">
                 <div class="container">
                     <div class="row">
