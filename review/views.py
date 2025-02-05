@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Review, Album, Comment
 from .forms import AlbumForm, ReviewForm, CommentForm, RatingForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Review CRUD operations
@@ -102,11 +103,15 @@ def review_list(request):
     """
 
     reviews = Review.objects.all().order_by('-created_on')
-    for review in reviews:
+    paginator = Paginator(reviews, 3)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    for review in page_obj:
         review.fetch_album_info()  # Fetch album info for each review
     return render(request, 
                   'review_list.html', 
-                  {'reviews': reviews}
+                  {'reviews': page_obj,
+                   'page_obj': page_obj}
                   )
 
 

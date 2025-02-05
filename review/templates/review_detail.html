@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
 <div class="hidden">
-    {% block title %} BeatBoxd | {{ review.heading }} {% endblock %}
+{% block title %} BeatBoxd | {{ review.heading }} {% endblock %}
 </div>
 
 <div class="masthead mt-3">
@@ -12,9 +12,9 @@
                 <h1 class="review-title">{{ review.heading|title }}</h1>
                 <!-- Review author goes before the | the review's created date goes after -->
                 {% if review.created_on == review.updated_on %}
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
+                    <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
                 {% else %}
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }} | Last Edited On: {{ review.updated_on }}</p>
+                    <p class="review-subtitle">{{ review.author }} | {{ review.created_on }} | Last Edited On: {{ review.updated_on }}</p>
                 {% endif %}
             </div>
         </div>
@@ -52,87 +52,82 @@
                     <p>Rating: {{ review.rating }}/5</p>
                     {% endif %}
                     <p>{{ review.body|safe }}</p>
-                    
-
-                    <!-- Review Actions -->
-                    {% if user.is_authenticated and user == review.author %}
-                    <div class="review-actions mt-3 my-5 pb-3">
-                        <a href="{% url 'edit_review' review.slug %}" class="btn btn-primary">Edit</a>
-                        <a href="{% url 'delete_review' review.slug %}" class="btn btn-danger">Delete</a>
-                        </div>
-                    {% endif %}
-                    <section class="comments">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h2>Comments</h2>
-                                    <div class="comment-form">
-                                        <form method="post">
-                                            {% csrf_token %}
-                                            <textarea name="body" class="form-control"
-                                                placeholder="Add a comment"></textarea>
-                                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
-                                        </form>
-                                        {% if form_submitted and form_submitted == True %}
-                                        <p class="mt-2">Comment submitted successfully and awaiting approval!</p>
-                                        {% endif %}
+            
+            <!-- Review Actions -->
+            {% if user.is_authenticated and user == review.author %}
+            <div class="review-actions mt-3 my-5 bottom-border pb-3">
+                <a href="{% url 'edit_review' review.slug %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete_review' review.slug %}" class="btn btn-danger">Delete</a>
+                {% endif %}   
+            </div>
+            <section class="comments">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Comments</h2>
+                            <div class="comment-form">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <textarea name="body" class="form-control" placeholder="Add a comment"></textarea>
+                                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                </form>
+                                {% if form_submitted and form_submitted == True %}
+                                <p class="mt-2">Comment submitted successfully and awaiting approval!</p>
+                                {% endif %}
+                            </div>
+                            <div class="comments-list">
+                                {% for comment in comments %}
+                                <div class="comment my-3 pb-3">
+                                    <p>{{ comment.author }} | {{ comment.created_on }}</p>
+                                    <p>{{ comment.body | safe}}</p>
+                                    {% if user.is_authenticated and user == comment.author %}
+                                    <div class="comment-actions">
+                                    <button class="btn btn-link edit-comment-btn">Edit</button>
+                                    <form method="post" class="edit-comment-form d-none">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                        <textarea name="body" class="form-control">{{ comment.body | safe}}</textarea>
+                                        <button class="btn btn-secondary mt-2" type="submit">Save</button>
+                                    </form>
+                                    <form method="post" class="delete-comment-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete_comment_id" value="{{ comment.id }}">
+                                        <button class="btn btn-link delete-comment-btn" type="submit">Delete</button>
+                                    </form>
                                     </div>
-                                    <div class="comments-list">
-                                        {% for comment in comments %}
-                                        <div class="comment my-3 pb-3">
-                                            <p>{{ comment.author }} | {{ comment.created_on }}</p>
-                                            <p>{{ comment.body | safe}}</p>
-                                            {% if user.is_authenticated and user == comment.author %}
-                                            <div class="comment-actions">
-                                                <button class="btn btn-link edit-comment-btn">Edit</button>
-                                                <form method="post" class="edit-comment-form d-none">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                                    <textarea name="body"
-                                                        class="form-control">{{ comment.body | safe}}</textarea>
-                                                    <button class="btn btn-secondary mt-2" type="submit">Save</button>
-                                                </form>
-                                                <form method="post" class="delete-comment-form">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="delete_comment_id"
-                                                        value="{{ comment.id }}">
-                                                    <button class="btn btn-link delete-comment-btn"
-                                                        type="submit">Delete</button>
-                                                </form>
-                                            </div>
-                                            {% endif %}
-                                        </div>
-                                        {% endfor %}
-                                    </div>
+                                    {% endif %}
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
-                <div class="col-md-6 related_review_list">
-                    <h2>Related Reviews</h2>
-                    <ul>
-                        {% for related_review in related_reviews %}
-                        <li class="pb-3">
+            </section>
+            </div>
+            <div class="col-md-6 related_review_list">
+                <h2>Related Reviews</h2>
+                <ul>
+                    {% for related_review in related_reviews %}
+                    <li class="pb-3">
                             <a href="{% url 'review_detail' related_review.slug %}">
                                 {{ related_review.heading|title }} |
                                 Posted by {{ related_review.author }} |
-                                {{ related_review.album.title|title }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                            {{ related_review.album.title|title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="{% static 'js/edit_comment.js' %}"></script>
-
-
-
+<script src="{% static 'js/edit_comment.js' %}"></script>
 
 
 
 
-    {% endblock content %}
+
+
+
+{% endblock content %}
