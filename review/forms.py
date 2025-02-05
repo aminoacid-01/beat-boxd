@@ -19,11 +19,10 @@ class AlbumForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['heading', 'body', 'status']
+        fields = ['heading', 'body']
         labels = {
             'heading': 'Title',
             'body': 'Review',
-            'status': 'Status',
         }
         widgets = {
             'body': SummernoteWidget(),

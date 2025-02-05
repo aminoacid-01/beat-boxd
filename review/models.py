@@ -83,7 +83,7 @@ class Review(models.Model):
         (0, "Draft"),
         (1, "Published"),
     )
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
 
     def save(self, *args, **kwargs):
         # If the excerpt is empty, set it to the first 250 characters of the body

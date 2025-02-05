@@ -102,7 +102,7 @@ def review_list(request):
         HttpResponse: The rendered 'review_list.html' template with the list of reviews.
     """
 
-    reviews = Review.objects.all().order_by('-created_on')
+    reviews = Review.objects.filter(status =1).order_by('-created_on')
     paginator = Paginator(reviews, 12)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -137,7 +137,7 @@ def recent_review_list(request):
         HttpResponse: The rendered 'review_list.html' template with the list of reviews.
     """
 
-    reviews = Review.objects.all().order_by('-created_on')[:6]  
+    reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]  
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
     return render(request, 
@@ -176,6 +176,7 @@ def create_review(request):
             review = review_form.save(commit=False)
             review.album = album
             review.author = request.user  # Set the author to the logged-in user
+            review.status = 1
             review.save() # Save the review
 
             rating = rating_form.save(commit=False)
