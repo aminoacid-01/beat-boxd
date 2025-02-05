@@ -40,7 +40,7 @@
                 <h2>Tracklist</h2>
                 <ul>
                     {% for track in review.album.tracklist %}
-                    <li>{{ track.title | title }}</li>
+                    <li>{{ track }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

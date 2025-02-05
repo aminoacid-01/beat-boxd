@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 import os
 import requests
+from datetime import datetime
 
 # Create your models here.
 
@@ -124,9 +125,16 @@ class Review(models.Model):
                 self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
                 self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
                 tracks = album_data.get('tracks', {}).get('track', [])
-                self.album.release_date = album_data.get('wiki', {}).get('published', 'N/A')
+                published_date = album_data.get('wiki', {}).get('published', 'N/A')
+                if published_date != 'N/A':
+                    try:
+                        self.album.release_date = datetime.strptime(published_date, '%d %b %Y, %H:%M').date()
+                    except ValueError:
+                        self.album.release_date = None
                 if isinstance(tracks, list):
                     self.album.tracklist = [track['name'] for track in tracks]
+                elif isinstance(tracks, dict):
+                    self.album.tracklist = [tracks['name']]
                 else:
                     self.album.tracklist = []
                 self.album.save()
