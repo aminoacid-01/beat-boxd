@@ -35,6 +35,9 @@ class RatingForm(forms.ModelForm):
         labels = {
             'value': 'Rating',
         }
+        widgets = {
+            'value': forms.NumberInput(attrs={'min': 1, 'max': 5}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
