@@ -37,6 +37,10 @@ class RatingForm(forms.ModelForm):
             'value': 'Rating',
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['value'].required = True
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

@@ -103,7 +103,7 @@ def review_list(request):
     """
 
     reviews = Review.objects.all().order_by('-created_on')
-    paginator = Paginator(reviews, 3)
+    paginator = Paginator(reviews, 12)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     for review in page_obj:

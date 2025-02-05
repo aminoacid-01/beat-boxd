@@ -155,8 +155,6 @@ class Rating(models.Model):
     review = models.OneToOneField(Review, on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
     value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True)  # Limit value between 1 and 5
 
-    class Meta:
-        unique_together = ['album', 'user']
 
     def __str__(self):
         return f"{self.value}"
