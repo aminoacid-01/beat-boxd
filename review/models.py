@@ -93,9 +93,14 @@ class Review(models.Model):
             else:
                 self.excerpt = self.body
 
-        # Automatically generate a slug if it's not provided
+         # Automatically generate a slug if it's not provided
         if not self.slug:
             self.slug = slugify(self.heading)
+            original_slug = self.slug
+            counter = 1
+            while Review.objects.filter(slug=self.slug).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
 
         # Check if the album already exists
         existing_album = Album.objects.filter(title=self.album.title, artist=self.album.artist).first()
