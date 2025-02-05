@@ -27,6 +27,9 @@
             {% if review.album.image_url %}
             <!-- Display the album cover image if available -->
             <img class="img-fluid" src="{{ review.album.image_url }}" alt="{{ review.album.title|title }} album cover">
+            {% else %}
+            <!-- Display a placeholder image if the album cover is not available -->
+            <img class="img-fluid" src="{% static 'images/placeholder_cover.jpg' %}" alt="Placeholder album cover">
             {% endif %}
             <!-- Album title and information -->
             <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
