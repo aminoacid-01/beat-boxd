@@ -59,9 +59,8 @@ def review_detail(request, slug):
                     new_comment.author = request.user
                     new_comment.save()
                     form_submitted = True
-                    return redirect('review_detail', slug=review.slug)
         else:
-            return redirect('login')
+            return redirect('account_login')
 
     comment_form = CommentForm()
 
