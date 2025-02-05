@@ -114,6 +114,7 @@ class Review(models.Model):
             'api_key': os.environ.get("LASTFM_API_KEY"),
             'artist': self.album.artist,
             'album': self.album.title,
+            'tracklist': self.album.tracklist,
             'format': 'json'
         }
         response = requests.get(API_URL, params=params)
@@ -121,7 +122,7 @@ class Review(models.Model):
         if 'album' in data:
             album_data = data['album']
             self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
-            self.album.description = album_data.get('wiki', {}).get('summary', '')  # Get the album description
+            self.album.description = album_data.get('wiki', {}).get('summary', 'No description was found.')  # Get the album description
             tracks = album_data.get('tracks', {}).get('track', [])
             if isinstance(tracks, list):
                 self.album.tracklist = [track['name'] for track in tracks]
