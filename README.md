@@ -160,6 +160,12 @@ Some problems that were caused by using Copilot were:
 - It would remove endblocks and endifs, breaking some django templates.
 - It sometimes would create unwanted changes and edits to other files in the workspace.
 
+### Overall Experience W/ AI:
+
+Despite the small inconveniences caused by the use of Copilot, I would say copilot has had a positive affect on this project. It has saved me a lot of time- particularly with troubleshooting. I don't think I would have been able to get as much done as I have in this timeframe without the use of Copilot. 
+However, there were times where Copilot wasn't helpful and I had to read over the documentation for Django. 
+
+
 
 ## Testing
 
@@ -170,7 +176,32 @@ Some problems that were caused by using Copilot were:
 ### Heroku:
 BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the project was properly configured and compatible with heroku.
 
-[steps]
+1. Set up the Django project:
+    - Ensure that Django is installed correctly and working locally.
+    - Install gunicorn to prepare for deployment in Heroku
+    - If needed collectstatic files to prepare for deployment
+
+2. Create a requirements.txt file with all of the dependancies
+    - Run the command below to add your dependancies to the file.
+
+    ```bash
+    pip freeze > requirements.txt
+    ```
+
+3. Create a Procfile:
+    - Make sure it's in the root of the project
+    - Add the line below to the Procfile:
+    ```bash
+    web: gunicorn project_name.wsgi
+    ```
+
+4. Add Heroku to Allowed Hosts in settings.py:
+    ```python
+    ALLOWED_HOSTS = [
+        'localhost', 
+        '.herokuapp.com',
+        ]
+    ```
 
 ### PostgreSQL - Code Institute:
 [steps] 
