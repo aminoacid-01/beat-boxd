@@ -165,6 +165,7 @@ def create_review(request):
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
         if album_form.is_valid() and review_form.is_valid() and rating_form.is_valid():
+            review = review_form.save(commit=False)
             if album_form.cleaned_data['existing_album']:
                 album = album_form.cleaned_data['existing_album']
             else:
@@ -174,10 +175,10 @@ def create_review(request):
                 album.image_url = album_form.cleaned_data['image_url']
                 album.description = album_form.cleaned_data['description']
                 album.save()
-                review = review_form.save(commit=False)
-                review.album = album
-                review.author = request.user  # Set the author to the logged-in user
-                review.status = 1
+            review.album = album
+            review.author = request.user  # Set the author to the logged-in user
+            review.status = 1
+        
 
         # Check if a rating by the same user for the same album already exists
         if Rating.objects.filter(album=album, user=request.user).exists():
