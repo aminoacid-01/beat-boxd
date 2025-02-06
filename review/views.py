@@ -118,7 +118,6 @@ def review_list(request):
 
 def recent_review_list(request):
     """
-    View function to display a list of reviews.
     This function retrieves all reviews from the database, fetches additional
     album information for each review, and renders the 'review_list.html' template
     with the list of reviews.
@@ -152,18 +151,18 @@ def recent_review_list(request):
 @login_required
 def create_review(request):
     """
-    View function to create a new review.
-    This function handles both GET and POST requests. For GET requests, it renders the 'create_review.html' template with empty forms. For POST requests, it processes the form data, creates a new album and review instance, and redirects the user to the home page. If the album already exists, the existing album instance is used.
+    Handles the creation of a new review and rating for an album.
+
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
         HttpResponse: The rendered 'create_review.html' template with the album and review forms.
     """
-
     if request.method == 'POST':
         rating_form = RatingForm(request.POST)
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
+
         if album_form.is_valid() and review_form.is_valid() and rating_form.is_valid():
             review = review_form.save(commit=False)
             if album_form.cleaned_data['existing_album']:
@@ -175,30 +174,37 @@ def create_review(request):
                 album.image_url = album_form.cleaned_data['image_url']
                 album.description = album_form.cleaned_data['description']
                 album.save()
+
             review.album = album
             review.author = request.user  # Set the author to the logged-in user
             review.status = 1
-        
 
-        # Check if a rating by the same user for the same album already exists
-        if Rating.objects.filter(album=album, user=request.user).exists():
-            rating_form.add_error('value', "You have already rated this album.")
-        else:
-            review.save()  # Save the review
-            rating = rating_form.save(commit=False)
-            rating.review = review
-            rating.user = request.user
-            rating.album = album
-            rating.save()  # Save the rating
-            review.rating = rating
-            review.save()  # Save the review
-            messages.success(request, 'Review and rating submitted successfully!')
-            return redirect('home_page')
+            # Check if a rating by the same user for the same album already exists
+            if Rating.objects.filter(album=album, user=request.user).exists():
+                rating_form.add_error('value', "You have already rated this album.")
+            else:
+                review.save()  # Save the review
+                rating = rating_form.save(commit=False)
+                rating.review = review
+                rating.user = request.user
+                rating.album = album
+                rating.save()  # Save the rating
+
+                review.rating = rating
+                review.save()  # Save the review
+
+                messages.success(request, 'Review and rating submitted successfully!')
+                return redirect('home_page')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()
         rating_form = RatingForm()
-    return render(request, 'create_review.html', {'album_form': album_form, 'review_form': review_form, 'rating_form': rating_form})
+
+    return render(request, 'create_review.html', {
+        'album_form': album_form,
+        'review_form': review_form,
+        'rating_form': rating_form,
+    })
 
 @login_required
 def edit_review(request, slug):
@@ -214,6 +220,15 @@ def edit_review(request, slug):
 
 @login_required
 def delete_review(request, slug):
+    '''
+    This function deletes a review.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the review to delete.
+        
+    Returns:
+        HttpResponse: The rendered 'delete_review.html' template with the review.
+        '''
     review = get_object_or_404(Review, slug=slug, author=request.user)
     if request.method == 'POST':
         review.delete()
