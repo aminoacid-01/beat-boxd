@@ -175,11 +175,9 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 
 ### Heroku:
 BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the project was properly configured and compatible with heroku.
-
 1. Set up the Django project:
     - Ensure that Django is installed correctly and working locally.
-    - Install gunicorn to prepare for deployment in Heroku
-    - If needed collectstatic files to prepare for deployment
+    - Install gunicorn to prepare for deployment in Heroku.
 
 2. Create a requirements.txt file with all of the dependancies
     - Run the command below to add your dependancies to the file.
@@ -200,8 +198,17 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
     ALLOWED_HOSTS = [
         'localhost', 
         '.herokuapp.com',
+        ...
         ]
     ```
+
+5. Set Debug to False in settings.py:
+    - For security reasons, never have Debug = True when your project is deployed.
+
+6. Add, commit and push all changes to Github
+
+[finish later]
+    
 
 ### PostgreSQL - Code Institute:
 [steps] 
