@@ -192,7 +192,7 @@ main {
     text-align: center;
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
-    padding: 8em;
+    padding-top: 8em;
 }
 #hero .btn{
     background-color: #de643b;
