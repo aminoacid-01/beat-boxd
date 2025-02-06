@@ -225,7 +225,7 @@ def delete_review(request, slug):
     Args:
         request (HttpRequest): The HTTP request object.
         slug (str): The slug of the review to delete.
-
+        
     Returns:
         HttpResponse: The rendered 'delete_review.html' template with the review.
         '''
@@ -236,3 +236,13 @@ def delete_review(request, slug):
     return render(request, 'delete_review.html', {'review': review})
 
 
+
+def album_detail(request, album_id):
+    album = Album.objects.get(id=album_id)
+    data = {
+        'title': album.title,
+        'artist': album.artist,
+        'image_url': album.image_url,
+        'description': album.description,
+    }
+    return JsonResponse(data)
