@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Review, Album, Comment
+from .models import Review, Album, Comment, Rating
 from .forms import AlbumForm, ReviewForm, CommentForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -163,7 +163,7 @@ def create_review(request):
         rating_form = RatingForm(request.POST)
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
-        if album_form.is_valid() and review_form.is_valid and rating_form.is_valid():
+        if album_form.is_valid() and review_form.is_valid() and rating_form.is_valid():
             if album_form.cleaned_data['existing_album']:
                 album = album_form.cleaned_data['existing_album']
             else:
@@ -173,22 +173,26 @@ def create_review(request):
                 album.image_url = album_form.cleaned_data['image_url']
                 album.description = album_form.cleaned_data['description']
                 album.save()
-            review = review_form.save(commit=False)
-            review.album = album
-            review.author = request.user  # Set the author to the logged-in user
-            review.status = 1
-            review.save() # Save the review
+                review = review_form.save(commit=False)
+                review.album = album
+                review.author = request.user  # Set the author to the logged-in user
+                review.status = 1
 
-            rating = rating_form.save(commit=False)
-            rating.review = review
-            rating.user = request.user
-            rating.album = album
-            rating.save()  # Save the rating
+                # Check if a rating by the same user for the same album already exists
+                if Rating.objects.filter(album=album, user=request.user).exists():
+                    rating_form.add_error('value', "You have already rated this album.")
+                else:
+                    review.save()  # Save the review
+                    rating = rating_form.save(commit=False)
+                    rating.review = review
+                    rating.user = request.user
+                    rating.album = album
+                    rating.save()  # Save the rating
+                    
+                    review.rating = rating
+                    review.save()  # Save the review
 
-            review.rating = rating
-            review.save()  # Save the review
-
-            return redirect('home_page')
+                    return redirect('home_page')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()
