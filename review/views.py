@@ -4,6 +4,7 @@ from .models import Review, Album, Comment, Rating
 from .forms import AlbumForm, ReviewForm, CommentForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 
 # Review CRUD operations
@@ -178,21 +179,20 @@ def create_review(request):
                 review.author = request.user  # Set the author to the logged-in user
                 review.status = 1
 
-                # Check if a rating by the same user for the same album already exists
-                if Rating.objects.filter(album=album, user=request.user).exists():
-                    rating_form.add_error('value', "You have already rated this album.")
-                else:
-                    review.save()  # Save the review
-                    rating = rating_form.save(commit=False)
-                    rating.review = review
-                    rating.user = request.user
-                    rating.album = album
-                    rating.save()  # Save the rating
-                    
-                    review.rating = rating
-                    review.save()  # Save the review
-
-                    return redirect('home_page')
+        # Check if a rating by the same user for the same album already exists
+        if Rating.objects.filter(album=album, user=request.user).exists():
+            rating_form.add_error('value', "You have already rated this album.")
+        else:
+            review.save()  # Save the review
+            rating = rating_form.save(commit=False)
+            rating.review = review
+            rating.user = request.user
+            rating.album = album
+            rating.save()  # Save the rating
+            review.rating = rating
+            review.save()  # Save the review
+            messages.success(request, 'Review and rating submitted successfully!')
+            return redirect('home_page')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()

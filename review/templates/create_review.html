@@ -26,6 +26,18 @@
         {{ review_form.as_p }}
     </fieldset>
     <button class="btn btn-primary" type="submit">Submit</button></div>
+    <!-- Display errors -->
+    {% if rating_form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in rating_form %}
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 </form>
 
 <!-- CUSTOM JS FOR FORM -->
