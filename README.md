@@ -239,9 +239,11 @@ The project utilises the LastFM API to fetch album information to fill the Album
 - **Code/Database Models**:
     - Used some of the steps I Think, Therefore I Blog tutorial to help set up the project.
     - Comment model - I Think, Therefore I Blog.
+    - Used [this](https://stackoverflow.com/questions/17838607/making-an-iframe-responsive) stackoverflow post to make the iframe for summernote responsive.
+    - Heavily referenced documentation for Django and django-summernote throughout development.
 
 
-### Aknowlegements:
+### Acknowlegements:
 
 
 
