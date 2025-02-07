@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 <div class="hidden">
-{% block title %} BeatBoxd | Edit Review {% endblock %}
-{% block description %} Edit your review on BeatBoxd {% endblock %}
+    {% block title %} BeatBoxd | Edit Review {% endblock %}
+    {% block description %} Edit your review on BeatBoxd {% endblock %}
 </div>
 {% block content %}
 <div class="container mt-5 mb-5 review-form text-center">
     <h2 class="mb-3 h1">Edit Review</h2>
     <div class="reviewForm my-3">
-    <form id="review-form" method="post">
-        {% csrf_token %}
-        {{ review_form.as_div }}
-        <button type="submit" class="btn btn-primary mb-2">Save Changes</button>
-    </form></div>
+        <form id="review-form" method="post">
+            {% csrf_token %}
+            {{ review_form.as_div }}
+            <button type="submit" class="btn btn-primary mb-2">Save Changes</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

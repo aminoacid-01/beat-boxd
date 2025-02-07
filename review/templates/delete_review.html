@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 <div class="hidden">
-{% block title %} BeatBoxd | Delete Review {% endblock %}
-{% block description %} Delete your review on BeatBoxd {% endblock %}
+    {% block title %} BeatBoxd | Delete Review {% endblock %}
+    {% block description %} Delete your review on BeatBoxd {% endblock %}
 </div>
 {% block content %}
 <div class="container mt-5 text-center">
@@ -10,7 +10,7 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete</button>
         <a href="{% url 'review_detail' review.slug %}" class="btn btn-secondary">Cancel</a>
-        
+
     </form>
 </div>
 {% endblock %}

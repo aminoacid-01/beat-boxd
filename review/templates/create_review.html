@@ -3,38 +3,39 @@
 
 
 <div class="hidden">
-{% block title %}BeatBoxd | Create Review{% endblock %}
-{% block description %}Create a review on BeatBoxd{% endblock %}
+    {% block title %}BeatBoxd | Create Review{% endblock %}
+    {% block description %}Create a review on BeatBoxd{% endblock %}
 </div>
 {% block content %}
 <h2 class="text-center mt-5 display-3">Create a New Review</h2>
 <div class="reviewForm my-3">
-<form method="post">
-    <div id="review-form" class="mb-3 mx-3">
-    {% csrf_token %}
-    <fieldset class="mb-3">
-        <legend>Album Information:</legend>
-        <!-- Input for Album information -->
-        {{ album_form.as_p }}
-    </fieldset>
-    <fieldset class="mb-3 rating-form">
-        <legend>Rate the Album!</legend>
-        {{ rating_form.as_p }}
-        </fieldset>
-    <fieldset>
-        <!-- Review form fields -->
-        <legend>Review:</legend>
-        <div class="form-group">
-            {{ review_form.as_div }}
+    <form method="post">
+        <div id="review-form" class="mb-3 mx-3">
+            {% csrf_token %}
+            <fieldset class="mb-3">
+                <legend>Album Information:</legend>
+                <!-- Input for Album information -->
+                {{ album_form.as_p }}
+            </fieldset>
+            <fieldset class="mb-3 rating-form">
+                <legend>Rate the Album!</legend>
+                {{ rating_form.as_p }}
+            </fieldset>
+            <fieldset>
+                <!-- Review form fields -->
+                <legend>Review:</legend>
+                <div class="form-group">
+                    {{ review_form.as_div }}
+                </div>
+            </fieldset>
+            <button class="btn btn-primary my-2" type="submit">Submit</button>
         </div>
-    </fieldset>
-    <button class="btn btn-primary my-2" type="submit">Submit</button></div>
-    <!-- Display errors -->
-    
-</form>
+        <!-- Display errors -->
 
-<!-- CUSTOM JS FOR FORM -->
-<script src="{% static 'js/create_review.js' %}"></script>
+    </form>
+
+    <!-- CUSTOM JS FOR FORM -->
+    <script src="{% static 'js/create_review.js' %}"></script>
 
 </div>
 {% endblock %}

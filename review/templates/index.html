@@ -2,16 +2,17 @@
 {% block content %}
 {% load static %}
 <div class="hidden">
-{% block title %} BeatBoxd | Home {% endblock %}
-{% block description %} BeatBoxd is a music review site where you can share your thoughts on the latest music releases. If everyone's a critic, why not share your opinion? {% endblock %}
+    {% block title %} BeatBoxd | Home {% endblock %}
+    {% block description %} BeatBoxd is a music review site where you can share your thoughts on the latest music
+    releases. If everyone's a critic, why not share your opinion? {% endblock %}
 </div>
 <!-- Hero banner -->
 <div id="hero" class="container-fluid mb-4 bottom-border">
     <div class="col-12">
-    <h2 class="display-2 text-center">Everyone's a critic.</h2>
-    <p>Share your thoughts on the latest music releases.</p>
-    <a href="{% url 'create_review' %}" class="btn btn-primary my-auto">Write a Review</a>
-</div>
+        <h2 class="display-2 text-center">Everyone's a critic.</h2>
+        <p>Share your thoughts on the latest music releases.</p>
+        <a href="{% url 'create_review' %}" class="btn btn-primary my-auto">Write a Review</a>
+    </div>
 </div>
 <!-- Recent Review (Lists recent reviews- displays album cover with title and review information) -->
 <h2 id="listTitle">Recent Reviews</h2>
