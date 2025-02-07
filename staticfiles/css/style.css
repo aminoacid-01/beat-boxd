@@ -47,6 +47,8 @@ h2{
     display: none;
 }
 
+
+
 /* Buttons */
 .btn-link{
     color:#dd9a84;
@@ -129,12 +131,12 @@ h1 {
 }
 
 /* Navbar */
-.navbar {
+.navbar, .dropdown-menu {
     background-color: #1f0a1c;
     padding: 1rem;
     color:#dbf1fa;
 }
-.navbar-nav .nav-link {
+.navbar-nav .nav-link, .dropdown-item {
     color: #dbf1fa;
     padding: 0.5rem 2rem;
     font-size: 1.5em;
@@ -192,7 +194,7 @@ main {
     text-align: center;
     background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
-    padding: 8em;
+    padding-top: 8em;
 }
 #hero .btn{
     background-color: #de643b;
@@ -307,4 +309,21 @@ footer {
 footer p {
     margin: 0;
     padding: 0.5rem;
+}
+
+/* Summernote Iframe */
+.summernote-div {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    min-width: none;
+    height: 500px;
+}
+
+.summernote-div iframe {
+    flex: 1;
+    border: 0;
+    width: 100%;
+    height: 100%;
 }
