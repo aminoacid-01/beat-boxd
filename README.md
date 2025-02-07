@@ -25,6 +25,8 @@ A fully responsive django web application that allows users to review and rate t
 - [AI Implementation](#ai-implementation)
 - [Testing:](#testing)
     - [Validators]()
+        - [W3C]()
+        - [Python]()
     - [Manual Testing]()
     - [Automated Testing]()
 - [Deployment](#deployment)
