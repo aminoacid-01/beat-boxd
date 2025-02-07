@@ -32,10 +32,10 @@ def review_detail(request, slug):
     comments = review.comments.filter(approved=True).order_by("-created_on")
     comment_count = comments.count()
     form_submitted = False
-     # Fetch related reviews based on the same artist
+    # Fetch related reviews based on the same artist
     related_reviews = Review.objects.filter(album__artist=review.album.artist).exclude(id=review.id)[:5]
 
-    #Comment Form
+    # Comment Form
     if request.method == 'POST':
         if request.user.is_authenticated:
             if 'delete_comment_id' in request.POST:
@@ -72,14 +72,15 @@ def review_detail(request, slug):
     return render(
         request,
         "review_detail.html",
-            {"review": review,
-             "comments": comments,
-             "comment_count": comment_count,
-             "comment_form": comment_form,
-             "form_submitted": form_submitted,
-             "related_reviews": related_reviews,
-             }
+        {"review": review,
+         "comments": comments,
+         "comment_count": comment_count,
+         "comment_form": comment_form,
+         "form_submitted": form_submitted,
+         "related_reviews": related_reviews,
+         }
         )
+
 
 def review_list(request):
     """
@@ -89,31 +90,28 @@ def review_list(request):
     with the list of reviews.
 
     **Context**
-    
     ``reviews``
         A queryset of all :model:`review.Review` instances.
-    
     **Template:**
-    
-    :template:`review/review_list.html`
-
+    :template:`review/review_list.html.
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
         HttpResponse: The rendered 'review_list.html' template with the list of reviews.
     """
 
-    reviews = Review.objects.filter(status =1).order_by('-created_on')
+    reviews = Review.objects.filter(status=1).order_by('-created_on')
     paginator = Paginator(reviews, 12)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request, 
-                  'review_list.html', 
+    return render(request,
+                  'review_list.html',
                   {'reviews': page_obj,
                    'page_obj': page_obj}
                   )
+
 
 @login_required
 def user_review_list(request):
@@ -122,7 +120,6 @@ def user_review_list(request):
 
     Args:
         request (HttpRequest): The HTTP request object.
-    
     Returns:
         HttpResponse: The rendered 'user_review_list.html' template with the list of reviews.
     '''
@@ -132,8 +129,8 @@ def user_review_list(request):
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request, 
-                  'user_review_list.html', 
+    return render(request,
+                  'user_review_list.html',
                   {'reviews': page_obj,
                    'page_obj': page_obj}
                   )
@@ -145,12 +142,9 @@ def recent_review_list(request):
     album information for each review, and renders the 'index.html' template with the list of reviews.
 
     **Context**
-    
     ``reviews``
         A queryset of the most recent :model:`review.Review` instances.
-    
     **Template:**
-    
     :template:`index.html`
 
     Args:
@@ -159,15 +153,13 @@ def recent_review_list(request):
         HttpResponse: The rendered 'index.html' template with the list of recent reviews.
     """
 
-    reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]  
+    reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request, 
-                  'index.html', 
+    return render(request,
+                  'index.html',
                   {'reviews': reviews}
                   )
-
-
 
 
 @login_required
@@ -228,14 +220,16 @@ def create_review(request):
         'rating_form': rating_form,
     })
 
+
 @login_required
 def edit_review(request, slug):
     """
     Handle the editing of a review.
-    This view allows the author of a review to edit their review. If the request method is POST,
-    it will attempt to update the review with the provided data. If the form is valid, the review
-    is saved and the user is redirected to the review detail page. If the request method is GET,
-    it will display the form with the current review data.
+    This view allows the author of a review to edit their review. If the request
+    method is POST,it will attempt to update the review with the provided data.
+    If the form is valid, the review is saved and the user is redirected to the
+    review detail page. If the request method is GET, it will display the form
+    with the current review data.
     Args:
         request (HttpRequest): The HTTP request object.
         slug (str): The slug of the review to be edited.
@@ -252,23 +246,22 @@ def edit_review(request, slug):
         form = ReviewForm(instance=review)
     return render(request, 'edit_review.html', {'review_form': form, 'review': review})
 
+
 @login_required
 def delete_review(request, slug):
     '''
     This function deletes a review.
     Args:
-        request (HttpRequest): The HTTP request object.
+    request (HttpRequest): The HTTP request object.
         slug (str): The slug of the review to delete.
-        
     Returns:
-        HttpResponse: The rendered 'delete_review.html' template with the review.
+    HttpResponse: The rendered 'delete_review.html' template with the review.
         '''
     review = get_object_or_404(Review, slug=slug, author=request.user)
     if request.method == 'POST':
         review.delete()
         return redirect('home_page')
     return render(request, 'delete_review.html', {'review': review})
-
 
 
 def album_detail(request, album_id):
