@@ -115,6 +115,20 @@ def review_list(request):
                    'page_obj': page_obj}
                   )
 
+@login_required
+def user_review_list(request):
+    reviews = Review.objects.filter(author=request.user, status=1).order_by('-created_on')
+    paginator = Paginator(reviews, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    for review in page_obj:
+        review.fetch_album_info()  # Fetch album info for each review
+    return render(request, 
+                  'user_review_list.html', 
+                  {'reviews': page_obj,
+                   'page_obj': page_obj}
+                  )
+
 
 def recent_review_list(request):
     """
