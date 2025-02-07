@@ -117,6 +117,15 @@ def review_list(request):
 
 @login_required
 def user_review_list(request):
+    '''
+    A view function to display a list of reviews by the user that is currently logged in.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+    
+    Returns:
+        HttpResponse: The rendered 'user_review_list.html' template with the list of reviews.
+    '''
     reviews = Review.objects.filter(author=request.user, status=1).order_by('-created_on')
     paginator = Paginator(reviews, 12)
     page_number = request.GET.get("page")
@@ -132,23 +141,22 @@ def user_review_list(request):
 
 def recent_review_list(request):
     """
-    This function retrieves all reviews from the database, fetches additional
-    album information for each review, and renders the 'review_list.html' template
-    with the list of reviews.
+    This function retrieves the most recent reviews from the database, fetches additional
+    album information for each review, and renders the 'index.html' template with the list of reviews.
 
     **Context**
     
     ``reviews``
-        A queryset of all :model:`review.Review` instances.
+        A queryset of the most recent :model:`review.Review` instances.
     
     **Template:**
     
-    :template:`review/review_list.html`
+    :template:`index.html`
 
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
-        HttpResponse: The rendered 'review_list.html' template with the list of reviews.
+        HttpResponse: The rendered 'index.html' template with the list of recent reviews.
     """
 
     reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]  
@@ -222,6 +230,18 @@ def create_review(request):
 
 @login_required
 def edit_review(request, slug):
+    """
+    Handle the editing of a review.
+    This view allows the author of a review to edit their review. If the request method is POST,
+    it will attempt to update the review with the provided data. If the form is valid, the review
+    is saved and the user is redirected to the review detail page. If the request method is GET,
+    it will display the form with the current review data.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        slug (str): The slug of the review to be edited.
+    Returns:
+        HttpResponse: The response object containing the rendered template.
+    """
     review = get_object_or_404(Review, slug=slug, author=request.user)
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
@@ -252,6 +272,16 @@ def delete_review(request, slug):
 
 
 def album_detail(request, album_id):
+    """
+    Retrieve and return the details of a specific album as a JSON response.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        album_id (int): The ID of the album to retrieve.
+    Returns:
+        JsonResponse: A JSON response containing the album details, including
+                      title, artist, image_url, and description.
+    """
+
     album = Album.objects.get(id=album_id)
     data = {
         'title': album.title,
