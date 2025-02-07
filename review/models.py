@@ -10,10 +10,10 @@ from datetime import datetime
 
 API_URL = 'http://ws.audioscrobbler.com/2.0/'
 
+
 class Album(models.Model):
     """
     Model representing an album.
-    
     Attributes:
         title (str): The title of the album.
         artist (str): The name of the artist.
@@ -21,17 +21,16 @@ class Album(models.Model):
         description (str): A description of the album.
         tracklist (list): A list of tracks on the album.
         release_date (date): The release date of the album.
-
     Methods:
-        save: Save the album instance. Store artist names and album titles in lowercase.
+        save: Save the album instance. Store artist names and album titles
+        in lowercase.
         average_rating: Calculate the average rating of the album.
         __str__: Return a string representation of the album.
-        
     """
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     image_url = models.URLField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True) 
+    description = models.TextField(blank=True, null=True)
     tracklist = models.JSONField(blank=True, null=True)
     release_date = models.DateTimeField(blank=True, null=True)
 
@@ -50,12 +49,14 @@ class Album(models.Model):
     def __str__(self):
         return f"{self.title} by {self.artist}"
 
+
 class Review(models.Model):
     """
     Model representing a review.
 
     Attributes:
-        heading (str): The heading of the review. (originally meant to be title but kept on getting confused with album title)
+        heading (str): The heading of the review. (originally meant
+        to be title but kept on getting confused with album title)
         slug (str): The slug for the review.
         author (User): The author of the review.
         album (Album): The album being reviewed.
@@ -66,7 +67,8 @@ class Review(models.Model):
         status (int): The status of the review (Draft or Published).
 
     Methods:
-        save: Save the review instance. Automatically generate a slug if not provided.
+        save: Save the review instance. Automatically generate a slug
+        if not provided.
         __str__: Return a string representation of the review.
         fetch_album_info: Fetch album information using the Last.fm API.
     """
@@ -78,7 +80,9 @@ class Review(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
-    rating = models.OneToOneField('Rating', on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
+    rating = models.OneToOneField('Rating', on_delete=models.CASCADE,
+                                  related_name='review_rating',
+                                  blank=True, null=True)
     STATUS = (
         (0, "Draft"),
         (1, "Published"),
@@ -86,14 +90,15 @@ class Review(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
 
     def save(self, *args, **kwargs):
-        # If the excerpt is empty, set it to the first 250 characters of the body
+        # If the excerpt is empty, set it to the first 250 characters of the
+        # body
         if not self.excerpt:
             if len(self.body) > 250:
                 self.excerpt = self.body[:247] + '...'
             else:
                 self.excerpt = self.body
 
-         # Automatically generate a slug if it's not provided
+        # Automatically generate a slug if it's not provided
         if not self.slug:
             self.slug = slugify(self.heading)
             original_slug = self.slug
@@ -103,7 +108,8 @@ class Review(models.Model):
                 counter += 1
 
         # Check if the album already exists
-        existing_album = Album.objects.filter(title=self.album.title, artist=self.album.artist).first()
+        existing_album = Album.objects.filter(title=self.album.title,
+                                              artist=self.album.artist).first()
         if existing_album:
             self.album = existing_album
 
@@ -126,8 +132,12 @@ class Review(models.Model):
         data = response.json()
         if 'album' in data:
             album_data = data['album']
-            self.album.image_url = album_data['image'][-1]['#text']  # Get the largest image
-            self.album.description = album_data.get('wiki', {}).get('summary', 'No description was found.')  # Get the album description
+            self.album.image_url = album_data['image'][-1]['#text']
+            # Get the largest image
+            self.album.description = album_data.get('wiki',
+                                                    {}).get('summary',
+                                                            'No description.')
+            # Get the album description
             tracks = album_data.get('tracks', {}).get('track', [])
             if isinstance(tracks, list):
                 self.album.tracklist = [track['name'] for track in tracks]
@@ -138,6 +148,7 @@ class Review(models.Model):
                 self.album.save()
             return album_data
         return None
+
 
 class Rating(models.Model):
     """
@@ -154,17 +165,23 @@ class Rating(models.Model):
         Class Meta:
             unique_together: Ensure that each user can only rate an album once.
     """
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='ratings')
+    album = models.ForeignKey(Album, on_delete=models.CASCADE,
+                              related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    review = models.OneToOneField(Review, on_delete=models.CASCADE, related_name='review_rating', blank=True, null=True)
-    value = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], blank=True)  # Limit value between 1 and 5
+    review = models.OneToOneField(Review, on_delete=models.CASCADE,
+                                  related_name='review_rating', blank=True,
+                                  null=True)
+    value = models.PositiveIntegerField(validators=[MinValueValidator(1),
+                                        MaxValueValidator(5)], blank=True)
+    # Limit value between 1 and 5
 
     class Meta:
         unique_together = ('album', 'user')
 
     def __str__(self):
         return f"{self.value}"
-    
+
+
 class Comment(models.Model):
     """
     Model representing a comment on a review.
@@ -177,7 +194,8 @@ class Comment(models.Model):
         updated_on (DateTime): The date and time the comment was last updated.
         approved (bool): Whether the comment is approved or not.
     """
-    review = models.ForeignKey(Review, on_delete=models.CASCADE,related_name='comments')
+    review = models.ForeignKey(Review, on_delete=models.CASCADE,
+                               related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
