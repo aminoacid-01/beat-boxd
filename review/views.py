@@ -111,7 +111,7 @@ def review_list(request):
     """
 
     reviews = Review.objects.filter(status=1).order_by('-created_on')
-    paginator = Paginator(reviews, 12)
+    paginator = Paginator(reviews, 8)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
@@ -139,7 +139,7 @@ def user_review_list(request):
     reviews = Review.objects.filter(
         author=request.user, status=1
     ).order_by('-created_on')
-    paginator = Paginator(reviews, 12)
+    paginator = Paginator(reviews, 8)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
@@ -171,7 +171,7 @@ def recent_review_list(request):
         recent reviews.
     """
 
-    reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]
+    reviews = Review.objects.filter(status=1).order_by('-created_on')[:4]
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
     return render(
