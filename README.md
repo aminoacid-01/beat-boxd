@@ -22,16 +22,16 @@ A fully responsive django web application that allows users to review and rate t
     - [Albums](#albums)
     - [Comments](#comments)
     - [Future Features]()
-- [AI Implementation]()
-- [Testing:]()
+- [AI Implementation](#ai-implementation)
+- [Testing:](#testing)
     - [Validators]()
     - [Manual Testing]()
     - [Automated Testing]()
 - [Deployment](#deployment)
-    - [Heroku]()
-    - [PostgreSQL - Code Institute]()
-    - [LastFM API]()
-- [Credits]()
+    - [Heroku](#heroku)
+    - [PostgreSQL - Code Institute](#postgresql---code-institute)
+    - [LastFM API](#lastfm-api)
+- [Credits](#credits)
 
 
 ## UX - User Experience
@@ -77,7 +77,7 @@ As pictured in the colour scheme section, Real Time Colours was also used to pre
 A retro style font
 
 **Truculenta**:
-A thin and stylish font for body text
+A thin and stylish retro font for body text
 
 ## Database Planning
 The album, review and rating models are unique custom models.
@@ -235,12 +235,14 @@ The project utilises the LastFM API to fetch album information to fill the Album
 
 - **Images:**
     - Album covers - Last.fm
-    - Hero Image - Unsplash (person's username and link to post)
+    - Hero Image - Sergio Kian on [Unsplash](https://unsplash.com/photos/a-book-shelf-filled-with-lots-of-books-m7m2JJVB2No)
+
 - **Code/Database Models**:
     - Used some of the steps I Think, Therefore I Blog tutorial to help set up the project.
     - Comment model - I Think, Therefore I Blog.
     - Used [this](https://stackoverflow.com/questions/17838607/making-an-iframe-responsive) stackoverflow post to make the iframe for summernote responsive.
     - Heavily referenced documentation for Django and django-summernote throughout development.
+
 
 
 ### Acknowlegements:
