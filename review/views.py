@@ -34,7 +34,8 @@ def review_detail(request, slug):
     form_submitted = False
     # Fetch related reviews based on the same artist
     related_reviews = Review.objects.filter(
-        album__artist=review.album.artist
+        album__artist=review.album.artist,
+        status=1
     ).exclude(id=review.id)[:5]
 
     # Comment Form
