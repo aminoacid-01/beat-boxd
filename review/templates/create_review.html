@@ -20,12 +20,15 @@
     <fieldset class="mb-3 rating-form">
         <legend>Rate the Album!</legend>
         {{ rating_form.as_p }}
+        </fieldset>
     <fieldset>
         <!-- Review form fields -->
         <legend>Review:</legend>
-        {{ review_form.as_p }}
+        <div class="form-group">
+            {{ review_form.as_div }}
+        </div>
     </fieldset>
-    <button class="btn btn-primary" type="submit">Submit</button></div>
+    <button class="btn btn-primary my-2" type="submit">Submit</button></div>
     <!-- Display errors -->
     
 </form>
