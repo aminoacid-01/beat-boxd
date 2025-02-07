@@ -20,12 +20,12 @@ def review_detail(request, slug):
     **Template:**
 
     :template:`review/review_detail.html`
-
     Args:
         request (HttpRequest): The HTTP request object.
         slug (str): The slug of the review to display.
     Returns:
-        HttpResponse: The rendered 'review_detail.html' template with the review.
+        HttpResponse: The rendered 'review_detail.html' template with the
+        review.
     """
 
     review = get_object_or_404(Review, slug=slug)
@@ -33,20 +33,28 @@ def review_detail(request, slug):
     comment_count = comments.count()
     form_submitted = False
     # Fetch related reviews based on the same artist
-    related_reviews = Review.objects.filter(album__artist=review.album.artist).exclude(id=review.id)[:5]
+    related_reviews = Review.objects.filter(
+        album__artist=review.album.artist
+    ).exclude(id=review.id)[:5]
 
     # Comment Form
     if request.method == 'POST':
         if request.user.is_authenticated:
             if 'delete_comment_id' in request.POST:
                 # Deleting an existing comment
-                comment = get_object_or_404(Comment, id=request.POST.get('delete_comment_id'), author=request.user)
+                comment = get_object_or_404(
+                    Comment, id=request.POST.get('delete_comment_id'),
+                    author=request.user
+                )
                 comment.delete()
                 form_submitted = False
                 return redirect('review_detail', slug=review.slug)
             elif 'comment_id' in request.POST:
                 # Editing an existing comment
-                comment = get_object_or_404(Comment, id=request.POST.get('comment_id'), author=request.user)
+                comment = get_object_or_404(
+                    Comment, id=request.POST.get('comment_id'),
+                    author=request.user
+                )
                 comment_form = CommentForm(request.POST, instance=comment)
                 if comment_form.is_valid():
                     comment_form.save()
@@ -79,15 +87,15 @@ def review_detail(request, slug):
          "form_submitted": form_submitted,
          "related_reviews": related_reviews,
          }
-        )
+    )
 
 
 def review_list(request):
     """
     View function to display a list of reviews.
     This function retrieves all reviews from the database, fetches additional
-    album information for each review, and renders the 'review_list.html' template
-    with the list of reviews.
+    album information for each review, and renders the 'review_list.html'
+    template with the list of reviews.
 
     **Context**
     ``reviews``
@@ -97,7 +105,8 @@ def review_list(request):
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
-        HttpResponse: The rendered 'review_list.html' template with the list of reviews.
+        HttpResponse: The rendered 'review_list.html' template with the list of
+        reviews.
     """
 
     reviews = Review.objects.filter(status=1).order_by('-created_on')
@@ -106,40 +115,47 @@ def review_list(request):
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request,
-                  'review_list.html',
-                  {'reviews': page_obj,
-                   'page_obj': page_obj}
-                  )
+    return render(
+        request,
+        'review_list.html',
+        {'reviews': page_obj,
+         'page_obj': page_obj}
+    )
 
 
 @login_required
 def user_review_list(request):
     '''
-    A view function to display a list of reviews by the user that is currently logged in.
+    A view function to display a list of reviews by the user that is currently
+    logged in.
 
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
-        HttpResponse: The rendered 'user_review_list.html' template with the list of reviews.
+        HttpResponse: The rendered 'user_review_list.html' template with the
+        list of reviews.
     '''
-    reviews = Review.objects.filter(author=request.user, status=1).order_by('-created_on')
+    reviews = Review.objects.filter(
+        author=request.user, status=1
+    ).order_by('-created_on')
     paginator = Paginator(reviews, 12)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     for review in page_obj:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request,
-                  'user_review_list.html',
-                  {'reviews': page_obj,
-                   'page_obj': page_obj}
-                  )
+    return render(
+        request,
+        'user_review_list.html',
+        {'reviews': page_obj,
+         'page_obj': page_obj}
+    )
 
 
 def recent_review_list(request):
     """
-    This function retrieves the most recent reviews from the database, fetches additional
-    album information for each review, and renders the 'index.html' template with the list of reviews.
+    This function retrieves the most recent reviews from the database,
+    fetches additional album information for each review, and renders the
+    'index.html' template with the list of reviews.
 
     **Context**
     ``reviews``
@@ -150,16 +166,18 @@ def recent_review_list(request):
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
-        HttpResponse: The rendered 'index.html' template with the list of recent reviews.
+        HttpResponse: The rendered 'index.html' template with the list of
+        recent reviews.
     """
 
     reviews = Review.objects.filter(status=1).order_by('-created_on')[:6]
     for review in reviews:
         review.fetch_album_info()  # Fetch album info for each review
-    return render(request,
-                  'index.html',
-                  {'reviews': reviews}
-                  )
+    return render(
+        request,
+        'index.html',
+        {'reviews': reviews}
+    )
 
 
 @login_required
@@ -170,14 +188,16 @@ def create_review(request):
     Args:
         request (HttpRequest): The HTTP request object.
     Returns:
-        HttpResponse: The rendered 'create_review.html' template with the album and review forms.
+        HttpResponse: The rendered 'create_review.html'
+        template with the album and review forms.
     """
     if request.method == 'POST':
         rating_form = RatingForm(request.POST)
         album_form = AlbumForm(request.POST)
         review_form = ReviewForm(request.POST)
 
-        if album_form.is_valid() and review_form.is_valid() and rating_form.is_valid():
+        if (album_form.is_valid() and review_form.is_valid() and
+           rating_form.is_valid()):
             review = review_form.save(commit=False)
             if album_form.cleaned_data['existing_album']:
                 album = album_form.cleaned_data['existing_album']
@@ -190,43 +210,47 @@ def create_review(request):
                 album.save()
 
             review.album = album
-            review.author = request.user  # Set the author to the logged-in user
+            review.author = request.user
             review.status = 1
 
-            # Check if a rating by the same user for the same album already exists
             if Rating.objects.filter(album=album, user=request.user).exists():
-                rating_form.add_error('value', "You have already rated this album.")
+                rating_form.add_error('value',
+                                      "You have already rated this album.")
             else:
-                review.save()  # Save the review
+                review.save()
                 rating = rating_form.save(commit=False)
                 rating.review = review
                 rating.user = request.user
                 rating.album = album
-                rating.save()  # Save the rating
+                rating.save()
 
                 review.rating = rating
-                review.save()  # Save the review
+                review.save()
 
-                messages.success(request, 'Review and rating submitted successfully!')
-                return redirect('home_page')
+                messages.success(request,
+                                 'Review and rating submitted successfully!')
+                return redirect('user_reviews')
     else:
         album_form = AlbumForm()
         review_form = ReviewForm()
         rating_form = RatingForm()
 
-    return render(request, 'create_review.html', {
-        'album_form': album_form,
-        'review_form': review_form,
-        'rating_form': rating_form,
-    })
+    return render(
+        request, 'create_review.html', {
+            'album_form': album_form,
+            'review_form': review_form,
+            'rating_form': rating_form,
+        }
+    )
 
 
 @login_required
 def edit_review(request, slug):
     """
     Handle the editing of a review.
-    This view allows the author of a review to edit their review. If the request
-    method is POST,it will attempt to update the review with the provided data.
+    This view allows the author of a review to edit their review. If the
+    request method is POST,it will attempt to update the review with the
+    provided data.
     If the form is valid, the review is saved and the user is redirected to the
     review detail page. If the request method is GET, it will display the form
     with the current review data.
@@ -244,7 +268,9 @@ def edit_review(request, slug):
             return redirect('review_detail', slug=review.slug)
     else:
         form = ReviewForm(instance=review)
-    return render(request, 'edit_review.html', {'review_form': form, 'review': review})
+    return render(request, 'edit_review.html', {
+        'review_form': form,
+        'review': review})
 
 
 @login_required
