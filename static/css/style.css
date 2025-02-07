@@ -279,6 +279,12 @@ textarea {
     box-shadow: #1f0a1c 0px 0px 10px;
     text-align: center;
     max-width: 1000px;
+    width: 80vw;
+}
+
+/* album dropdown from album_form */
+#id_existing_album{
+    width: 90%;
 }
 
 #review-form label {

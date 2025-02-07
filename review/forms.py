@@ -19,6 +19,9 @@ class AlbumForm(forms.ModelForm):
             'image_url',
             'description'
         ]
+        labels = {
+            'title': 'Album Title',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
