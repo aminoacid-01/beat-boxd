@@ -197,7 +197,7 @@ main {
     color: #dbf1fa;
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
-    background: url(/static/images/hero_image.jpg) no-repeat center/cover;
+    background: url(/static/images/hero_image.webp) no-repeat center/cover;
     background-color: #de643b;
     padding-top: 8em;
 }
