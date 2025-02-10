@@ -177,22 +177,38 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 
 ### Unit Tests Results:
 
+#### Views:
+
+| Test Case                          | Description                                                                 | Status |
+|------------------------------------|-----------------------------------------------------------------------------|--------|
+| `test_review_detail_view`          | Tests the `review_detail` view to ensure it returns the correct status code, template, and contains the expected content. | Pass |
+| `test_review_list_view`            | Tests the `review_list` view to ensure it returns the correct status code, template, and contains the expected content. | Pass |
+| `test_user_review_list_view`       | Tests the `user_review_list` view to ensure it returns the correct status code, template, and contains the expected content for the logged-in user. | Pass |
+| `test_recent_review_list_view`     | Tests the `recent_review_list` view to ensure it returns the correct status code, template, and contains the expected content. | Pass |
+| `test_create_review_view`          | Tests the `create_review` view to ensure it returns the correct status code, template, and contains the expected forms. | Pass |
+| `test_edit_review_view`            | Tests the `edit_review` view to ensure it returns the correct status code, template, and contains the expected form. | Pass |
+| `test_delete_review_view`          | Tests the `delete_review` view to ensure it returns the correct status code and template. | Pass |
+| `test_album_detail_view`           | Tests the `album_detail` view to ensure it returns the correct status code and JSON response with the expected album details. | Pass |
+
 #### Forms:
 
-|                                       | Status  |
-|----------------------------------------------------|---------|
-| Comment form is valid with a body                  | pass  |
-| Comment form is invalid without a body             | pass  |
-| Review form is valid with a heading and body       | pass  |
-| Review form is invalid without a heading and body  | pass  |
-| Review form is invalid without a heading           | pass  |
-| Review form is invalid without a body              | pass  |
-| Album form is valid with all fields filled         | pass  |
-| Album form is invalid without a title              | pass  |
-| Album form is invalid without an artist            | pass  |
-| Rating form is valid with a value between 1 and 5  | pass  |
-| Rating form is invalid with a value below 1        | pass  |
-| Rating form is invalid with a value above 5        | pass  |
+#### Forms:
+
+| Test Case                          | Description                                                                 | Status |
+|------------------------------------|-----------------------------------------------------------------------------|--------|
+| `TestCommentForm.test_form_is_valid`          | Tests the `CommentForm` to ensure it is valid when provided with a valid body. | Pass |
+| `TestCommentForm.test_form_is_invalid`        | Tests the `CommentForm` to ensure it is invalid when the body is empty. | Pass |
+| `TestReviewForm.test_form_is_valid`           | Tests the `ReviewForm` to ensure it is valid when provided with a valid heading and body. | Pass |
+| `TestReviewForm.test_form_is_invalid`         | Tests the `ReviewForm` to ensure it is invalid when both the heading and body are empty. | Pass |
+| `TestReviewForm.test_form_is_invalid_empty_heading` | Tests the `ReviewForm` to ensure it is invalid when the heading is empty but the body is provided. | Pass |
+| `TestReviewForm.test_form_is_invalid_empty_body` | Tests the `ReviewForm` to ensure it is invalid when the body is empty but the heading is provided. | Pass |
+| `TestAlbumForm.test_form_is_valid`            | Tests the `AlbumForm` to ensure it is valid when provided with a valid title, artist, image_url, and description. | Pass |
+| `TestAlbumForm.test_form_is_invalid_empty_title` | Tests the `AlbumForm` to ensure it is invalid when the title is empty. | Pass |
+| `TestAlbumForm.test_form_is_invalid_empty_artist` | Tests the `AlbumForm` to ensure it is invalid when the artist is empty. | Pass |
+| `TestRatingForm.test_form_is_valid`           | Tests the `RatingForm` to ensure it is valid when provided with a value between 1 and 5. | Pass |
+| `TestRatingForm.test_form_is_invalid_too_low` | Tests the `RatingForm` to ensure it is invalid when the value is below 1. | Pass |
+| `TestRatingForm.test_form_is_invalid_too_high` | Tests the `RatingForm` to ensure it is invalid when the value is above 5. | Pass |
+
 
 ### Known Issues/Bugs:
 
