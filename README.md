@@ -40,9 +40,9 @@ A fully responsive django web application that allows users to review and rate t
 
 ## UX - User Experience
 
-### User Stories:
-Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
-## User Stories
+
+
+### User Stories
 
 | User Story                          | Description                                                                 | Priority |
 |-------------------------------------|-----------------------------------------------------------------------------|----------|
@@ -66,7 +66,7 @@ Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
 | Album Pages                         | AS A site user I WANT dedicated album pages that display a list of all current reviews SO THAT I can see multiple users' opinions on the album in one place. | Won't Have |
 | Filter Reviews                      | AS A site user I WANT to be able to filter reviews by genre, artist, user, etc. SO THAT I can find specific reviews. | Won't Have |
 
-[List User Stories If I have time later]
+
 
 ### Wireframes:
 When I have time put wireframes for all relevant pages.
@@ -96,6 +96,7 @@ Coolors was used to help workshop the overall colour scheme of BeatBoxed. After 
 ### Accessibility:
 
 
+
 ### Fonts:
 As pictured in the colour scheme section, Real Time Colours was also used to preview and plan potential font combinations. 
 
@@ -111,6 +112,12 @@ Models and their ERDs were planned out with the use of [dbdiagram.io](https://db
 
 ![db](docs/db.png)
 
+
+## Agile
+
+Throughout the development of this project, MoSCoW prioritisation was used alongside a Kanban board to help keep track of progress and breakdown tasks. A more detailed example of my utilisation of MoSCoW prioritisation can be seen above in the [User Stories](#user-stories) section.
+
+Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
 
 ## Key Features
 
@@ -237,6 +244,57 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 | `TestRatingForm.test_form_is_valid`           | Tests the `RatingForm` to ensure it is valid when provided with a value between 1 and 5. | Pass |
 | `TestRatingForm.test_form_is_invalid_too_low` | Tests the `RatingForm` to ensure it is invalid when the value is below 1. | Pass |
 | `TestRatingForm.test_form_is_invalid_too_high` | Tests the `RatingForm` to ensure it is invalid when the value is above 5. | Pass |
+
+### Validators:
+#### W3C/Jigsaw:
+All errors flagged by W3C's markdown validator are caused by django-summernote, not of the HTML. I spent a lot of time trying to work around these errors but they won't go away unless I remove summernote and delete all reviews written with it.
+
+
+- **HTML**:
+    - Index
+    ![index](docs/validator_screenshots/index_html.png)
+    - Review List
+    ![RL](docs/validator_screenshots/reviews_html.png)
+    - User Review List
+    ![URL](docs/validator_screenshots/user_reviews_html.png)
+    - Review Detail
+    ![RD](docs/validator_screenshots/review_detail_html.png)
+    - Create Review
+    ![CR](docs/validator_screenshots/create_reviews_html.png)
+    ![CR2](docs/validator_screenshots/create_reviews_html(2).png)
+    - Edit Review
+    - Delete Review
+    - Log in
+    - Log out
+    - Register
+
+Used Jisaw CSS validator with no errors.
+- **CSS**
+    - style.css
+    ![css_valid](docs/validator_screenshots/css_jigsaw.png) 
+
+While I understand it's better practice to try to have one js script file, as these are specific to only one page and only have one use each, I just made them two seperate files.
+Jshint used, no errors flagged.
+- **JS**
+    - create_review.js
+    ![CR_JS](docs/validator_screenshots/create_reviews_jshint.png)
+    - edit_review.js
+    ![edit_JS](docs/validator_screenshots/edit_comments.js.png)
+
+Used Code Institute's Python Linter to check my python. In settings.py, one line is too long. However I cannot shorten it as it's one of the auth password validators.
+- **Python**
+    - settings.py
+    ![settings.py](docs/validator_screenshots/settings_py_valid.png)
+    - urls.py
+    - review/views.py 
+    ![views.py](docs/validator_screenshots/views_py_valid.png)
+    - review/urls.py
+    - review/models.py
+    - review/admin.py
+    - review/forms.py
+    - review/test_forms.py
+    - review/test_views.py
+
 
 
 ### Known Issues/Bugs:
