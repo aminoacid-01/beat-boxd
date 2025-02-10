@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 
-/* Colour Scheme */
-/* - #1f0a1c - #dbf1fa - #7f4b91 - #411f2a - #de643b = orange */
-
 /* Global Styles */
 * {
     font-family: 'Truculenta', sans-serif;
@@ -107,7 +104,6 @@ h2 {
 }
 
 .pagination a {
-    color: 1f0a1c;
     padding: 0.5rem 1rem;
     margin: 0 0.25rem;
     border: #1f0a1c solid 1px;
@@ -197,7 +193,7 @@ main {
     color: #dbf1fa;
     text-shadow: 2px 2px 4px #000000;
     text-align: center;
-    background: url(/static/images/hero_image.webp) no-repeat center/cover;
+    background: url(/static/images/hero_image.jpg) no-repeat center/cover;
     background-color: #de643b;
     padding-top: 8em;
 }
@@ -275,7 +271,7 @@ textarea {
     height: 141px;
 }
 
-/* album dropdown from album_form */
+/* album dropdown */
 #id_existing_album {
     width: 90%;
 }
@@ -336,7 +332,6 @@ footer p {
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    min-width: none;
     height: 500px;
 }
 
