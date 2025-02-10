@@ -171,6 +171,37 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 
 ## Testing
 
+### Manual Testing:
+[Something about]
+
+
+### Unit Tests Results:
+
+#### Forms:
+
+|                                       | Status  |
+|----------------------------------------------------|---------|
+| Comment form is valid with a body                  | pass  |
+| Comment form is invalid without a body             | pass  |
+| Review form is valid with a heading and body       | pass  |
+| Review form is invalid without a heading and body  | pass  |
+| Review form is invalid without a heading           | pass  |
+| Review form is invalid without a body              | pass  |
+| Album form is valid with all fields filled         | pass  |
+| Album form is invalid without a title              | pass  |
+| Album form is invalid without an artist            | pass  |
+| Rating form is valid with a value between 1 and 5  | pass  |
+| Rating form is invalid with a value below 1        | pass  |
+| Rating form is invalid with a value above 5        | pass  |
+
+### Known Issues/Bugs:
+
+- **Last.fm API**: Occasionally the review list pages and home page will time out or throw a server error due to the connection to http://ws.audioscrobbler.com/2.0/ timing out. 
+- **Duplicate Albums in Database**: In some cases, when users double click the submit button it causes duplicate posts. It also causes two instances of the same Album in the database.
+- **Duplicate Comments**: Upon reloading the review detail page after commenting, the comment is resubmitted. However, this comment only shows up on the admin panel as comments are moderated and wait for approval from the site admin.
+- **Padding Issues on smaller screens on the review detail page**:
+
+
 [Fill out with testing info]
 
 ## Deployment
