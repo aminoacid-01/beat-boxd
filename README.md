@@ -29,6 +29,7 @@ A fully responsive django web application that allows users to review and rate t
     - [Validators](#validators)
         - [W3C]()
         - [Python]()
+    - [Known Issues/Bugs](#known-issuesbugs)
 - [Deployment](#deployment)
     - [Heroku](#heroku)
     - [PostgreSQL - Code Institute](#postgresql---code-institute)
@@ -102,7 +103,7 @@ Models and their ERDs were planned out with the use of [dbdiagram.io](https://db
 - **Create/Edit Review Form**: A front-facing form where logged-in individuals can create and edit reviews. Created reviews can be seen listed on the review list page. I used javascript to hide the album input information when selecting prexisting albums from the database and fill the hidden inputs with the information.
 - **Delete**: Users can delete their own comments by clicking on the delete button. Upon clicking the button, they will be redirected to the delete confirmation page where they will be asked if they are sure they want to delete. The extra confirmation is to ensure users don't accidentally delete their own posts by misclicking.
 - **Album Link**: The review database is linked to the album database, so users can select any prexisting albums from a dropdown or create a new album in the database while they are filling out the create review form.
-- **Ratings**: When creating new reviews, users will have the option to rate the current album from 1-5. If a user has associated a rating with their review, it will display it above the review body text.
+- **Ratings**: When creating new reviews, users will be prompted to rate the current album from 1-5. The rating is displayed above the review body.
 - **Read Reviews**: Users can look at a short list of recent reviews on the home page. There's also a dedicate review list page where users can see a list of all available reviews. The review list displays:
     - **Album Cover**
     - **Album Title and Artist**
@@ -118,7 +119,7 @@ Models and their ERDs were planned out with the use of [dbdiagram.io](https://db
     - **Author**
     - **Created On**
     - **Updated On**
-    - **Rating** (only if a rating is associated with the review)
+    - **Rating** 
     - **Review Body**
     - **Comment Form**
     - **List of Comments**
@@ -127,7 +128,7 @@ Models and their ERDs were planned out with the use of [dbdiagram.io](https://db
 
 ### Albums:
 - **LastFM API integration**: I used the LastFM api to fetch album information to fill the album database. I decided to use this rather than having users upload album information or filling it out myself because it's more efficient. It saves time for both the end-users and the site admins.
-- **Average Rating**: Displayed alongside album information.
+
 
 
 
