@@ -33,13 +33,13 @@
             <img class="img-fluid" src="{% static 'images/placeholder_cover.jpg' %}" alt="Placeholder album cover">
             {% endif %}
             <!-- Album title and information -->
-            <h2 class="album-title">{{ review.album.title|title }} by {{ review.album.artist|title}}</h2>
+            <h3 class="album-title mt-3">{{ review.album.title|title }} by {{ review.album.artist|title}}</h3>
             <p class="mb-0 mt-1"><strong>Description:</strong></p>
             <p class="album-info">{{ review.album.description|safe }}</p>
             <!-- Display the tracklist if available -->
             <div class="album-tracklist mt-3">
                 {% if review.album.tracklist %}
-                <h2>Tracklist</h2>
+                <p><strong>Tracklist:</strong></p>
                 <ul>
                     {% for track in review.album.tracklist %}
                     <li>{{ track }}</li>
@@ -68,8 +68,8 @@
                     <section class="comments">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <h2>Comments</h2>
+                                <div class="col-md-12 mt-4">
+                                    <h3>Comments</h3>
                                     <div class="comment-form">
                                         <form method="post">
                                             {% csrf_token %}
