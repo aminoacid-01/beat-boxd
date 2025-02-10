@@ -42,7 +42,29 @@ A fully responsive django web application that allows users to review and rate t
 
 ### User Stories:
 Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
+## User Stories
 
+| User Story                          | Description                                                                 | Priority |
+|-------------------------------------|-----------------------------------------------------------------------------|----------|
+| Account registration                | AS A site user I WANT to be able to register for an account SO THAT I can post reviews and comments. | Must Have |
+| List Reviews                        | AS A site user I WANT to be able to look at a list of recently posted reviews SO THAT I can see other members of the community's opinions. | Must Have |
+| Detailed review page                | AS A user I WANT to click on reviews on the review list SO THAT I can see the full review page. | Must Have |
+| Paginated list of user's own reviews| AS A site user I WANT to be able to navigate to a list of my own reviews SO THAT if I want to edit or delete my reviews, I can easily find them all in one place. | Must Have |
+| POST Reviews                        | AS A site user/admin I WANT to be able to post reviews SO THAT I can share my opinion and take part in a community. | Must Have |
+| POST Comments                       | AS A site user I WANT to be able to post comments SO THAT I can take part in the community. | Must Have |
+| Edit and Delete Comments            | AS A site user/admin I WANT to be able to edit and delete comments SO THAT I have full control over what I post. | Must Have |
+| Fully Styled                        | AS A site admin I WANT a nicely styled web application SO THAT users and myself find it visually appealing. | Must Have |
+| Log In/Out                          | AS A site user I WANT to be able to log in and out of my account SO THAT I can post reviews and comments. | Must Have |
+| Moderate Comments                   | AS A site admin I WANT to review/approve comments SO THAT I can assure a positive and friendly community. | Must Have |
+| Database of Albums                  | AS A site user I WANT to be able to select an album to review from a dropdown SO THAT I can easily review it without having to type out all of the details about it. | Should Have |
+| Paginated List of User's Reviews    | AS A site user I WANT to be able to navigate to a list of my own reviews SO THAT if I want to edit or delete my reviews, I can easily find them all in one place. | Should Have |
+| Related Review List                 | AS A user I WANT a list of related reviews displayed on the review detail page SO THAT I can quickly read other relevant reviews. | Should Have |
+| Rating System                       | AS A site user I WANT to be able to rate the albums in my review out of 5 SO THAT I can express my opinion on the album I'm reviewing. | Should Have |
+| Placeholder Images                  | AS A site admin/owner I WANT a placeholder image to appear in place of album covers when an album cover cannot be fetched SO THAT the review lists and review detail pages are visually cohesive, even when there isn't an available album cover. | Should Have |
+| Paginated Review List               | AS A user I WANT to view a list of reviews with pagination SO THAT I don't get overloaded with information and have to scroll too much. | Could Have |
+| User Profiles                       | AS A site user I WANT to have my own profile SO THAT I can be a part of a community. | Won't Have |
+| Album Pages                         | AS A site user I WANT dedicated album pages that display a list of all current reviews SO THAT I can see multiple users' opinions on the album in one place. | Won't Have |
+| Filter Reviews                      | AS A site user I WANT to be able to filter reviews by genre, artist, user, etc. SO THAT I can find specific reviews. | Won't Have |
 
 [List User Stories If I have time later]
 
