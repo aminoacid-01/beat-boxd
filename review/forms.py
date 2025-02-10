@@ -25,8 +25,8 @@ class AlbumForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['title'].required = False
-        self.fields['artist'].required = False
+        self.fields['title'].required = True
+        self.fields['artist'].required = True
         self.fields['image_url'].required = False
         self.fields['description'].required = False
 

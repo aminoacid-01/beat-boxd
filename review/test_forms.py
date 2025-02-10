@@ -19,6 +19,7 @@ class TestCommentForm(TestCase):
             comment_form.is_valid(),
             msg="Form is valid"
             )
+    
 
 
 class TestReviewForm(TestCase):
@@ -69,6 +70,26 @@ class TestAlbumForm(TestCase):
             'description': 'A great album by Fall Out Boy'
         })
         self.assertTrue(album_form.is_valid())
+
+    
+    def test_form_is_invalid_empty_title(self):
+        album_form = AlbumForm({
+            'title': '',
+            'artist': 'Fall Out Boy',
+            'image_url': 'http://example.com/image.jpg',
+            'description': 'A great album by Fall Out Boy'
+        })
+        self.assertFalse(album_form.is_valid(), msg="Form is valid")
+
+    def test_form_is_invalid_empty_artist(self):
+        album_form = AlbumForm({
+            'title': 'Infinity On A High',
+            'artist': '',
+            'image_url': 'http://example.com/image.jpg',
+            'description': 'A great album by Fall Out Boy'
+        })
+        self.assertFalse(album_form.is_valid(), msg="Form is valid")
+
 
 
 class TestRatingForm(TestCase):
