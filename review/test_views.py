@@ -4,10 +4,12 @@ from .models import Review, Album, Comment, Rating, Album
 from .forms import CommentForm, ReviewForm, AlbumForm, RatingForm
 from django.contrib.auth.models import User
 
+
 class ReviewViewsTestCase(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user = User.objects.create_user(username='testuser',
+                                             password='12345')
         self.album = Album.objects.create(
             title='testalbum',
             artist='testartist',
@@ -35,7 +37,8 @@ class ReviewViewsTestCase(TestCase):
         )
 
     def test_review_detail_view(self):
-        response = self.client.get(reverse('review_detail', args=[self.review.slug]))
+        response = self.client.get(reverse('review_detail',
+                                           args=[self.review.slug]))
         print(f"Debug: Response content - {response.content.decode('utf-8')}")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'review_detail.html')
@@ -79,7 +82,8 @@ class ReviewViewsTestCase(TestCase):
 
     def test_edit_review_view(self):
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('edit_review', args=[self.review.slug]))
+        response = self.client.get(reverse('edit_review',
+                                           args=[self.review.slug]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit_review.html')
         self.assertIsInstance(
@@ -87,12 +91,14 @@ class ReviewViewsTestCase(TestCase):
 
     def test_delete_review_view(self):
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('delete_review', args=[self.review.slug]))
+        response = self.client.get(reverse('delete_review',
+                                           args=[self.review.slug]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete_review.html')
 
     def test_album_detail_view(self):
-        response = self.client.get(reverse('album_detail', args=[self.album.id]))
+        response = self.client.get(reverse('album_detail',
+                                           args=[self.album.id]))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {
             'title': self.album.title,

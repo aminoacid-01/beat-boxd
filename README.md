@@ -21,14 +21,17 @@ A fully responsive django web application that allows users to review and rate t
     - [Reviews](#reviews)
     - [Albums](#albums)
     - [Comments](#comments)
-    - [Future Features]()
+    - [Future Features](#future-features)
 - [AI Implementation](#ai-implementation)
 - [Testing:](#testing)
     - [Manual Testing](#manual-testing)
     - [Unit Testing](#unit-testing)
     - [Validators](#validators)
         - [W3C]()
+        - [Jigsaw]()
+        - [JsHint]()
         - [Python]()
+        - [Lighthouse]()
     - [Known Issues/Bugs](#known-issuesbugs)
 - [Deployment](#deployment)
     - [Heroku](#heroku)
@@ -167,6 +170,13 @@ Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
 - **Edit Comment Form**: Users can edit their own comments. JavaScript is used to make the edit button toggle the visibility of the edit form for better user experience.
 - **Moderation**: Site admins can approve comments before they appear in the dedicated comment section.
 
+### Future Features:
+
+- **User Profiles**: Allow users to have their own profiles to foster a sense of community.
+- **Album Pages**: Create dedicated album pages that display a list of all current reviews for each album.
+- **Filter Reviews**: Implement functionality to filter reviews by genre, artist, user, etc., to help users find specific reviews.
+- **Draft Reviews**: Allow users to save their reviews as a draft to finish later.
+
 ## AI Implementation
 
 Copilot was used for:
@@ -252,48 +262,75 @@ All errors flagged by W3C's markdown validator are caused by django-summernote, 
 
 - **HTML**:
     - Index
+
     ![index](docs/validator_screenshots/index_html.png)
     - Review List
+
     ![RL](docs/validator_screenshots/reviews_html.png)
     - User Review List
+
     ![URL](docs/validator_screenshots/user_reviews_html.png)
     - Review Detail
+
     ![RD](docs/validator_screenshots/review_detail_html.png)
     - Create Review
+
     ![CR](docs/validator_screenshots/create_reviews_html.png)
     ![CR2](docs/validator_screenshots/create_reviews_html(2).png)
     - Edit Review
+
+    Same errors as Create Review.
+
     - Delete Review
+
     - Log in
+
     - Log out
+    
     - Register
 
 Used Jisaw CSS validator with no errors.
 - **CSS**
     - style.css
+
     ![css_valid](docs/validator_screenshots/css_jigsaw.png) 
 
 While I understand it's better practice to try to have one js script file, as these are specific to only one page and only have one use each, I just made them two seperate files.
 Jshint used, no errors flagged.
 - **JS**
     - create_review.js
+
     ![CR_JS](docs/validator_screenshots/create_reviews_jshint.png)
     - edit_review.js
+
     ![edit_JS](docs/validator_screenshots/edit_comments.js.png)
 
-Used Code Institute's Python Linter to check my python. In settings.py, one line is too long. However I cannot shorten it as it's one of the auth password validators.
+Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. In settings.py, one line is too long. However I cannot shorten it as it's one of the auth password validators.
 - **Python**
     - settings.py
+
     ![settings.py](docs/validator_screenshots/settings_py_valid.png)
     - urls.py
+
+    ![urls.py](docs/validator_screenshots/urls_py_valid.png)
     - review/views.py 
+
     ![views.py](docs/validator_screenshots/views_py_valid.png)
     - review/urls.py
+
     - review/models.py
+
+    ![models.py](docs/validator_screenshots/review_models_py_valid.png)
     - review/admin.py
+
     - review/forms.py
+
     - review/test_forms.py
+
+    ![test_forms.py](docs/validator_screenshots/test_forms_py_valid.png)
     - review/test_views.py
+
+    ![test_views.py](docs/validator_screenshots/test_forms_py_valid.png)
 
 
 
