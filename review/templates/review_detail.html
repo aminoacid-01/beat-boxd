@@ -9,14 +9,8 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6">
-                <!-- Review title goes in these h1 tags -->
                 <h2 class="review-title h1">{{ review.heading|title }}</h2>
-                <!-- Review author goes before the | the review's created date goes after -->
-                {% if review.created_on == review.updated_on %}
                 <p class="review-subtitle">{{ review.author }} | {{ review.created_on }}</p>
-                {% else %}
-                <p class="review-subtitle">{{ review.author }} | {{ review.created_on }} | Last Edited On: {{ review.updated_on }}</p>
-                {% endif %}
             </div>
         </div>
     </div>
