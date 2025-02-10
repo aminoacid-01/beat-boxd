@@ -24,16 +24,17 @@ A fully responsive django web application that allows users to review and rate t
     - [Future Features]()
 - [AI Implementation](#ai-implementation)
 - [Testing:](#testing)
-    - [Validators]()
+    - [Manual Testing](#manual-testing)
+    - [Unit Testing](#unit-testing)
+    - [Validators](#validators)
         - [W3C]()
         - [Python]()
-    - [Manual Testing]()
-    - [Automated Testing]()
 - [Deployment](#deployment)
     - [Heroku](#heroku)
     - [PostgreSQL - Code Institute](#postgresql---code-institute)
     - [LastFM API](#lastfm-api)
 - [Credits](#credits)
+- [Acknowledgements](#acknowlegements)
 
 
 ## UX - User Experience
@@ -162,7 +163,7 @@ Some problems that were caused by using Copilot were:
 - It would remove endblocks and endifs, breaking some django templates.
 - It sometimes would create unwanted changes and edits to other files in the workspace.
 
-### Overall Experience W/ AI:
+### Overall Experience:
 
 Despite the small inconveniences caused by the use of Copilot, I would say copilot has had a positive affect on this project. It has saved me a lot of time- particularly with troubleshooting. I don't think I would have been able to get as much done as I have in this timeframe without the use of Copilot. 
 However, there were times where Copilot wasn't helpful and I had to read over the documentation for Django. 
@@ -182,7 +183,7 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 
 
 
-### Unit Tests Results:
+### Unit Testing:
 
 #### Views:
 
@@ -276,7 +277,8 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
     
 
 ### PostgreSQL - Code Institute:
-[steps] 
+
+The PostgreSQL database provided by Code Institute is used to store information for this project.
 
 ### LastFM API:
 The project utilises the LastFM API to fetch album information to fill the Album database.
