@@ -257,8 +257,6 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
     - For security reasons, never have Debug = True when your project is deployed.
 
 6. Add, commit and push all changes to Github
-
-[finish later]
     
 
 ### PostgreSQL - Code Institute:
@@ -286,6 +284,7 @@ The project utilises the LastFM API to fetch album information to fill the Album
 
 - **Images:**
     - Album covers - Last.fm
+    - Placeholder Cover - Nechama Lock on [Unsplash](https://unsplash.com/photos/purple-and-pink-abstract-painting-dLFmwIOGNYo)
     - Hero Image - Sergio Kian on [Unsplash](https://unsplash.com/photos/a-book-shelf-filled-with-lots-of-books-m7m2JJVB2No)
 
 - **Code/Database Models**:
@@ -298,6 +297,9 @@ The project utilises the LastFM API to fetch album information to fill the Album
 
 ### Acknowlegements:
 
+Thanks to:
+- Emma, for being a great motivator and listening to me complain about my constant internet problems throughout the course!
+- My older sister, for lending me her services as a QA tester and giving me feedback on my project.
 
 
 
