@@ -257,6 +257,22 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
     - For security reasons, never have Debug = True when your project is deployed.
 
 6. Add, commit and push all changes to Github
+
+7. Log in to Heroku
+
+8. Create a new Heroku app
+
+9. Configure environment variables:
+    - Set up necessary environment variables in Heroku, including the database URL and any API keys.
+    ```bash
+    heroku config:set DISABLE_COLLECTSTATIC=1
+    heroku config:set DATABASE_URL=your-database-url
+    heroku config:set LASTFM_API_KEY=your-api-key
+    ```
+
+10. Connect your Github Repo to Heroku
+
+11. Deploy from the main branch
     
 
 ### PostgreSQL - Code Institute:
@@ -265,6 +281,7 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
 ### LastFM API:
 The project utilises the LastFM API to fetch album information to fill the Album database.
 
+**Setting up the API for usage:**
 1. Sign up for Last.fm API key:
     - Go to https://www.last.fm/api/account/create
     - Create an API application and make a note of the API key.
@@ -276,9 +293,27 @@ The project utilises the LastFM API to fetch album information to fill the Album
 3. Store API key in env.py
     - For security purposes, store the API key in the env.py.
 
-4. Write a function to fetch and store album data from Last.fm using said API key.
-    - the url: 'http://ws.audioscrobbler.com/2.0/'
-    - Use the function to fetch and store data to the album model.
+
+## Technologies Used:
+- **Heroku**
+- **gunicorn**
+- **Copilot**
+- **Coolors**
+- **RealTimeColors**
+- **Balsamiq**
+- **Git**
+- **Github**
+- **HTML**
+- **CSS**
+- **Javascript**
+- **Python**
+- **Django**
+- **Summernote**
+- **whitenoise**
+- **AllAuth**
+- **PostgreSQL**
+
+
 
 ## Credits
 
