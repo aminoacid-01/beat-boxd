@@ -172,7 +172,14 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 ## Testing
 
 ### Manual Testing:
-[Something about]
+
+| Feature                            | Description                                                                 | Status |
+|------------------------------------|-----------------------------------------------------------------------------|--------|
+| Navigational links in Navbar       | Ensure all navigational links in the navbar are working correctly.          | Pass   |
+| Links on all pages                 | Verify that all links on various pages are functional and redirect correctly. | Pass   |
+| Form input on create_review page   | Test the form input fields on the create review page to ensure they accept and process data correctly. | Pass   |
+| Responsiveness on all screen sizes | Check the responsiveness of the site on different screen sizes to ensure proper display and functionality. | Pass   |
+
 
 
 ### Unit Tests Results:
@@ -189,8 +196,6 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 | `test_edit_review_view`            | Tests the `edit_review` view to ensure it returns the correct status code, template, and contains the expected form. | Pass |
 | `test_delete_review_view`          | Tests the `delete_review` view to ensure it returns the correct status code and template. | Pass |
 | `test_album_detail_view`           | Tests the `album_detail` view to ensure it returns the correct status code and JSON response with the expected album details. | Pass |
-
-#### Forms:
 
 #### Forms:
 
@@ -215,10 +220,7 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 - **Last.fm API**: Occasionally the review list pages and home page will time out or throw a server error due to the connection to http://ws.audioscrobbler.com/2.0/ timing out. 
 - **Duplicate Albums in Database**: In some cases, when users double click the submit button it causes duplicate posts. It also causes two instances of the same Album in the database.
 - **Duplicate Comments**: Upon reloading the review detail page after commenting, the comment is resubmitted. However, this comment only shows up on the admin panel as comments are moderated and wait for approval from the site admin.
-- **Padding Issues on smaller screens on the review detail page**:
-
-
-[Fill out with testing info]
+- **Padding Issues on smaller screens on the review detail page**: The card displaying the album information appears too large on smaller screens. All content is visible and it doesn't affect user experience, but it's not ideal.
 
 ## Deployment
 
