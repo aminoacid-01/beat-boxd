@@ -295,23 +295,26 @@ The project utilises the LastFM API to fetch album information to fill the Album
 
 
 ## Technologies Used:
-- **Heroku**
-- **gunicorn**
-- **Copilot**
-- **Coolors**
-- **RealTimeColors**
-- **Balsamiq**
-- **Git**
-- **Github**
-- **HTML**
-- **CSS**
-- **Javascript**
-- **Python**
-- **Django**
-- **Summernote**
-- **whitenoise**
-- **AllAuth**
-- **PostgreSQL**
+
+- **Heroku**: Platform as a service (PaaS) for deploying web applications.
+- **gunicorn**: Python WSGI HTTP Server for UNIX.
+- **Copilot**: AI pair programmer to assist with code completion and suggestions.
+- **Coolors**: Color scheme generator for creating color palettes.
+- **RealTimeColors**: Tool for previewing and planning color schemes and font combinations.
+- **Balsamiq**: Wireframing tool for creating mockups and wireframes.
+- **Git**: Version control system for tracking changes in source code.
+- **GitHub**: Hosting service for Git repositories.
+- **HTML**: Standard markup language for creating web pages.
+- **CSS**: Style sheet language for describing the presentation of web pages.
+- **JavaScript**: Programming language for creating interactive web pages.
+- **Python**: High-level programming language for general-purpose programming.
+- **Django**: High-level Python web framework for rapid development.
+- **Summernote**: WYSIWYG editor for web applications.
+- **whitenoise**: Middleware for serving static files in Django.
+- **AllAuth**: Integrated set of Django applications addressing authentication, registration, account management.
+- **PostgreSQL**: Open-source relational database management system.
+
+
 
 
 
@@ -335,18 +338,3 @@ The project utilises the LastFM API to fetch album information to fill the Album
 Thanks to:
 - Emma, for being a great motivator and listening to me complain about my constant internet problems throughout the course!
 - My older sister, for lending me her services as a QA tester and giving me feedback on my project.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
