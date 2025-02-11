@@ -203,7 +203,7 @@ However, there were times where Copilot wasn't helpful and I had to read over th
 
 ## Testing
 
-See [testing.md](docs/testing.md) for details regarding manual testing, unit testing, validators and lighthouse results.
+See [testing.md](testing.md) for details regarding manual testing, unit testing, validators and lighthouse results.
 
 
 ## Deployment

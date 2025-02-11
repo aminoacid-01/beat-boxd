@@ -105,12 +105,18 @@ Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. I
     ![views.py](docs/validator_screenshots/views_py_valid.png)
     - review/urls.py
 
+    ![review/urls.py](docs/validator_screenshots/review_urls_py_valid.png)
+
     - review/models.py
 
     ![models.py](docs/validator_screenshots/review_models_py_valid.png)
     - review/admin.py
 
+    ![admin.py](docs/validator_screenshots/admin_py_valid.png)
+
     - review/forms.py
+
+    ![forms.py](docs/validator_screenshots/forms_py_valid.png)
 
     - review/test_forms.py
 
