@@ -65,9 +65,14 @@ All errors flagged by W3C's markdown validator are caused by django-summernote, 
     ![CR](docs/validator_screenshots/create_reviews_html.png)
     ![CR2](docs/validator_screenshots/create_reviews_html(2).png)
     - Edit Review
-    Exact same errors as Create Review.
+
+    ![ER](docs/validator_screenshots/edit_review_html.png)
+    ![ER](docs/validator_screenshots/edit_review_html(2).png)
 
     - Delete Review
+
+    ![DR](docs/validator_screenshots/delete_reviews_html.png)
+
     
 
 

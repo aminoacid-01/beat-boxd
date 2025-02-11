@@ -67,28 +67,49 @@ When I have time put wireframes for all relevant pages.
 
 [Mobile wfs]
 [Desktop wfs]
-[Tablet wfs]
 
 ### Design:
 
+|  |
+|-----------|
+| #1f0a1c   |
+| #dbf1fa   |
+| #7f4b91   |
+| #411f2a   |
+| #de643b   |
 
-
-#### Colour Scheme:
-
-- #1f0a1c
-- #dbf1fa
-- #7f4b91
-- #411f2a
-- #de643b
 
 Coolors was used to help workshop the overall colour scheme of BeatBoxed. After many iterations and testing the colours out in [Realtime Colors](https://www.realtimecolors.com/?colors=1f0a1c-dbf1fa-7f4b91-411f2a-de643b&fonts=Monoton-Truculenta), the current colour scheme is the one that was used for BeatBoxd.
 
-![rt_colors](docs/design/rt_colors.png)
-![coolors](docs/design/beatboxd_coolors.png)
+<details>
+    <summary>Color Scheme Previews</summary>
+    <img src="docs/design/beatboxd_coolors.png" alt="coolors screenshot"/>
+    <img src="docs/design/rt_colors.png" alt="realtime colours preview"/>
+</details>
 
 
 ### Accessibility:
 
+Ensuring accessibility is a key aspect of the development process for BeatBoxd. The following measures have been taken to make the application accessible to all users:
+
+#### Semantic HTML:
+- Use of semantic HTML elements to provide meaningful structure to the content.
+- Proper use of headings (`<h1>`, `<h2>`, etc.) to create a logical document outline.
+
+#### Color Contrast:
+- Ensuring sufficient color contrast between text and background to make content readable for users with visual impairments.
+- Use of tools like [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify color contrast ratios. 
+
+#### Responsive Design:
+- Ensuring that the application is fully responsive and accessible on various devices and screen sizes.
+- Use of media queries and bootstrap grids to adapt to different screen resolutions.
+
+#### Testing:
+- Conducting accessibility testing using tools like [Lighthouse](https://developers.google.com/web/tools/lighthouse).
+- All pages have a score of over 90 in accessibility when using Lighthouse.
+- Regularly reviewing and updating accessibility features based on user feedback and testing results.
+
+By implementing these accessibility practices, BeatBoxd aims to provide an inclusive experience for all users, regardless of their abilities or disabilities.
 
 
 ### Fonts:
@@ -117,9 +138,17 @@ Project Board: [link](https://github.com/users/aminoacid-01/projects/4)
 
 ### General:
 - **Navbar**: Displaying title in the Monoton font. Working navigational links to the homepage, sign in/out/up pages and create review page.
+![navbar](docs/screenshots/navbar.png)
+![nav links](docs/screenshots/navigation_w_dropdown.png)
+
 - **Footer**: Displays the copyright and project name.
 - **Hero Banner**: Displays a photo of some cds to help the musical theming. A call to action with a button encouraging users to take part in the community and write their own reviews.
+![hero img mobile](docs/screenshots/hero_img_mobile.png)
+![hero img desktop](docs/screenshots/hero_img_dt.png)
+
 - **Error Pages**: Styled 404 and 500 pages. 404 page has a Silent Hill 2 reference. As the main cause of 500 errors in this project has been the Last.fm API, I referenced it in the error message.
+![404](docs/screenshots/404.png)
+
 
 ### Reviews:
 - **CRUD**: Both site admins and users with accounts can create, read, edit, and delete reviews. Users can only delete their reviews.
