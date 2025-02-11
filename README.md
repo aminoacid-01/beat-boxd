@@ -279,7 +279,7 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
     ```
 
 5. Set Debug to False in settings.py:
-    - For security reasons, never have Debug = True when your project is deployed.
+    - For security reasons, never have ```Debug = True``` when your project is deployed.
 
 6. Add, commit and push all changes to Github
 
