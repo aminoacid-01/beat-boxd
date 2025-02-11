@@ -65,8 +65,18 @@ A fully responsive django web application that allows users to review and rate t
 ### Wireframes:
 When I have time put wireframes for all relevant pages.
 
-[Mobile wfs]
-[Desktop wfs]
+#### Phones:
+
+![mobile wireframes](docs/wireframes/Phone-%20homepage%20wireframe.png)
+
+#### Tablets:
+
+![Tablet](docs/wireframes/tab%20-%20homepage.png)
+
+#### Desktop:
+
+![Desktop](docs/wireframes/DT%20-%20%20homepage.png)
+
 
 ### Design:
 
