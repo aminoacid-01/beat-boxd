@@ -288,7 +288,7 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
 
 9. Configure environment variables:
     - Set up necessary environment variables in Heroku, including the database URL and any API keys.
-    ```
+    ```bash
     DISABLE_COLLECTSTATIC=1
     DATABASE_URL=your-database-url
     LASTFM_API_KEY=your-api-key
@@ -320,6 +320,17 @@ The project utilises the LastFM API to fetch album information to fill the Album
 3. Store API key in env.py
     - For security purposes, store the API key in the env.py.
 
+### Setting up the project locally:
+
+When setting and testing the project on a local server, be sure to create a file in the root directory called env.py containing the following:
+
+```python
+    os.environ.setdefault(
+    "DATABASE_URL", "your-database-url")
+    os.environ.setdefault("SECRET_KEY", "your-secret-key")
+    os.environ.setdefault("LASTFM_API_KEY", "your-api-key")
+    os.environ["DEBUG"] = 'True'
+```
 
 ## Technologies Used:
 
