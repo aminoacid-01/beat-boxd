@@ -1,6 +1,6 @@
-## Testing
+# Testing
 
-### Manual Testing:
+## Manual Testing:
 
 | Feature                            | Description                                                                 | Status |
 |------------------------------------|-----------------------------------------------------------------------------|--------|
@@ -11,9 +11,9 @@
 
 
 
-### Unit Testing:
+## Unit Testing:
 
-#### Views:
+### Views:
 
 | Test Case                          | Description                                                                 | Status |
 |------------------------------------|-----------------------------------------------------------------------------|--------|
@@ -26,7 +26,7 @@
 | `test_delete_review_view`          | Tests the `delete_review` view to ensure it returns the correct status code and template. | Pass |
 | `test_album_detail_view`           | Tests the `album_detail` view to ensure it returns the correct status code and JSON response with the expected album details. | Pass |
 
-#### Forms:
+### Forms:
 
 | Test Case                          | Description                                                                 | Status |
 |------------------------------------|-----------------------------------------------------------------------------|--------|
@@ -43,10 +43,9 @@
 | `TestRatingForm.test_form_is_invalid_too_low` | Tests the `RatingForm` to ensure it is invalid when the value is below 1. | Pass |
 | `TestRatingForm.test_form_is_invalid_too_high` | Tests the `RatingForm` to ensure it is invalid when the value is above 5. | Pass |
 
-### Validators:
-#### W3C/Jigsaw:
+## Validators:
+### W3C:
 All errors flagged by W3C's markdown validator are caused by django-summernote, not of the HTML. I spent a lot of time trying to work around these errors but they won't go away unless I remove summernote and delete all reviews written with it.
-
 
 - **HTML**:
     - Index
@@ -66,22 +65,20 @@ All errors flagged by W3C's markdown validator are caused by django-summernote, 
     ![CR](docs/validator_screenshots/create_reviews_html.png)
     ![CR2](docs/validator_screenshots/create_reviews_html(2).png)
     - Edit Review
-
-    Same errors as Create Review.
+    Exact same errors as Create Review.
 
     - Delete Review
-
-    - Log in
-
-    - Log out
     
-    - Register
 
+
+### Jigsaw:
 Used Jisaw CSS validator with no errors.
 - **CSS**
     - style.css
 
     ![css_valid](docs/validator_screenshots/css_jigsaw.png) 
+
+### JsHint:
 
 While I understand it's better practice to try to have one js script file, as these are specific to only one page and only have one use each, I just made them two seperate files.
 Jshint used, no errors flagged.
@@ -93,7 +90,9 @@ Jshint used, no errors flagged.
 
     ![edit_JS](docs/validator_screenshots/edit_comments.js.png)
 
-Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. In settings.py, one line is too long. However I cannot shorten it as it's one of the auth password validators.
+### Code Institute's Python Linter:
+Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. In settings.py, one line is too long. However I cannot shorten it as it's one of the auth password validators. Other than that, all python code passes validation.
+
 - **Python**
     - settings.py
 
@@ -121,8 +120,14 @@ Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. I
     ![test_views.py](docs/validator_screenshots/test_forms_py_valid.png)
 
 
+## Lighthouse:
 
-### Known Issues/Bugs:
+On certain pages, the performance (particularly on pages containing a summernote widget) on mobile is less than ideal. This is due to a mixture of loading up the summernote javascript files and the Lastfm API.
+
+[Lighhouse results on all pages.]
+
+
+## Known Issues/Bugs:
 
 - **Last.fm API**: Occasionally the review list pages and home page will time out or throw a server error due to the connection to http://ws.audioscrobbler.com/2.0/ timing out. 
 - **Duplicate Albums in Database**: In some cases, when users double click the submit button it causes duplicate posts. It also causes two instances of the same Album in the database.
