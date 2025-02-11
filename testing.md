@@ -45,7 +45,7 @@
 
 ## Validators:
 ### W3C:
-All errors flagged by W3C's markdown validator are caused by django-summernote, not of the HTML. I spent a lot of time trying to work around these errors but they won't go away unless I remove summernote and delete all reviews written with it.
+All errors flagged by W3C's markdown validator are caused by django-summernote, not from any of the HTML in the templates I wrote. I spent a lot of time trying to work around these errors but they won't go away unless I remove summernote and delete all reviews written with it.
 
 - **HTML**:
     - Index
