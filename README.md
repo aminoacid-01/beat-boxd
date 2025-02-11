@@ -63,7 +63,6 @@ A fully responsive django web application that allows users to review and rate t
 
 
 ### Wireframes:
-When I have time put wireframes for all relevant pages.
 
 #### Phones:
 
