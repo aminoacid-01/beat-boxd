@@ -109,6 +109,7 @@ Ensuring accessibility is a key aspect of the development process for BeatBoxd. 
 #### Color Contrast:
 - Ensuring sufficient color contrast between text and background to make content readable for users with visual impairments.
 - Use of tools like [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify color contrast ratios. 
+- Only issue regarding colour contrast is with the btn-primary styling, it's just short of being a passable contrast.
 
 #### Responsive Design:
 - Ensuring that the application is fully responsive and accessible on various devices and screen sizes.
@@ -213,13 +214,13 @@ Copilot was used for:
 - Advice on planning out album model
 - Speed up coding via auto complete.
 - Assist with bootstrap grids when stuck.
-- Some JS, such as:
+- Help with some JS, such as:
     - auto populating the hidden fields with existing album data for the create reviews form.
     - hiding the edit comments form.
 - Setting up the implementation of the LastFM API.
 - Troubleshooting any errors that came from working with the LastFM API.
 - Fixing template errors.
-- Workshop how to step by step write some functions.
+- Workshop how to go about writing some views and functions step by step.
 - Speed up writing and updating docstrings
 - Some commit messages
 - Quickly apply similar bootstrap styling of one template to other related templates to save time. (eg. styling other account templates to have the bootstrap classes of the sign_up page).
@@ -237,6 +238,7 @@ Some problems that were caused by using Copilot were:
 
 Despite the small inconveniences caused by the use of Copilot, I would say copilot has had a positive affect on this project. It has saved me a lot of time- particularly with troubleshooting. I don't think I would have been able to get as much done as I have in this timeframe without the use of Copilot. 
 However, there were times where Copilot wasn't helpful and I had to read over the documentation for Django. 
+
 
 
 
@@ -287,10 +289,10 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
 
 9. Configure environment variables:
     - Set up necessary environment variables in Heroku, including the database URL and any API keys.
-    ```bash
-    heroku config:set DISABLE_COLLECTSTATIC=1
-    heroku config:set DATABASE_URL=your-database-url
-    heroku config:set LASTFM_API_KEY=your-api-key
+    ```
+    DISABLE_COLLECTSTATIC=1
+    DATABASE_URL=your-database-url
+    LASTFM_API_KEY=your-api-key
     ```
 
 10. Connect your Github Repo to Heroku
@@ -301,6 +303,8 @@ BeatBoxed was deployed via Heroku. Early deployment was utilised to ensure the p
 ### PostgreSQL - Code Institute:
 
 The PostgreSQL database provided by Code Institute is used to store information for this project.
+
+
 
 ### LastFM API:
 The project utilises the LastFM API to fetch album information to fill the Album database.
@@ -321,7 +325,7 @@ The project utilises the LastFM API to fetch album information to fill the Album
 ## Technologies Used:
 
 - **Heroku**: Platform as a service (PaaS) for deploying web applications.
-- **gunicorn**: Python WSGI HTTP Server for UNIX.
+- **Gunicorn**: Python WSGI HTTP Server for UNIX.
 - **Copilot**: AI pair programmer to assist with code completion and suggestions.
 - **Coolors**: Color scheme generator for creating color palettes.
 - **RealTimeColors**: Tool for previewing and planning color schemes and font combinations.
@@ -334,11 +338,11 @@ The project utilises the LastFM API to fetch album information to fill the Album
 - **Python**: High-level programming language for general-purpose programming.
 - **Django**: High-level Python web framework for rapid development.
 - **Summernote**: WYSIWYG editor for web applications.
-- **whitenoise**: Middleware for serving static files in Django.
+- **Whitenoise**: Middleware for serving static files in Django.
 - **AllAuth**: Integrated set of Django applications addressing authentication, registration, account management.
 - **PostgreSQL**: Open-source relational database management system.
-
-
+- **Bootstrap**: Front-end framework for developing responsive and mobile-first websites.
+- **LastFM API**: Service for fetching album information.
 
 
 
@@ -352,7 +356,7 @@ The project utilises the LastFM API to fetch album information to fill the Album
 - **Code/Database Models**:
     - Used some of the steps I Think, Therefore I Blog tutorial to help set up the project.
     - Comment model - I Think, Therefore I Blog.
-    - Used the highest rated answer from [this](https://stackoverflow.com/questions/17838607/making-an-iframe-responsive) stackoverflow post to make the iframe for summernote responsive.
+    - Used the highest rated answer from [this stackoverflow post](https://stackoverflow.com/questions/17838607/making-an-iframe-responsive) to make the iframe for summernote responsive.
     - Heavily referenced documentation for Django and django-summernote throughout development.
 
 

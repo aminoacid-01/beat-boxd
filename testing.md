@@ -9,7 +9,20 @@
 | Form input on create_review page   | Test the form input fields on the create review page to ensure they accept and process data correctly. | Pass   |
 | Responsiveness on all screen sizes | Check the responsiveness of the site on different screen sizes to ensure proper display and functionality. | Pass   |
 
+### Browsers:
 
+This project has been tested on:
+    - Brave
+    - Safari
+    - Firefox
+    - Chrome
+
+### Devices:
+
+This project has been tested on:
+    - Multiple android phones, including Xiaomi Poco F3 and Pixel 3a.
+    - iPad 10th gen
+    - Asus Vivobook
 
 ## Unit Testing:
 
