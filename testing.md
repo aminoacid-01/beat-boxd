@@ -122,9 +122,72 @@ Used Code Institute's Python Linter to ensure my code is up to PEP8 standards. I
 
 ## Lighthouse:
 
-On certain pages, the performance (particularly on pages containing a summernote widget) on mobile is less than ideal. This is due to a mixture of loading up the summernote javascript files and the Lastfm API.
+On certain pages, the performance (particularly on pages containing a summernote widget) on mobile is less than ideal. The Lastfm API also has a slight negative affect on perfomance.
 
-[Lighhouse results on all pages.]
+- **Index**
+    - mobile
+
+    ![indexmobile](docs/validator_screenshots/lighthouse/index_lighthouse.png)
+
+    - desktop 
+
+    ![indexdesktop](docs/validator_screenshots/lighthouse/index_lighthouse_dt.png)
+
+- **Review List**
+    - mobile
+
+    ![review_listmobile](docs/validator_screenshots/lighthouse/review_list_lighouse.png)
+
+    - desktop
+
+    ![review_listdesktop](docs/validator_screenshots/lighthouse/review_list_lighthouse_dt.png)
+
+- **User Review List**
+    - mobile
+
+    ![user_review_list](docs/validator_screenshots/lighthouse/user_reviews_lighthouse.png)
+
+    - desktop
+
+    ![user_reviews_listdesktop](docs/validator_screenshots/lighthouse/user_reviews_lighthouse_dt.png)
+
+- **Review Detail**
+    - mobile 
+
+    ![review_detail](docs/validator_screenshots/lighthouse/review_detail_lighthouse.png)
+
+    - desktop
+
+    ![review_detaildesktop](docs/validator_screenshots/lighthouse/review_detail_lighthouse_dt.png)
+
+- **Create Review**
+    - mobile
+
+    ![create_review](docs/validator_screenshots/lighthouse/create_reviews_lighthouse.png)
+
+    - desktop
+
+    ![create_reviewdesktop](docs/validator_screenshots/lighthouse/create_reviews_lighthouse_dt.png)
+
+    
+- **Edit Review**
+    - mobile
+
+    ![edit_review](docs/validator_screenshots/lighthouse/edit_reviews_lighthouse.png)
+
+    - desktop
+
+    ![edit_reviewdesktop](docs/validator_screenshots/lighthouse/edit_reviews_lighthouse_dt.png)
+
+- **Delete Review**
+    - mobile
+
+    ![delete_review](docs/validator_screenshots/lighthouse/delete_reviews_lighthouse.png)
+
+    - desktop
+
+    ![delete_reviewdesktop](docs/validator_screenshots/lighthouse/delete_reviews_lighthouse_dt.png)
+
 
 
 ## Known Issues/Bugs:
