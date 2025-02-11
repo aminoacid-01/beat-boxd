@@ -38,6 +38,9 @@ SUMMERNOTE_THEME = 'bs5'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Used code snippiet that Charlie Flockheart shared
+# in the CI slack channel to ensure that
+# the debug mode is set to False when deployed to Heroku
 DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 't', 'yes')
 ALLOWED_HOSTS = [
     '127.0.0.1',
